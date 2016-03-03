@@ -1,0 +1,29 @@
+{
+    "name": "dol/status",
+    "type": "phpbb-extension",
+    "description": "PhpBB Dawn of Light Extension for displaying server status",
+    "homepage": "https://github.com/dol-leodagan/phpbb-dol-extension",
+    "version": "0.0.1",
+    "time": "2015-08-04 12:49:14",
+    "license": "MIT",
+    "authors": [{
+            "name": "Leodagan",
+            "email": "leodagan@durron.net",
+            "homepage": "https://daoc.freyad.net",
+            "role": "Lead Developer"
+        }],
+    "require": {
+        "php": ">=5.3.3",
+    },
+    "extra": {
+        "display-name": "Dawn of Light Extension",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.5,<3.2.*@dev"
+        },
+        "version-check": {
+            "host": "raw.githubusercontent.com",
+            "directory": "/dol-leodagan/phpbb-dol-extension/master",
+            "filename": "dol_extension.json"
+        }
+    }
+}
