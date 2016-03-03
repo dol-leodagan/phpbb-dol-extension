@@ -1,0 +1,6 @@
+services:
+    dol.status.main:
+        class: dol\statux\controller\main
+        arguments:
+            - %core.root_path%
+            - .%core.php_ext%
