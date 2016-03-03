@@ -1,0 +1,3 @@
+board3_portal_controller:
+    path: /herald
+    defaults: { _controller: dol.status.main:handle }
