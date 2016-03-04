@@ -4,3 +4,8 @@ services:
         arguments:
             - %core.root_path%
             - .%core.php_ext%
+            
+    acme.demo.listener:
+        class: dol\status\event\listener
+        tags:
+            - { name: event.listener }
