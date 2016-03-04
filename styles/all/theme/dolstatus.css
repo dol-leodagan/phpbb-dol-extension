@@ -16,6 +16,6 @@ li[title="Herald"] > a {
 }
 @media (max-width: 550px) {
     li[title="Herald"] > a {
-        display: none;
+        display: none !important;
     }
 }
