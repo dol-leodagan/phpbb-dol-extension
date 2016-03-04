@@ -5,7 +5,16 @@ services:
             - %core.root_path%
             - .%core.php_ext%
             
-    acme.demo.listener:
+    dol.status.listener:
         class: dol\status\event\listener
+        arguments:
+            - @dol.status.main
+            - @auth
+            - @config
+            - @controller.helper
+            - @path_helper
+            - @template
+            - @user
+            - %core.php_ext%
         tags:
             - { name: event.listener }
