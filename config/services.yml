@@ -2,6 +2,10 @@ services:
     dol.status.main:
         class: dol\status\controller\main
         arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
             - %core.root_path%
             - .%core.php_ext%
             
