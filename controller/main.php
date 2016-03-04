@@ -10,6 +10,12 @@ namespace dol\status\controller;
 class main
 {
     /**
+    * phpBB root path
+    * @var string
+    */
+    protected $phpbb_root_path;
+	
+    /**
     * PHP file extension
     * @var string
     */
