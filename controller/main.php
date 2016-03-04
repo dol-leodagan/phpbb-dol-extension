@@ -21,7 +21,7 @@ class main
     */
     protected $php_ext;
     /**
-    * Portal root path
+    * Extension root path
     * @var string
     */
     protected $root_path;
