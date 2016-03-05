@@ -8,6 +8,7 @@ services:
             - '@user'
             - %core.root_path%
             - .%core.php_ext%
+            - '@cache.driver'
             
     dol.status.listener:
         class: dol\status\event\listener
