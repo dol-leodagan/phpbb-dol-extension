@@ -1,7 +1,6 @@
 /** Herald Link Decoration **/
 
-.navbar .nav-tabs .herald .nav-link::after
-{
+.navbar .nav-tabs .herald .nav-link::after {
     content: "";
     width: 20px !important;
     height: 20px !important;
@@ -10,7 +9,12 @@
     margin-top: -9px !important;
 }
 
-navbar .nav-tabs .herald .nav-link
-{
-    padding-left: 34px !important; 
+.navbar .nav-tabs .herald .nav-link {
+    padding-left: 36px !important; 
+}
+
+@media (max-width: 550px) {
+    .navbar .nav-tabs .herald .nav-link {
+        padding-left: 12px !important; 
+    }
 }
