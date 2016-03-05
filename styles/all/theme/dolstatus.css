@@ -27,12 +27,28 @@
 }
 
 @media (max-width: 550px) {
-    .navbar .nav-tabs .herald .nav-link, .navbar .nav-tabs .game .nav-link {
+    .navbar .nav-tabs .herald .nav-link {
         padding-left: 12px !important; 
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 730px) {
+    .navbar .nav-tabs .game .nav-link {
+        padding-left: 12px !important; 
+        text-indent: 999px;
+        width: 14px;
+        padding: 0 8px;
+        overflow: hidden;
+    }
+    .navbar .nav-tabs .game .nav-link::after {
+        text-align: center;
+        font-size: 14px;
+        left: 8px;        
+    }
+
+}
+
+@media (max-width: 900px) {
     .navbar .nav-tabs .book .nav-link, .navbar .nav-tabs .server-status .nav-link {
         text-indent: 999px;
         width: 14px;

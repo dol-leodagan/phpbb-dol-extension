@@ -33,6 +33,6 @@ $lang = array_merge($lang, array(
     'DOL_STATUS_HERALD'         => 'Herald',
     'DOL_STATUS_GAME'           => 'Game Account',
     'DOL_STATUS_BOOK'           => 'Grimoire',
-    'DOL_STATUS'                => 'Server Status',
+    'DOL_STATUS_STATUS'         => 'Server Status',
 ));
 ?>
