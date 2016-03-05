@@ -11,11 +11,11 @@
 */
 if (!defined('IN_PHPBB'))
 {
-	exit;
+    exit;
 }
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+    $lang = array();
 }
 // DEVELOPERS PLEASE NOTE
 //
@@ -30,7 +30,9 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 // Common
 $lang = array_merge($lang, array(
-	'DOL_STATUS_HERALD'			=> 'Herald',
-	'DOL_STATUS'                => 'Status',
+    'DOL_STATUS_HERALD'         => 'Herald',
+    'DOL_STATUS_GAME'           => 'Game Account',
+    'DOL_STATUS_BOOK'           => 'Grimoire',
+    'DOL_STATUS'                => 'Server Status',
 ));
 ?>

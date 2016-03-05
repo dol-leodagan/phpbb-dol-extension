@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-    /** @var \board3\portal\controller\main */
+    /** @var \dol\status\controller\main */
     protected $status_controller;
     /** @var \phpbb\auth\auth */
     protected $auth;
@@ -75,22 +75,38 @@ class listener implements EventSubscriberInterface
         $event['lang_set_ext'] = $lang_set_ext;
     }
     /**
-    * Add status link if user is authed to see it
+    * Add status links
     *
     * @return null
     */
     public function add_status_link()
     {
         if (strpos($this->controller_helper->get_current_url(), '/herald') === false)
-        {
             $herald_link = $this->controller_helper->route('dol_status_controller');
-        }
         else
-        {
             $herald_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller'));
-        }
+        
+        if (strpos($this->controller_helper->get_current_url(), '/game') === false)
+            $game_link = $this->controller_helper->route('dol_status_game');
+        else
+            $game_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_game'));
+        
+        if (strpos($this->controller_helper->get_current_url(), '/grimoire') === false)
+            $book_link = $this->controller_helper->route('dol_status_book');
+        else
+            $book_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_book'));
+        
+        if (strpos($this->controller_helper->get_current_url(), '/status') === false)
+            $status_link = $this->controller_helper->route('dol_status_status');
+        else
+            $status_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_status'));
+        
         $this->template->assign_vars(array(
+            'U_DOL_STATUS'   => true,
             'U_DOL_STATUS_HERALD'   => $herald_link,
+            'U_DOL_STATUS_GAME'   => $game_link,
+            'U_DOL_STATUS_BOOK'   => $book_link,
+            'U_DOL_STATUS_STATUS'   => $status_link,
         ));
     }
 

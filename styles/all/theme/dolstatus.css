@@ -1,12 +1,23 @@
 /** Herald Link Decoration **/
 
-.navbar .nav-tabs .herald .nav-link::after {
+.navbar .nav-tabs .herald .nav-link::after, .navbar .nav-tabs .game .nav-link::after {
     content: "";
     width: 20px !important;
     height: 20px !important;
-    background: url('./images/knot.png') no-repeat;
-    background-size: contain;
     margin-top: -9px !important;
+}
+
+.navbar .nav-tabs .herald .nav-link::after {
+}
+.navbar .nav-tabs .game .nav-link::after {
+    background: url('./images/dol_logo.png') no-repeat;
+    background-size: contain;
+}
+.navbar .nav-tabs .status .nav-link::after {
+    content: '\E672';
+}
+.navbar .nav-tabs .book .nav-link::after {
+    content: '\E010';
 }
 
 .navbar .nav-tabs .herald .nav-link {
@@ -18,3 +29,4 @@
         padding-left: 12px !important; 
     }
 }
+

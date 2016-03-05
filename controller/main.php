@@ -68,6 +68,20 @@ class main
     
     public function handle()
     {
-        return $this->helper->render('herald_body.html', $name);
+        return $this->helper->render('herald_body.html');
+    }
+    
+    public function handle_game()
+    {
+        return $this->helper->render('game_body.html');
+    }
+    
+    public function handle_book()
+    {
+        return $this->helper->render('book_body.html');
+    }
+    public function handle_status()
+    {
+        return $this->helper->render('status_body.html');
     }
 }

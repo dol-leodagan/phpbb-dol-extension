@@ -1,3 +1,12 @@
 dol_status_controller:
     path: /herald
     defaults: { _controller: dol.status.main:handle }
+dol_status_game:
+    path: /game
+    defaults: { _controller: dol.status.main:handle_game }
+dol_status_book:
+    path: /grimoire
+    defaults: { _controller: dol.status.main:handle_book }
+dol_status_status:
+    path: /status
+    defaults: { _controller: dol.status.main:handle_status }
