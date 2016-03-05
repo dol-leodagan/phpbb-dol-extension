@@ -2,8 +2,15 @@
 
 .navbar .nav-tabs .herald .nav-link::after
 {
-    content: url('./images/knot.png') !important;
-    width: 16px !important;
-    height: 16px !important;
+    content: "";
+    width: 20px !important;
+    height: 20px !important;
+    background: url('./images/knot.png') no-repeat;
+    background-size: contain;
+    margin-top: -9px !important;
 }
 
+navbar .nav-tabs .herald .nav-link
+{
+    padding-left: 34px !important; 
+}
