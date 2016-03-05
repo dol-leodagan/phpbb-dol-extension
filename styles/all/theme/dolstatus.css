@@ -8,12 +8,14 @@
 }
 
 .navbar .nav-tabs .herald .nav-link::after {
+    background: url('./images/knot.png') no-repeat;
+    background-size: contain;
 }
 .navbar .nav-tabs .game .nav-link::after {
     background: url('./images/dol_logo.png') no-repeat;
     background-size: contain;
 }
-.navbar .nav-tabs .status .nav-link::after {
+.navbar .nav-tabs .server-status .nav-link::after {
     content: '\E672';
 }
 .navbar .nav-tabs .book .nav-link::after {
@@ -25,8 +27,21 @@
 }
 
 @media (max-width: 550px) {
-    .navbar .nav-tabs .herald .nav-link {
+    .navbar .nav-tabs .herald .nav-link, .navbar .nav-tabs .game .nav-link {
         padding-left: 12px !important; 
     }
 }
 
+@media (max-width: 850px) {
+    .navbar .nav-tabs .book .nav-link, .navbar .nav-tabs .server-status .nav-link {
+        text-indent: 999px;
+        width: 14px;
+        padding: 0 8px;
+        overflow: hidden;
+    }
+    .navbar .nav-tabs .book .nav-link::after, .navbar .nav-tabs .server-status .nav-link::after {
+        text-align: center;
+        font-size: 14px;
+        left: 8px;
+    }
+}
