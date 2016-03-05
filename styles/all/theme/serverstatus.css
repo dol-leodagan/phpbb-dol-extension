@@ -1,0 +1,24 @@
+@media only screen and (max-width : 700px)
+{
+    .custom-server-include
+    {
+        display: block !important;
+        width: auto !important;
+    }
+}
+
+.custom-server-include
+{
+    display: inline-block;
+    width: 45%;
+}
+
+.custom-server-include > div > div > div
+{
+    font-size: 150% !important;
+}
+
+.custom-server-include > div > div > div p
+{
+    margin-bottom: 0.5em !important;
+}
