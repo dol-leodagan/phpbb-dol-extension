@@ -1,21 +1,9 @@
 /** Herald Link Decoration **/
 
-li[title="Herald"]::after {
-    content: "";
-    background: url('./images/knot.png') no-repeat;
-    background-size: 16px 16px;
-    background-position: left center;
-    position: absolute;
-    top: 0px;
-    width: 16px;
-    margin-left: 5px;
-    height: 30px;
+.navbar .nav-tabs .herald .nav-link::after
+{
+    content: url('./images/knot.png') !important;
+    width: 16px !important;
+    height: 16px !important;
 }
-li[title="Herald"] > a {
-    margin-left: 12px;
-}
-@media (max-width: 550px) {
-    li[title="Herald"] > a {
-        display: none !important;
-    }
-}
+
