@@ -93,6 +93,19 @@ class main
     {
         $status_mini = '<h2>this is status mini !</h2>';
         
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://karadok.freyad.net/serverstatus");
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        // The --cacert option
+        curl_setopt($ch, CURLOPT_CAINFO, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert");
+        // The --cert option
+        curl_setopt($ch, CURLOPT_SSLCERT, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem");
+        
+        $status_mini = curl_exec($ch);
+        curl_close($ch);
+        
         $this->template->assign_var('STATUS_MINI', $status_mini);
         return $this->helper->render('statusmini_body.html');
     }
