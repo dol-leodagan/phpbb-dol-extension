@@ -89,4 +89,11 @@ class main
     {
         return $this->helper->render('status_body.html');
     }
+    public function handle_statusmini()
+    {
+        $status_mini = '<h2>this is status mini !</h2>';
+        
+        $this->template->assign_var('STATUS_MINI', $status_mini);
+        return $this->helper->render('statusmini_body.html');
+    }
 }

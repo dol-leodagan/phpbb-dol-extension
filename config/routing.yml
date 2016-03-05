@@ -10,3 +10,6 @@ dol_status_book:
 dol_status_status:
     path: /status
     defaults: { _controller: dol.status.main:handle_status }
+dol_status_statusmini:
+    path: /statusmini
+    defaults: { _controller: dol.status.main:handle_statusmini }
