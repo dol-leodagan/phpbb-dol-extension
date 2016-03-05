@@ -93,20 +93,52 @@ class main
     {
         $status_mini = '<h2>this is status mini !</h2>';
         
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://karadok.freyad.net/serverstatus");
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $status_mini = $this->cache->get('STATUS_MINI');
         
-        // The --cacert option
-        curl_setopt($ch, CURLOPT_CAINFO, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert");
-        // The --cert option
-        curl_setopt($ch, CURLOPT_SSLCERT, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem");
-        
-        $status_mini = curl_exec($ch);
-        curl_close($ch);
+        if ($status_mini === FALSE)
+        {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://karadok.freyad.net/serverstatus");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // The --cacert option
+            curl_setopt($ch, CURLOPT_CAINFO, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert");
+           // The --cert option
+           curl_setopt($ch, CURLOPT_SSLCERT, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem");
+
+           $status_mini = curl_exec($ch);
+           curl_close($ch);
+           $this->cache->put('STATUS_MINI', $status_mini, 45);
+        }
         
         $this->template->assign_var('STATUS_MINI', $status_mini);
         return $this->helper->render('statusmini_body.html');
+    }
+    public function handle_statusrvrmini()
+    {
+        $status_mini = '<h2>this is status RvR mini !</h2>';
+        
+        $status_mini = $this->cache->get('STATUS_RVRMINI');
+        
+        if ($status_mini === FALSE)
+        {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://karadok.freyad.net/serverrvrstatus");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // The --cacert option
+            curl_setopt($ch, CURLOPT_CAINFO, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert");
+           // The --cert option
+           curl_setopt($ch, CURLOPT_SSLCERT, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem");
+
+           $status_mini = curl_exec($ch);
+           curl_close($ch);
+           $this->cache->put('STATUS_RVRMINI', $status_mini, 45);
+        }
+        
+        $this->template->assign_var('STATUS_RVRMINI', $status_mini);
+        return $this->helper->render('statusrvrmini_body.html');
     }
 }
