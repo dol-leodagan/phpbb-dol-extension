@@ -12,7 +12,7 @@ use phpbb\config\config;
 use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\user;
-use \phpbb\cache\driver
+use \phpbb\cache\driver;
 use Symfony\Component\HttpFoundation\Response;
 
 class main
