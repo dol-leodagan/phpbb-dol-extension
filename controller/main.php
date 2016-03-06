@@ -96,8 +96,9 @@ class main
                 return $this->helper->render('statusmini_body.html');
             break;
             case 'rvrmini':
-                $status_mini = $this->backend_raw_query('serverrvrstatus', 45);
-                $this->template->assign_var('STATUS_RVRMINI', $status_mini);
+                $status_mini = $this->backend_yaml_query('serverrvrstatus', 45);
+                $this->template->assign_vars($status_mini);
+                $this->template->assign_block_vars('captureLog', $status_mini['CaptureLog']);
                 return $this->helper->render('statusrvrmini_body.html');
             break;
             case 'all':

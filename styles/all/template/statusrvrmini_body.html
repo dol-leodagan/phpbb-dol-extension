@@ -1,1 +1,9 @@
-{STATUS_RVRMINI}
+<!-- IF Exception -->
+<div class="server-exception">{Exception}</div>
+<!-- ELSEIF ErrorMessage -->
+<div class="server-exception">{ErrorMessage}</div>
+<!-- ELSE -->
+<!-- BEGIN captureLog -->
+    <p class="<!-- IF captureLog.CapturedBy == "Albion" -->albion<!-- ELSEIF captureLog.CapturedBy == "Midgard" -->midgard<!-- ELSEIF captureLog.CapturedBy == "Hibernia" -->hibernia<!-- ELSE -->norealm<!-- ENDIF -->"><span class="capture-time">{captureLog.CaptureTime}</span><span class="capture-keep">{captureLog.KeepName}</span><span class="capture-realm">{captureLog.CapturedBy}</span></p>
+<!-- END captureLog -->
+<!-- ENDIF -->
