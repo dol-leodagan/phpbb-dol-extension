@@ -1,10 +1,11 @@
-<!-- IF Exception -->
-<div class="server-exception">{Exception}</div>
-<!-- ELSEIF ErrorMessage -->
-<div class="server-exception">{ErrorMessage}</div>
+<!-- IF Y_Exception -->
+<div class="server-exception">{Y_Exception}</div>
+<!-- ELSEIF Y_ErrorMessage -->
+<div class="server-exception">{Y_ErrorMessage}</div>
 <!-- ELSE -->
-<!-- BEGIN captureLog -->
-    <p class="<!-- IF captureLog.CapturedBy == "Albion" -->albion<!-- ELSEIF captureLog.CapturedBy == "Midgard" -->midgard<!-- ELSEIF captureLog.CapturedBy == "Hibernia" -->hibernia<!-- ELSE -->norealm<!-- ENDIF -->"><span class="capture-time">{captureLog.CaptureTime}</span><span class="capture-keep">{captureLog.KeepName}</span><span class="capture-realm">{captureLog.CapturedBy}</span></p>
-<!-- END captureLog -->
-    <p class="server-rvrtime">{RvRTime}</p>
+<!-- BEGIN Y_CaptureLog -->
+    <p class="<!-- IF Y_CaptureLog.CapturedBy == "Albion" -->albion<!-- ELSEIF Y_CaptureLog.CapturedBy == "Midgard" -->midgard<!-- ELSEIF Y_CaptureLog.CapturedBy == "Hibernia" -->hibernia<!-- ELSE -->norealm<!-- ENDIF -->"><span class="capture-time">{Y_CaptureLog.CaptureTime}</span><span class="capture-keep">{Y_CaptureLog.KeepName}</span><span class="capture-realm">{Y_CaptureLog.CapturedBy}</span></p>
+<!-- END Y_CaptureLog -->
+    <p class="server-rvrtime">{Y_RvRTime}</p>
+    <!-- {Y_DEBUG_DUMP} -->
 <!-- ENDIF -->

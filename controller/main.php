@@ -92,33 +92,109 @@ class main
         {
             case 'mini':
                 $status_mini = $this->backend_yaml_query('serverstatus', 45);
-                $this->template->assign_vars($status_mini);
+                $this->assign_yaml_vars($status_mini);
                 return $this->helper->render('statusmini_body.html');
             break;
             case 'rvrmini':
                 $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
-                $this->template->assign_vars($status_rvrmini);
-                if (isset($status_rvrmini['CaptureLog']))
-                {
-                    foreach($status_rvrmini['CaptureLog'] as $capture)
-                        $this->template->assign_block_vars('captureLog', $capture);
-                }
+                $this->assign_yaml_vars($status_rvrmini);
                 return $this->helper->render('statusrvrmini_body.html');
             break;
             case 'all':
             default:
                 $status_mini = $this->backend_yaml_query('serverstatus', 45);
-                $this->template->assign_vars($status_mini);
+                $this->assign_yaml_vars($status_mini);
                 $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
-                $this->template->assign_vars($status_rvrmini);
-                if (isset($status_rvrmini['CaptureLog']))
-                {
-                    foreach($status_rvrmini['CaptureLog'] as $capture)
-                        $this->template->assign_block_vars('captureLog', $capture);
-                }
+                $this->assign_yaml_vars($status_rvrmini);
                 return $this->helper->render('status_body.html');
             break;
         }        
+    }
+    
+    protected function assign_yaml_vars($yaml)
+    {
+        foreach($yaml as $key => $value)
+        {
+            if (is_array($value))
+            {
+                if ($this->is_assoc($value))
+                    $this->append_yaml_dictroot($value, 'Y_'.$key);
+                else
+                    $this->append_yaml_list($value, 'Y_'.$key);
+            }
+            else
+            {
+                $this->template->assign_var('Y_'.$key, $value);
+            }
+        }
+        /** Debug **/
+        $arr = (array)$this->template;
+        $this->template->assign_var('Y_DEBUG_DUMP', print_r($arr["\0*\0context"], 1)."\n\n");
+    }
+    
+    protected function append_yaml_dictroot($dict, $prefix)
+    {
+         foreach ($dict as $key => $value)
+        {
+            if (is_array($value))
+            {
+                if ($this->is_assoc($value))
+                    $this->append_yaml_dictroot($value, $prefix.'_'.$key);
+                else
+                    $this->append_yaml_list($value, $prefix.'_'.$key);
+            }
+            else
+            {
+                $this->template->assign_var($prefix.'_'.$key, $value);
+            }
+        }
+    }
+
+    protected function append_yaml_list($list, $prefix)
+    {
+        foreach ($list as $key => $value)
+        {
+            if (is_array($value))
+            {
+                $this->template->assign_block_vars($prefix, array('KEY' => $key));
+
+                if ($this->is_assoc($value))
+                    $this->append_yaml_dict($value, $prefix);
+                else
+                    $this->append_yaml_list($value, $prefix.'.VALUE');
+            }
+            else
+            {
+                $this->template->assign_block_vars($prefix, array(
+                    'KEY' => $key,
+                    'VALUE' => $value
+                ));
+            }
+        }
+    }
+    
+    protected function append_yaml_dict($dict, $prefix, $next = false)
+    {
+        foreach ($dict as $key => $value)
+        {
+            $realkey = $next === FALSE ? $key : $next.'_'.$key;
+            if (is_array($value))
+            {
+                if ($this->is_assoc($value))
+                    $this->append_yaml_dict($value, $prefix, $realkey);
+                else
+                    $this->append_yaml_list($value, $prefix.'.'.$realkey);
+            }
+            else
+            {
+                $this->template->alter_block_array($prefix, array($realkey => $value), true, 'change');
+            }
+        }
+    }
+    
+    protected function is_assoc($array)
+    {
+        return array_values($array)!==$array;
     }
     
     protected function backend_yaml_query($service, $cachettl)
@@ -132,7 +208,7 @@ class main
         }
         catch (ParseException $e)
         {
-            return array('Exception' => $e->getMessage());
+            return array('Y_Exception' => $e->getMessage());
         }
     }
     

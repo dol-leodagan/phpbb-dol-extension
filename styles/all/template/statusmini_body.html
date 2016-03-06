@@ -1,34 +1,34 @@
-<!-- IF Exception -->
-<div class="server-exception">{Exception}</div>
+<!-- IF Y_Exception -->
+<div class="server-exception">{Y_Exception}</div>
 <!-- ELSE -->
 <table>
-    <tr class="server-state server-{Status}">
+    <tr class="server-state server-{Y_Status}">
         <td>Freyad Shard:</td>
-        <td><!-- IF Status == "online" -->Online<!-- ELSEIF Status == "starting" -->Starting<!-- ELSE -->Offline<!-- ENDIF --></td>
-    </tr><tr class="server-load server-<!-- IF Load < 40 -->light<!-- ELSEIF Load < 80 -->normal<!-- ELSE -->heavy<!-- ENDIF -->">
+        <td><!-- IF Y_Status == "online" -->Online<!-- ELSEIF Y_Status == "starting" -->Starting<!-- ELSE -->Offline<!-- ENDIF --></td>
+    </tr><tr class="server-load server-<!-- IF Y_Load < 40 -->light<!-- ELSEIF Y_Load < 80 -->normal<!-- ELSE -->heavy<!-- ENDIF -->">
         <td>Server Load:</td>
-        <td><!-- IF Load < 40 -->Light<!-- ELSEIF Load < 80 -->Normal<!-- ELSE -->Heavy<!-- ENDIF --></td>
-    </tr><tr class="server-replication server-{Replication}">
+        <td><!-- IF Y_Load < 40 -->Light<!-- ELSEIF Y_Load < 80 -->Normal<!-- ELSE -->Heavy<!-- ENDIF --></td>
+    </tr><tr class="server-replication server-{Y_Replication}">
         <td>Replication:</td>
-        <td><!-- IF Replication == "working" -->Working<!-- ELSEIF Replication == "delayed" -->Delayed<!-- ELSE -->Broken<!-- ENDIF --></td>
+        <td><!-- IF Y_Replication == "working" -->Working<!-- ELSEIF Y_Replication == "delayed" -->Delayed<!-- ELSE -->Broken<!-- ENDIF --></td>
     </tr><tr class="server-players">
         <td>Online Players:</td>
-        <td>{Players}</td>
+        <td>{Y_Players}</td>
     </tr><tr class="server-account">
         <td>Accounts:</td>
-        <td>{Accounts}</td>
+        <td>{Y_Accounts}</td>
     </tr><tr class="server-validated">
         <td>Validated:</td>
-        <td>{Validated}</td>
+        <td>{Y_Validated}</td>
     </tr><tr class="server-mobs">
         <td>Mobs spawned:</td>
-        <td>{Mobs}</td>
+        <td>{Y_Mobs}</td>
     </tr><tr class="server-restarted">
         <td>Server Restarted:</td>
-        <td>{Restarted}</td>
+        <td>{Y_Restarted}</td>
     </tr><tr class="server-time">
         <td>Server Time:</td>
-        <td>{Time}</td>
+        <td>{Y_Time}</td>
     </tr>
 </table>
 <!-- ENDIF -->
