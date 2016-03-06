@@ -72,8 +72,11 @@ class main
         $this->cache = $cache;
     }
     
-    public function handle()
+    public function handle($cmd, $params)
     {
+        $this->template->assign_var('COMMAND', $cmd);
+        $this->template->assign_var('PARAM', $params);
+
         return $this->helper->render('herald_body.html');
     }
     

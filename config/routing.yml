@@ -1,6 +1,17 @@
 dol_status_controller:
-    path: /herald
-    defaults: { _controller: dol.status.main:handle }
+    path: /herald/{cmd}/{params}{tslash}
+    defaults: { _controller: dol.status.main:handle, cmd: "", params: "", tslash: "/" }
+    requirements:
+        cmd: (players|guilds|kills|deathblow|solo|player|guild|search|albion|midgard|hibernia)?
+        params: ([\w ]+)?
+        tslash: /?
+dol_status_badsearch:
+    path: /herald/{notcmd}/{notparams}{tslash}
+    defaults: { _controller: dol.status.main:handle, cmd: "badsearch", params: "", tslash: "/", notcmd: "", notparams: "" }
+    requirements:
+        notcmd: (search)
+        notparams: .*
+        tslash: /?
 
 dol_status_game:
     path: /game
