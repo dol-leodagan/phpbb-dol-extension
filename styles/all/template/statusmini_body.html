@@ -2,13 +2,13 @@
 <div class="server-exception">{Exception}</div>
 <!-- ELSE -->
 <table>
-    <tr class="server-state {Status}">
+    <tr class="server-state server-{Status}">
         <td>Freyad Shard:</td>
         <td><!-- IF Status == "online" -->Online<!-- ELSEIF Status == "starting" -->Starting<!-- ELSE -->Offline<!-- ENDIF --></td>
-    </tr><tr class="server-load <!-- IF Load < 40 -->light<!-- ELSEIF Load < 80 -->normal<!-- ELSE -->heavy<!-- ENDIF -->">
+    </tr><tr class="server-load server-<!-- IF Load < 40 -->light<!-- ELSEIF Load < 80 -->normal<!-- ELSE -->heavy<!-- ENDIF -->">
         <td>Server Load:</td>
         <td><!-- IF Load < 40 -->Light<!-- ELSEIF Load < 80 -->Normal<!-- ELSE -->Heavy<!-- ENDIF --></td>
-    </tr><tr class="server-replication {Replication}">
+    </tr><tr class="server-replication server-{Replication}">
         <td>Replication:</td>
         <td><!-- IF Replication == "working" -->Working<!-- ELSEIF Replication == "delayed" -->Delayed<!-- ELSE -->Broken<!-- ENDIF --></td>
     </tr><tr class="server-players">

@@ -25,19 +25,19 @@
     font-weight: bold;
 }
 
-.server-state.online > td:nth-child(2),
-.server-load.light > td:nth-child(2),
-.server-replication.working > td:nth-child(2) {
+.server-state.server-online > td:nth-child(2),
+.server-load.server-light > td:nth-child(2),
+.server-replication.server-working > td:nth-child(2) {
     color: green;
 }
-.server-state.starting > td:nth-child(2),
-.server-load.normal > td:nth-child(2),
-.server-replication.delayed > td:nth-child(2) {
+.server-state.server-starting > td:nth-child(2),
+.server-load.server-normal > td:nth-child(2),
+.server-replication.server-delayed > td:nth-child(2) {
     color: orange;
 }
-.server-state.offline > td:nth-child(2),
-.server-load.heavy > td:nth-child(2),
-.server-replication.broken > td:nth-child(2) {
+.server-state.server-offline > td:nth-child(2),
+.server-load.server-heavy > td:nth-child(2),
+.server-replication.server-broken > td:nth-child(2) {
     color: red;
 }
 .custom-server-include .server-validated > td,
