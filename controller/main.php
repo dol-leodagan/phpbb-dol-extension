@@ -98,7 +98,7 @@ class main
             case 'rvrmini':
                 $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
                 $this->template->assign_vars($status_rvrmini);
-                if (isset($status_rvrmini['CaptureLog'])
+                if (isset($status_rvrmini['CaptureLog']))
                 {
                     foreach($status_rvrmini['CaptureLog'] as $capture)
                         $this->template->assign_block_vars('captureLog', $capture);
@@ -111,7 +111,7 @@ class main
                 $this->template->assign_vars($status_mini);
                 $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
                 $this->template->assign_vars($status_rvrmini);
-                if (isset($status_rvrmini['CaptureLog'])
+                if (isset($status_rvrmini['CaptureLog']))
                 {
                     foreach($status_rvrmini['CaptureLog'] as $capture)
                         $this->template->assign_block_vars('captureLog', $capture);
