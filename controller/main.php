@@ -96,13 +96,26 @@ class main
                 return $this->helper->render('statusmini_body.html');
             break;
             case 'rvrmini':
-                $status_mini = $this->backend_yaml_query('serverrvrstatus', 45);
-                $this->template->assign_vars($status_mini);
-                $this->template->assign_block_vars('captureLog', $status_mini['CaptureLog']);
+                $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
+                $this->template->assign_vars($status_rvrmini);
+                if (isset($status_rvrmini['CaptureLog'])
+                {
+                    foreach($status_rvrmini['CaptureLog'] as $capture)
+                        $this->template->assign_block_vars('captureLog', $capture);
+                }
                 return $this->helper->render('statusrvrmini_body.html');
             break;
             case 'all':
             default:
+                $status_mini = $this->backend_yaml_query('serverstatus', 45);
+                $this->template->assign_vars($status_mini);
+                $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
+                $this->template->assign_vars($status_rvrmini);
+                if (isset($status_rvrmini['CaptureLog'])
+                {
+                    foreach($status_rvrmini['CaptureLog'] as $capture)
+                        $this->template->assign_block_vars('captureLog', $capture);
+                }
                 return $this->helper->render('status_body.html');
             break;
         }        

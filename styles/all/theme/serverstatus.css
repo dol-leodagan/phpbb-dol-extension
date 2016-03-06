@@ -11,10 +11,6 @@
     text-align: left;
 }
 
-.custom-server-include > div > div > div p {
-    margin-bottom: 0.5em !important;
-}
-
 .custom-server-include > div > div > div > table {
     width:100%;
     font-size: 95% !important;;
@@ -44,7 +40,6 @@
 .server-replication.broken > td:nth-child(2) {
     color: red;
 }
-
 .custom-server-include .server-validated > td,
 .custom-server-include .server-restarted > td,
 .custom-server-include .server-time > td {
@@ -54,4 +49,36 @@
 .custom-server-include .server-time > td:nth-child(2) {
     font-weight:unset;
     text-align: center;
+}
+
+.custom-server-include > div > div > div p {
+    margin-bottom: 0.35em !important;
+    font-size: 95%;
+}
+.custom-server-include .server-rvrtime {
+    text-align: center;
+    font-size: 70%;
+}
+.custom-server-include .capture-time {
+    font-size: 70%;    
+}
+
+.custom-server-include .capture-time::after {
+    content: ' - ';
+}
+.custom-server-include .capture-keep::after {
+    content: ', ';
+}
+.custom-server-include .capture-realm {
+    font-weight: bold;
+}
+
+.albion .capture-realm {
+    color: red;
+}
+.midgard .capture-realm {
+    color: blue;
+}
+.hibernia .capture-realm {
+    color: green;
 }
