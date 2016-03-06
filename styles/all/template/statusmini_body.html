@@ -1,1 +1,34 @@
-{STATUS_MINI}
+<!-- IF Exception -->
+<div class="server-exception">{Exception}</div>
+<!-- ELSE -->
+<table>
+    <tr class="server-state {Status}">
+        <td>Freyad Shard:</td>
+        <td><!-- IF Status == "online" -->Online<!-- ELSEIF Status == "starting" -->Starting<!-- ELSE -->Offline<!-- ENDIF --></td>
+    </tr><tr class="server-load <!-- IF Load < 40 -->light<!-- ELSEIF Load < 80 -->normal<!-- ELSE -->heavy<!-- ENDIF -->">
+        <td>Server Load:</td>
+        <td><!-- IF Load < 40 -->Light<!-- ELSEIF Load < 80 -->Normal<!-- ELSE -->Heavy<!-- ENDIF --></td>
+    </tr><tr class="server-replication {Replication}">
+        <td>Replication:</td>
+        <td><!-- IF Replication == "working" -->Online<!-- ELSEIF Replication == "delayed" -->Delayed<!-- ELSE -->Broken<!-- ENDIF --></td>
+    </tr><tr class="server-players">
+        <td>Online Players:</td>
+        <td>{Players}</td>
+    </tr><tr class="server-account">
+        <td>Accounts:</td>
+        <td><strong>{Accounts}</strong></td>
+    </tr><tr class="server-validated">
+        <td>Validated:</td>
+        <td>{Validated}</td>
+    </tr><tr class="server-mobs">
+        <td>Mobs spawned:</td>
+        <td><strong>{Mobs}</strong></td>
+    </tr></tr class="server-restarted">
+        <td>Server Restarted:</td>
+        <td>{Restarted}</td>
+    </tr><tr class="server-time">
+        <td>Server Time:</td>
+        <td>{Time}</td>
+    </tr>
+</table>
+<!-- ENDIF -->

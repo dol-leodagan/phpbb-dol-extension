@@ -14,6 +14,7 @@ use phpbb\template\template;
 use phpbb\user;
 use phpbb\cache\driver;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Yaml\Parser;
 
 class main
 {
@@ -90,8 +91,8 @@ class main
         switch($type)
         {
             case 'mini':
-                $status_mini = $this->backend_raw_query('serverstatus', 45);
-                $this->template->assign_var('STATUS_MINI', $status_mini);
+                $status_mini = $this->backend_yaml_query('serverstatus', 45);
+                $this->template->assign_vars($status_mini);
                 return $this->helper->render('statusmini_body.html');
             break;
             case 'rvrmini':
@@ -104,6 +105,21 @@ class main
                 return $this->helper->render('status_body.html');
             break;
         }        
+    }
+    
+    protected function backend_yaml_query($service, $cachettl)
+    {
+        $content = backend_raw_query($service, $cachettl);
+        $yaml = new Parser();
+        try
+        {
+            $value = $yaml->parse($content);
+            return $value;
+        }
+        catch (ParseException $e)
+        {
+            return array('Exception' => $e->getMessage());
+        }
     }
     
     protected function backend_raw_query($service, $cachettl)
