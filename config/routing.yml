@@ -8,11 +8,5 @@ dol_status_book:
     path: /grimoire
     defaults: { _controller: dol.status.main:handle_book }
 dol_status_status:
-    path: /status
+    path: /status/{type}
     defaults: { _controller: dol.status.main:handle_status }
-dol_status_statusmini:
-    path: /statusmini
-    defaults: { _controller: dol.status.main:handle_statusmini }
-dol_status_statusrvrmini:
-    path: /statusrvrmini
-    defaults: { _controller: dol.status.main:handle_statusrvrmini }

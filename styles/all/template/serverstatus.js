@@ -1,4 +1,4 @@
 $( document ).ready(function() {
-    $( "#server-status" ).load( "/app.php/statusmini" );
-    $( "#server-rvrfeed" ).load( "/app.php/statusrvrmini" );
+    $( "#server-status" ).load( "/app.php/status/mini" );
+    $( "#server-rvrfeed" ).load( "/app.php/status/rvrmini" );
 });

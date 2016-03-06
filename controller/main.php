@@ -12,7 +12,7 @@ use phpbb\config\config;
 use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\user;
-use \phpbb\cache\driver;
+use phpbb\cache\driver;
 use Symfony\Component\HttpFoundation\Response;
 
 class main
@@ -85,60 +85,52 @@ class main
     {
         return $this->helper->render('book_body.html');
     }
-    public function handle_status()
+    public function handle_status($type = 'all')
     {
-        return $this->helper->render('status_body.html');
-    }
-    public function handle_statusmini()
-    {
-        $status_mini = '<h2>this is status mini !</h2>';
-        
-        $status_mini = $this->cache->get('STATUS_MINI');
-        
-        if ($status_mini === FALSE)
+        switch($type)
         {
+            case 'mini':
+                $status_mini = $this->backend_raw_query('serverstatus', 45);
+                $this->template->assign_var('STATUS_MINI', $status_mini);
+                return $this->helper->render('statusmini_body.html');
+            break;
+            case 'rvrmini':
+                $status_mini = $this->backend_raw_query('serverrvrstatus', 45);
+                $this->template->assign_var('STATUS_RVRMINI', $status_mini);
+                return $this->helper->render('statusrvrmini_body.html');
+            break;
+            case 'all':
+            default:
+                return $this->helper->render('status_body.html');
+            break;
+        }        
+    }
+    
+    protected function backend_raw_query($service, $cachettl)
+    {
+        $cache_get = $this->cache->get($service);
+        
+        if ($cache_get === FALSE)
+        {
+            $backend_url = 'https://karadok.freyad.net/';
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://karadok.freyad.net/serverstatus");
+            curl_setopt($ch, CURLOPT_URL, $backend_url.$service);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             // The --cacert option
-            curl_setopt($ch, CURLOPT_CAINFO, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert");
-           // The --cert option
-           curl_setopt($ch, CURLOPT_SSLCERT, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem");
-
-           $status_mini = curl_exec($ch);
-           curl_close($ch);
-           $this->cache->put('STATUS_MINI', $status_mini, 45);
-        }
-        
-        $this->template->assign_var('STATUS_MINI', $status_mini);
-        return $this->helper->render('statusmini_body.html');
-    }
-    public function handle_statusrvrmini()
-    {
-        $status_mini = '<h2>this is status RvR mini !</h2>';
-        
-        $status_mini = $this->cache->get('STATUS_RVRMINI');
-        
-        if ($status_mini === FALSE)
-        {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://karadok.freyad.net/serverrvrstatus");
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            // The --cacert option
-            curl_setopt($ch, CURLOPT_CAINFO, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert");
-           // The --cert option
-           curl_setopt($ch, CURLOPT_SSLCERT, "/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem");
-
-           $status_mini = curl_exec($ch);
-           curl_close($ch);
-           $this->cache->put('STATUS_RVRMINI', $status_mini, 45);
-        }
-        
-        $this->template->assign_var('STATUS_RVRMINI', $status_mini);
-        return $this->helper->render('statusrvrmini_body.html');
+            curl_setopt($ch, CURLOPT_CAINFO, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert');
+            // The --cert option
+            curl_setopt($ch, CURLOPT_SSLCERT, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem');
+            $raw_get = curl_exec($ch);
+            curl_close($ch);
+            if ($raw_get !== FALSE)
+            {
+                $this->cache->put($service, $raw_get, $cachettl);
+                $cache_get = $raw_get;
+            }
+       }
+       
+       return $cache_get;
     }
 }
