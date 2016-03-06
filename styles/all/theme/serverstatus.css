@@ -11,10 +11,47 @@
     text-align: left;
 }
 
-.custom-server-include > div > div > div {
-    font-size: 150% !important;
-}
-
 .custom-server-include > div > div > div p {
     margin-bottom: 0.5em !important;
+}
+
+.custom-server-include > div > div > div > table {
+    width:100%;
+    font-size: 95% !important;;
+}
+
+.custom-server-include td:nth-of-type(2) {
+    text-align: right;
+}
+
+.custom-server-include td:nth-of-type(2),
+.custom-server-include .server-state > td:first-child {
+    font-weight: bold;
+}
+
+.server-state.online > td:nth-child(2),
+.server-load.light > td:nth-child(2),
+.server-replication.working > td:nth-child(2) {
+    color: green;
+}
+.server-state.starting > td:nth-child(2),
+.server-load.normal > td:nth-child(2),
+.server-replication.delayed > td:nth-child(2) {
+    color: orange;
+}
+.server-state.offline > td:nth-child(2),
+.server-load.heavy > td:nth-child(2),
+.server-replication.broken > td:nth-child(2) {
+    color: red;
+}
+
+.custom-server-include .server-validated > td,
+.custom-server-include .server-restarted > td,
+.custom-server-include .server-time > td {
+    font-size:75%;
+}
+.custom-server-include .server-restarted > td:nth-child(2),
+.custom-server-include .server-time > td:nth-child(2) {
+    font-weight:unset;
+    text-align: center;
 }

@@ -109,7 +109,7 @@ class main
     
     protected function backend_yaml_query($service, $cachettl)
     {
-        $content = backend_raw_query($service, $cachettl);
+        $content = $this->backend_raw_query($service, $cachettl);
         $yaml = new Parser();
         try
         {
