@@ -85,6 +85,21 @@ class listener implements EventSubscriberInterface
             $herald_link = $this->controller_helper->route('dol_status_controller');
         else
             $herald_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller'));
+        /** Herald **/
+        if (strpos($this->controller_helper->get_current_url(), '/herald/albion') === false)
+            $herald_link_albion = $this->controller_helper->route('dol_status_controller').'/albion';
+        else
+            $herald_link_albion = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller').'/albion');
+        if (strpos($this->controller_helper->get_current_url(), '/herald/midgard') === false)
+            $herald_link_midgard = $this->controller_helper->route('dol_status_controller').'/midgard';
+        else
+            $herald_link_midgard = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller').'/midgard');
+        if (strpos($this->controller_helper->get_current_url(), '/herald/hibernia') === false)
+            $herald_link_hibernia = $this->controller_helper->route('dol_status_controller').'/hibernia';
+        else
+            $herald_link_hibernia = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller').'/hibernia');
+        
+        
         
         if (strpos($this->controller_helper->get_current_url(), '/game') === false)
             $game_link = $this->controller_helper->route('dol_status_game');
@@ -104,6 +119,10 @@ class listener implements EventSubscriberInterface
         $this->template->assign_vars(array(
             'U_DOL_STATUS'   => true,
             'U_DOL_STATUS_HERALD'   => $herald_link,
+            'U_HERALD_WARMAP'   => $herald_link,
+            'U_HERALD_ALBION'   => $herald_link_albion,
+            'U_HERALD_MIDGARD'   => $herald_link_midgard,
+            'U_HERALD_HIBERNIA'   => $herald_link_hibernia,
             'U_DOL_STATUS_GAME'   => $game_link,
             'U_DOL_STATUS_BOOK'   => $book_link,
             'U_DOL_STATUS_STATUS'   => $status_link,
