@@ -8,7 +8,29 @@
     <a href="{U_HERALD_MIDGARD}" class="herald-midflag herald-flag"><span>Midgard</span></a>
     <a href="{U_HERALD_HIBERNIA}" class="herald-hibflag herald-flag"><span>Hibernia</span></a>
     <div class="herald-search  search-box"><span>Search</span><form method="post" action="/herald/search"><fieldset><input placeholder="Players and Guilds..."" class="inputbox search tiny" type="text" /><button class="button icon-button search-icon" title="Players and Guilds" type="submit" /></fieldset></form></div>
-
 </div>
+
+<!-- IF U_HERALD_COMMAND == "albion" -->
+    <!-- DEFINE $REALM = Albion -->
+<!-- ENDIF -->
+<!-- IF U_HERALD_COMMAND == "midgard" -->
+    <!-- DEFINE $REALM = Midgard -->
+<!-- ENDIF -->
+<!-- IF U_HERALD_COMMAND == "hibernia" -->
+    <!-- DEFINE $REALM = Hibernia -->
+<!-- ENDIF -->
+
+<!-- IF $REALM !== FALSE -->
+<div class="panel">
+   <div class="inner"><span class="corners-top"><span></span></span>
+        <div class="centered-content"><ul>
+        <!-- BEGIN Y_Classes_$REALM -->
+        <li>{Y_Classes_$REALM.VALUE}</li>
+        <!-- END -->
+        </ul></div>
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+
 
 <!-- INCLUDE overall_footer.html -->

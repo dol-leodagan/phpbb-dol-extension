@@ -78,8 +78,14 @@ class main
         if ($cmd == "warmap" || $cmd == "")
             $this->template->assign_var('U_WARMAP_ENABLE', true);
         
-        $this->template->assign_var('COMMAND', $cmd);
-        $this->template->assign_var('PARAM', $params);
+        if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
+        {
+            $classes = $this->backend_yaml_query('classes', 24 * 60 * 60);
+            $this->assign_yaml_vars($classes);
+        }
+        
+        $this->template->assign_var('U_HERALD_COMMAND', $cmd);
+        $this->template->assign_var('U_HERALD_PARAM', $params);
 
         return $this->helper->render('herald_body.html');
     }
