@@ -1,0 +1,72 @@
+div.herald-flags {
+    text-align: center;
+    position: relative;
+}
+
+div.herald-flags > div {
+    display: inline-block;
+    overflow: hidden;
+    color: rgba(0,0,0,0);
+    margin: 0px 0px;
+}
+
+div.herald-flags > div.herald-flag {
+    margin: 0px 2%;
+}
+
+div.herald-flags > div.herald-knotflag {
+    background: url('./images/knot.png') no-repeat;
+    width: 53px;
+    height: 51px;
+}
+div.herald-flags > div.herald-knotflag:hover {
+    background: url('./images/knot_glow.png') no-repeat;
+}
+
+div.herald-flags > div.herald-albflag {
+    background: url('./images/alb.png') no-repeat;
+    width: 41px;
+    height: 51px;
+}
+div.herald-flags > div.herald-albflag:hover {
+    background: url('./images/alb_glow.png') no-repeat;
+}
+
+div.herald-flags > div.herald-midflag {
+    background: url('./images/mid.png') no-repeat;
+    width: 41px;
+    height: 51px;
+}
+div.herald-flags > div.herald-midflag:hover {
+    background: url('./images/mid_glow.png') no-repeat;
+}
+
+div.herald-flags > div.herald-hibflag {
+    background: url('./images/hib.png') no-repeat;
+    width: 41px;
+    height: 51px;
+}
+div.herald-flags > div.herald-hibflag:hover {
+    background: url('./images/hib_glow.png') no-repeat;
+}
+
+div.herald-flags > div.herald-search {
+    float: right;
+    position: absolute;
+    right: 0px;
+}
+
+@media (max-width: 730px) {
+    div.herald-flags > div.herald-search {
+        display:block;
+        float: right;
+        position:unset;
+        margin-bottom: 2em;
+    }
+}
+
+@media (max-width: 300px) {
+    div.herald-flags > div.herald-flag {
+        margin: 0px;
+    }
+}
