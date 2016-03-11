@@ -74,6 +74,7 @@ class main
     
     public function handle($cmd, $params)
     {
+        $this->template->assign_var('U_HERALD_ENABLE', true);
         if ($cmd == "warmap" || $cmd == "")
             $this->template->assign_var('U_WARMAP_ENABLE', true);
         
