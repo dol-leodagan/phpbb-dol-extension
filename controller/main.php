@@ -74,6 +74,9 @@ class main
     
     public function handle($cmd, $params)
     {
+        if ($cmd == "warmap" || $cmd == "")
+            $this->template->assign_var('U_WARMAP_ENABLE', true);
+        
         $this->template->assign_var('COMMAND', $cmd);
         $this->template->assign_var('PARAM', $params);
 
@@ -111,7 +114,7 @@ class main
                 $this->assign_yaml_vars($status_rvrmini);
                 return $this->helper->render('status_body.html');
             break;
-        }        
+        }
     }
     
     protected function assign_yaml_vars($yaml)
