@@ -9,24 +9,84 @@
 namespace dol\status\controller;
 
 use phpbb\template\template;
+use Symfony\Component\Yaml\Parser;
+use phpbb\cache\driver;
+use phpbb\config\config;
 
 class helper
 {
     /* @var template */
     protected $template;
+    
+    /** @var \phpbb\cache\driver\driver_interface */
+    protected $cache;
 
+     /* @var config */
+    protected $config;
+
+    /** @var Symfony\Component\Yaml\Parser */
+    protected $parser;
+    
     /**
     * Constructor
     *
     * @param template $template
     */
-    public function __construct(template $template)
+    public function __construct(template $template, $cache, config $config)
     {
         $this->template = $template;
+        $this->cache = $cache;
+        $this->config = $config;
+        $this->parser = new Parser();
     }
     
+    /** Region BackendQuery **/
+    public function backend_yaml_query($service, $cachettl)
+    {
+        $content = $this->backend_raw_query($service, $cachettl);
+        try
+        {
+            $value = $this->parser->parse($content);
+            return $value;
+        }
+        catch (ParseException $e)
+        {
+            return array('Y_Exception' => $e->getMessage());
+        }
+    }
+    
+    protected function backend_raw_query($service, $cachettl)
+    {
+        $cache_get = $this->cache->get($service);
+        
+        if ($cache_get === FALSE)
+        {
+            $backend_url = 'https://karadok.freyad.net/';
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $backend_url.$service);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // The --cacert option
+            curl_setopt($ch, CURLOPT_CAINFO, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert');
+            // The --cert option
+            curl_setopt($ch, CURLOPT_SSLCERT, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem');
+            $raw_get = curl_exec($ch);
+            curl_close($ch);
+            if ($raw_get !== FALSE)
+            {
+                $this->cache->put($service, $raw_get, $cachettl);
+                $cache_get = $raw_get;
+            }
+       }
+       
+       return $cache_get;
+    }
+    /** EndRegion BackendQuery **/
+
+
     /** Region - YAML to Template Parser **/
-    protected function assign_yaml_vars($yaml)
+    public function assign_yaml_vars($yaml)
     {
         foreach($yaml as $key => $value)
         {

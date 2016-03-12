@@ -8,14 +8,15 @@ services:
             - '@user'
             - %core.root_path%
             - .%core.php_ext%
-            - '@cache.driver'
             - '@dol.status.controller_helper'
 
     dol.status.controller_helper:
         class: dol\status\controller\helper
         arguments:
             - '@template'
-            
+            - '@cache.driver'
+            - '@config'
+           
     dol.status.listener:
         class: dol\status\event\listener
         arguments:

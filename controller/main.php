@@ -12,9 +12,7 @@ use phpbb\config\config;
 use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\user;
-use phpbb\cache\driver;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Yaml\Parser;
 
 class main
 {
@@ -48,8 +46,6 @@ class main
     */
     protected $root_path;
 
-    /** @var \phpbb\cache\driver\driver_interface */
-    protected $cache;
     
     /** @var \dol\status\controller\helper */
     protected $controller_helper;
@@ -64,7 +60,7 @@ class main
     * @param string $phpbb_root_path
     * @param string $php_ext
     */
-    public function __construct(config $config, helper $helper, template $template, user $user, $phpbb_root_path, $php_ext, $cache, $controller_helper)
+    public function __construct(config $config, helper $helper, template $template, user $user, $phpbb_root_path, $php_ext, $controller_helper)
     {
         $this->config = $config;
         $this->helper = $helper;
@@ -77,6 +73,7 @@ class main
         $this->controller_helper = $controller_helper;
     }
     
+    /** Herald Handler **/
     public function handle($cmd, $params)
     {
         $this->template->assign_var('U_HERALD_ENABLE', true);
@@ -85,7 +82,7 @@ class main
         
         if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
         {
-            $classes = $this->backend_yaml_query('classes', 24 * 60 * 60);
+            $classes = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
             $this->controller_helper->assign_yaml_vars($classes);
         }
         
@@ -98,35 +95,39 @@ class main
         return $this->helper->render('herald_body.html');
     }
     
+    /** Game Account Handler **/
     public function handle_game()
     {
         return $this->helper->render('game_body.html');
     }
     
+    /** Book Handler **/
     public function handle_book()
     {
         return $this->helper->render('book_body.html');
     }
+
+    /** Status Handler **/
     public function handle_status($type = 'all')
     {
         $template_name = 'status_body.html';
         switch($type)
         {
             case 'mini':
-                $status_mini = $this->backend_yaml_query('serverstatus', 45);
+                $status_mini = $this->controller_helper->backend_yaml_query('serverstatus', 45);
                 $this->controller_helper->assign_yaml_vars($status_mini);
                 $template_name = 'statusmini_body.html';
             break;
             case 'rvrmini':
-                $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
+                $status_rvrmini = $this->controller_helper->backend_yaml_query('serverrvrstatus', 45);
                 $this->controller_helper->assign_yaml_vars($status_rvrmini);
                 $template_name = 'statusrvrmini_body.html';
             break;
             case 'all':
             default:
-                $status_mini = $this->backend_yaml_query('serverstatus', 45);
+                $status_mini = $this->controller_helper->backend_yaml_query('serverstatus', 45);
                 $this->controller_helper->assign_yaml_vars($status_mini);
-                $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
+                $status_rvrmini = $this->controller_helper->backend_yaml_query('serverrvrstatus', 45);
                 $this->controller_helper->assign_yaml_vars($status_rvrmini);
             break;
         }
@@ -135,48 +136,5 @@ class main
         $arr = (array)$this->template;
         $this->template->assign_var('Y_DEBUG_DUMP', print_r($arr["\0*\0context"], 1)."\n\n"); **/
         return $this->helper->render($template_name);
-    }
-    
-    protected function backend_yaml_query($service, $cachettl)
-    {
-        $content = $this->backend_raw_query($service, $cachettl);
-        $yaml = new Parser();
-        try
-        {
-            $value = $yaml->parse($content);
-            return $value;
-        }
-        catch (ParseException $e)
-        {
-            return array('Y_Exception' => $e->getMessage());
-        }
-    }
-    
-    protected function backend_raw_query($service, $cachettl)
-    {
-        $cache_get = $this->cache->get($service);
-        
-        if ($cache_get === FALSE)
-        {
-            $backend_url = 'https://karadok.freyad.net/';
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $backend_url.$service);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            // The --cacert option
-            curl_setopt($ch, CURLOPT_CAINFO, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert');
-            // The --cert option
-            curl_setopt($ch, CURLOPT_SSLCERT, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem');
-            $raw_get = curl_exec($ch);
-            curl_close($ch);
-            if ($raw_get !== FALSE)
-            {
-                $this->cache->put($service, $raw_get, $cachettl);
-                $cache_get = $raw_get;
-            }
-       }
-       
-       return $cache_get;
     }
 }
