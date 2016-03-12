@@ -1,0 +1,169 @@
+div.herald-warmap {
+    margin-top: 10px;
+}
+
+/** Global and Responsive **/
+
+@media only screen and (max-width : 700px) {
+    div#warmap-content {
+        width: auto !important;
+        height: auto !important;
+    }
+    
+    div#warmap-content > div {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        margin: 3em auto 0px auto;
+    }
+    
+    div#warmap-content-midgard::before {
+        content: 'Midgard';
+        width: 384px;
+    }
+    div#warmap-content-albion::before {
+        content: 'Albion';
+        width: 256px;
+    }
+    div#warmap-content-hibernia::before {
+        content: 'Hibernia';
+        width: 256px;
+    }
+    div#warmap-content-neutral::before {
+        content: 'Central';
+        width: 128px;
+    }
+    div.warmap-content-realm::before {
+        display: inline-block;
+        position: absolute;
+        margin-top: -1.5em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+}
+
+div#warmap-content {
+    margin: 0px auto;
+    position: relative;
+    width: 704px;
+    height: 768px;
+}
+div#warmap-content > div {
+    position: absolute;
+}
+div#warmap-content > div > div {
+    width: 128px;
+    height: 128px;
+    position: absolute;
+}
+
+/** Midgard Realm **/
+
+div#warmap-content-midgard {
+    width: 384px !important;
+    height: 256px !important;
+    top: 0px;
+    left: 320px;
+}
+
+div#warmap-content-uppland {
+    top: 0px;
+    left: 128px;
+    background: url('./images/frontiers/170.jpg');
+}
+div#warmap-content-odins {
+    top: 128px;
+    left: 0px;
+    background: url('./images/frontiers/167.jpg');
+}
+div#warmap-content-jamtland {
+    top: 128px;
+    left: 128px;
+    background: url('./images/frontiers/168.jpg');
+}
+div#warmap-content-yggdra {
+    top: 128px;
+    left: 256px;
+    background: url('./images/frontiers/169.jpg');
+}
+
+/** Hibernia Realm **/
+
+div#warmap-content-hibernia {
+    width: 256px !important;
+    height: 384px !important;
+    top: 384px;
+    left: 0px;
+}
+
+div#warmap-content-emain {
+    top: 0px;
+    left: 128px;
+    background: url('./images/frontiers/171.jpg');
+}
+div#warmap-content-cruachan {
+    top: 128px;
+    left: 0px;
+    background: url('./images/frontiers/173.jpg');
+}
+div#warmap-content-breifine {
+    top: 128px;
+    left: 128px;
+    background: url('./images/frontiers/172.jpg');
+}
+div#warmap-content-collory {
+    top: 256px;
+    left: 128px;
+    background: url('./images/frontiers/174.jpg');
+}
+
+/** Albion Realm **/
+
+div#warmap-content-albion {
+    width: 256px !important;
+    height: 384px !important;
+    top: 384px;
+    left: 384px;
+}
+
+div#warmap-content-hadrian {
+    top: 0px;
+    left: 0px;
+    background: url('./images/frontiers/178.jpg');
+}
+div#warmap-content-pennine {
+    top: 128px;
+    left: 0px;
+    background: url('./images/frontiers/177.jpg');
+}
+div#warmap-content-sauvage {
+    top: 128px;
+    left: 128px;
+    background: url('./images/frontiers/176.jpg');
+}
+div#warmap-content-snowdonia {
+    top: 256px;
+    left: 0px;
+    background: url('./images/frontiers/175.jpg');
+}
+
+/** Neutral Realm **/
+
+div#warmap-content-neutral {
+    width: 128px !important;
+    height: 256px !important;
+    top: 256px;
+    left: 256px;
+}
+
+div#warmap-content-agramon {
+    top: 0px;
+    left: 0px;
+    background: url('./images/frontiers/163.jpg');
+}
+div#warmap-content-irishsea {
+    top: 128px;
+    left: 0px;
+    background: url('./images/frontiers/164.jpg');
+}
