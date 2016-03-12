@@ -43,7 +43,7 @@ class helper
     /** Region BackendQuery **/
     public function backend_yaml_query($service, $cachettl)
     {
-        $cache_get = $this->cache->get('YMLBACKEND_'.$service);
+        $cache_get = $this->cache->get('_YMLBACKEND_'.$service);
         
         if ($cache_get === FALSE)
         {
@@ -51,7 +51,7 @@ class helper
             try
             {
                 $value = $this->parser->parse($content);
-                $this->cache->put('YMLBACKEND_'.$service, $value, $cachettl);
+                $this->cache->put('_YMLBACKEND_'.$service, $value, $cachettl);
                 return $value;
             }
             catch (ParseException $e)
@@ -65,30 +65,19 @@ class helper
     
     protected function backend_raw_query($service, $cachettl)
     {
-        $cache_get = $this->cache->get('RAWBACKEND_'.$service);
-        
-        if ($cache_get === FALSE)
-        {
-            $backend_url = 'https://karadok.freyad.net/';
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $backend_url.$service);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $backend_url = 'https://karadok.freyad.net/';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $backend_url.$service);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            // The --cacert option
-            curl_setopt($ch, CURLOPT_CAINFO, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert');
-            // The --cert option
-            curl_setopt($ch, CURLOPT_SSLCERT, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem');
-            $raw_get = curl_exec($ch);
-            curl_close($ch);
-            if ($raw_get !== FALSE)
-            {
-                $this->cache->put('RAWBACKEND_'.$service, $raw_get, $cachettl);
-                return $raw_get;
-            }
-       }
-       
-       return $cache_get;
+        // The --cacert option
+        curl_setopt($ch, CURLOPT_CAINFO, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert');
+        // The --cert option
+        curl_setopt($ch, CURLOPT_SSLCERT, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem');
+        $raw_get = curl_exec($ch);
+        curl_close($ch);
+        return $raw_get;
     }
     /** EndRegion BackendQuery **/
 
