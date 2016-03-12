@@ -17,7 +17,7 @@
         <!-- IF U_HERALD_PARAM == Y_Classes_Albion.VALUE -->
         <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li class="herald-class-selected">{Y_Classes_Albion.VALUE}</li>' -->
         <!-- ELSE -->
-        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li>{Y_Classes_Albion.VALUE}</li>' -->
+        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{U_HERALD_ALBION}/{Y_Classes_Albion.VALUE}" title="{Y_Classes_Albion.VALUE}">{Y_Classes_Albion.VALUE}</a></li>' -->
         <!-- ENDIF -->
     <!-- END Y_Classes_Albion -->
 <!-- ELSEIF U_HERALD_COMMAND == "midgard" -->
@@ -27,7 +27,7 @@
         <!-- IF U_HERALD_PARAM == Y_Classes_Midgard.VALUE -->
         <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li class="herald-class-selected">{Y_Classes_Midgard.VALUE}</li>' -->
         <!-- ELSE -->
-        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li>{Y_Classes_Midgard.VALUE}</li>' -->
+        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{U_HERALD_MIDGARD}/{Y_Classes_Midgard.VALUE}" title="{Y_Classes_Midgard.VALUE}">{Y_Classes_Midgard.VALUE}</a></li>' -->
         <!-- ENDIF -->
     <!-- END Y_Classes_Midgard -->
 <!-- ELSEIF U_HERALD_COMMAND == "hibernia" -->
@@ -37,7 +37,7 @@
         <!-- IF U_HERALD_PARAM == Y_Classes_Hibernia.VALUE -->
         <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li class="herald-class-selected">{Y_Classes_Hibernia.VALUE}</li>' -->
         <!-- ELSE -->
-        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li>{Y_Classes_Hibernia.VALUE}</li>' -->
+        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{U_HERALD_HIBERNIA}/{Y_Classes_Hibernia.VALUE}" title="{Y_Classes_Hibernia.VALUE}">{Y_Classes_Hibernia.VALUE}</a></li>' -->
         <!-- ENDIF -->
     <!-- END Y_Classes_Hibernia -->
 <!-- ELSE -->

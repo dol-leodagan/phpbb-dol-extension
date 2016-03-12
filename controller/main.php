@@ -41,6 +41,7 @@ class main
     * @var string
     */
     protected $php_ext;
+    
     /**
     * Extension root path
     * @var string
@@ -49,6 +50,9 @@ class main
 
     /** @var \phpbb\cache\driver\driver_interface */
     protected $cache;
+    
+    /** @var \dol\status\controller\helper */
+    protected $controller_helper;
     
     /**
     * Constructor
@@ -60,7 +64,7 @@ class main
     * @param string $phpbb_root_path
     * @param string $php_ext
     */
-    public function __construct(config $config, helper $helper, template $template, user $user, $phpbb_root_path, $php_ext, $cache)
+    public function __construct(config $config, helper $helper, template $template, user $user, $phpbb_root_path, $php_ext, $cache, $controller_helper)
     {
         $this->config = $config;
         $this->helper = $helper;
@@ -70,6 +74,7 @@ class main
         $this->php_ext = $php_ext;
         $this->root_path = $phpbb_root_path . 'ext/dol/status/';
         $this->cache = $cache;
+        $this->controller_helper = $controller_helper;
     }
     
     public function handle($cmd, $params)

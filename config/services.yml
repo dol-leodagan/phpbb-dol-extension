@@ -9,6 +9,12 @@ services:
             - %core.root_path%
             - .%core.php_ext%
             - '@cache.driver'
+            - '@dol.status.controller_helper'
+
+    dol.status.controller_helper:
+        class: dol\status\controller\controller_helper
+        arguments:
+            - '@template'
             
     dol.status.listener:
         class: dol\status\event\listener
