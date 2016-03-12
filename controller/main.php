@@ -75,6 +75,7 @@ class main
     /** Herald Handler **/
     public function handle($cmd, $params)
     {
+        /** Warmap **/
         $this->template->assign_var('U_HERALD_ENABLE', true);
         if ($cmd == "warmap" || $cmd == "") {
             $this->template->assign_var('U_WARMAP_ENABLE', true);
@@ -82,10 +83,17 @@ class main
             $this->controller_helper->assign_yaml_vars($warmap);
         }
         
+        /** Realm / Classes **/
         if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
         {
             $classes = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
             $this->controller_helper->assign_yaml_vars($classes);
+        }
+        
+        /** Banner **/
+        if ($cmd == "banner" && $params !== "")
+        {
+            return $this->controller_helper->drawBanner($params);
         }
         
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);

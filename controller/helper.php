@@ -167,4 +167,15 @@ class helper
     }
     /** EndRegion - YAML to Template Parser **/
 
+    /** Region Banners **/
+    public function drawBanner()
+    {
+        $img = imagecreatetruecolor(69, 86);
+        ob_start();
+        imagepng($img);
+        $data = ob_get_clean();
+        return $data;
+    }
+    
+    /** EndRegion Banners **/
 }
