@@ -87,6 +87,9 @@ class main
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);
         $this->template->assign_var('U_HERALD_PARAM', $params);
 
+        /** Debug **/
+        $arr = (array)$this->template;
+        $this->template->assign_var('Y_DEBUG_DUMP', print_r($arr["\0*\0context"], 1)."\n\n");
         return $this->helper->render('herald_body.html');
     }
     
@@ -101,17 +104,18 @@ class main
     }
     public function handle_status($type = 'all')
     {
+        $template_name = 'status_body.html';
         switch($type)
         {
             case 'mini':
                 $status_mini = $this->backend_yaml_query('serverstatus', 45);
                 $this->assign_yaml_vars($status_mini);
-                return $this->helper->render('statusmini_body.html');
+                $template_name = 'statusmini_body.html';
             break;
             case 'rvrmini':
                 $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
                 $this->assign_yaml_vars($status_rvrmini);
-                return $this->helper->render('statusrvrmini_body.html');
+                $template_name = 'statusrvrmini_body.html';
             break;
             case 'all':
             default:
@@ -119,9 +123,13 @@ class main
                 $this->assign_yaml_vars($status_mini);
                 $status_rvrmini = $this->backend_yaml_query('serverrvrstatus', 45);
                 $this->assign_yaml_vars($status_rvrmini);
-                return $this->helper->render('status_body.html');
             break;
         }
+        
+        /** Debug
+        $arr = (array)$this->template;
+        $this->template->assign_var('Y_DEBUG_DUMP', print_r($arr["\0*\0context"], 1)."\n\n"); **/
+        return $this->helper->render($template_name);
     }
     
     protected function assign_yaml_vars($yaml)
@@ -140,9 +148,6 @@ class main
                 $this->template->assign_var('Y_'.$key, $value);
             }
         }
-        /** Debug **/
-        $arr = (array)$this->template;
-        $this->template->assign_var('Y_DEBUG_DUMP', print_r($arr["\0*\0context"], 1)."\n\n");
     }
     
     protected function append_yaml_dictroot($dict, $prefix)

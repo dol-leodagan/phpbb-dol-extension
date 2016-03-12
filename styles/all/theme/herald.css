@@ -3,7 +3,11 @@ div.herald-flags {
     position: relative;
 }
 
-div.herald-flags > div, div.herald-flags > a {
+div.herald-flags + div {
+    clear: both;
+}
+
+div.herald-flags > div, div.herald-flags > a.herald-flag {
     display: inline-block;
     overflow: hidden;
     color: rgba(0,0,0,0);
@@ -12,42 +16,53 @@ div.herald-flags > div, div.herald-flags > a {
 
 div.herald-flags > a.herald-flag {
     margin: 0px 2%;
+    background-repeat: no-repeat;
+    background-color: rgb(120, 120, 120);
+    border-radius: 6px;
+    width: 53px;
+    height: 51px;
+    background-position: center;
 }
 
 div.herald-flags > a.herald-knotflag {
-    background: url('./images/knot.png') no-repeat;
-    width: 53px;
-    height: 51px;
+    background-image: url('./images/knot.png');
+
 }
 div.herald-flags > a.herald-knotflag:hover {
-    background: url('./images/knot_glow.png') no-repeat;
+    background-image: url('./images/knot_hover.png');
+}
+div.herald-flags > a.herald-knotflag.herald-flag-selected {
+    background-image: url('./images/knot_glow.png');
 }
 
 div.herald-flags > a.herald-albflag {
-    background: url('./images/alb.png') no-repeat;
-    width: 41px;
-    height: 51px;
+    background-image: url('./images/alb.png');
 }
 div.herald-flags > a.herald-albflag:hover {
-    background: url('./images/alb_glow.png') no-repeat;
+    background-image: url('./images/alb_hover.png');
+}
+div.herald-flags > a.herald-albflag.herald-flag-selected {
+    background-image: url('./images/alb_glow.png');
 }
 
 div.herald-flags > a.herald-midflag {
-    background: url('./images/mid.png') no-repeat;
-    width: 41px;
-    height: 51px;
+    background-image: url('./images/mid.png');
 }
 div.herald-flags > a.herald-midflag:hover {
-    background: url('./images/mid_glow.png') no-repeat;
+    background-image: url('./images/mid_hover.png');
+}
+div.herald-flags > a.herald-midflag.herald-flag-selected {
+    background-image: url('./images/mid_glow.png');
 }
 
 div.herald-flags > a.herald-hibflag {
-    background: url('./images/hib.png') no-repeat;
-    width: 41px;
-    height: 51px;
+    background-image: url('./images/hib.png');
 }
 div.herald-flags > a.herald-hibflag:hover {
-    background: url('./images/hib_glow.png') no-repeat;
+    background-image: url('./images/hib_hover.png');
+}
+div.herald-flags > a.herald-hibflag.herald-flag-selected {
+    background-image: url('./images/hib_glow.png');
 }
 
 div.herald-flags > div.herald-search {
@@ -65,8 +80,30 @@ div.herald-flags > div.herald-search {
     }
 }
 
-@media (max-width: 300px) {
-    div.herald-flags > a.herald-flag {
-        margin: 0px;
-    }
+div.herald-classes {
+    border: none;
+    margin-top: 10px;
+}
+div.herald-classes-midgard {
+    background-color: lightblue;
+}
+div.herald-classes-albion {
+    background-color: lightsalmon;
+}
+div.herald-classes-hibernia {
+    background-color: lightgreen;
+}
+
+div.herald-classes ul > li {
+    display: inline-block;
+}
+div.herald-classes ul > li + li:before {
+    content: '\25ca';
+    padding: 0px 1em;
+}
+div.herald-classes ul > li {
+    font-weight: bold;
+}
+div.herald-classes ul > li.herald-class-selected {
+    text-shadow: 2px 2px 4px white;
 }
