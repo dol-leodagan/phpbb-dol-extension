@@ -12,6 +12,7 @@ use phpbb\template\template;
 use Symfony\Component\Yaml\Parser;
 use phpbb\cache\driver;
 use phpbb\config\config;
+use Symfony\Component\HttpFoundation\Response;
 
 class helper
 {
@@ -168,13 +169,16 @@ class helper
     /** EndRegion - YAML to Template Parser **/
 
     /** Region Banners **/
-    public function drawBanner()
+    public function drawBanner($guild)
     {
         $img = imagecreatetruecolor(69, 86);
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        return $data;
+        $headers = array(
+            'Content-Type'     => 'image/png',
+            'Content-Disposition' => 'inline; filename="'.$guild.'"');
+        return new Response($data, 200, $headers);
     }
     
     /** EndRegion Banners **/
