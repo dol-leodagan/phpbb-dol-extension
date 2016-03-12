@@ -270,7 +270,7 @@ div.warmap-content-tower > div.warmap-content-tooltip {
 
 div.warmap-content-attack::before {
     content: "";
-    background-image: url('./attack.png');
+    background-image: url('./images/attack.png');
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
