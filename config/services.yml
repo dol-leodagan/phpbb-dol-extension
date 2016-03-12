@@ -12,7 +12,7 @@ services:
             - '@dol.status.controller_helper'
 
     dol.status.controller_helper:
-        class: dol\status\controller\controller_helper
+        class: dol\status\controller\helper
         arguments:
             - '@template'
             
