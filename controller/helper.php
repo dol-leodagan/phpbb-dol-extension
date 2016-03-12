@@ -43,21 +43,29 @@ class helper
     /** Region BackendQuery **/
     public function backend_yaml_query($service, $cachettl)
     {
-        $content = $this->backend_raw_query($service, $cachettl);
-        try
+        $cache_get = $this->cache->get('YMLBACKEND_'.$service);
+        
+        if ($cache_get === FALSE)
         {
-            $value = $this->parser->parse($content);
-            return $value;
+            $content = $this->backend_raw_query($service, $cachettl);
+            try
+            {
+                $value = $this->parser->parse($content);
+                $this->cache->put('YMLBACKEND_'.$service, $value, $cachettl);
+                return $value;
+            }
+            catch (ParseException $e)
+            {
+                return array('Y_Exception' => $e->getMessage());
+            }
         }
-        catch (ParseException $e)
-        {
-            return array('Y_Exception' => $e->getMessage());
-        }
+        
+        return $cache_get;
     }
     
     protected function backend_raw_query($service, $cachettl)
     {
-        $cache_get = $this->cache->get($service);
+        $cache_get = $this->cache->get('RAWBACKEND_'.$service);
         
         if ($cache_get === FALSE)
         {
@@ -75,8 +83,8 @@ class helper
             curl_close($ch);
             if ($raw_get !== FALSE)
             {
-                $this->cache->put($service, $raw_get, $cachettl);
-                $cache_get = $raw_get;
+                $this->cache->put('RAWBACKEND_'.$service, $raw_get, $cachettl);
+                return $raw_get;
             }
        }
        

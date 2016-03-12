@@ -69,7 +69,6 @@ class main
         $this->phpbb_root_path = $phpbb_root_path;
         $this->php_ext = $php_ext;
         $this->root_path = $phpbb_root_path . 'ext/dol/status/';
-        $this->cache = $cache;
         $this->controller_helper = $controller_helper;
     }
     
