@@ -1,7 +1,9 @@
 div.herald-warmap {
     margin-top: 10px;
 }
-
+div.warmap-rendertime {
+    text-align: center;
+}
 /** Global and Responsive **/
 
 @media only screen and (max-width : 700px) {
@@ -166,4 +168,239 @@ div#warmap-content-irishsea {
     top: 128px;
     left: 0px;
     background: url('./images/frontiers/164.jpg');
+}
+
+
+
+/** Warmap Elements **/
+
+div.warmap-content-tower {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+div.warmap-content-keep {
+    width: 24px !important;
+    height: 29.85px !important;
+}
+
+@media only screen and (max-width : 700px) {
+    div.warmap-content-tooltip {
+        position: fixed !important;
+        top: 0px !important;
+        left: 0px !important;
+        border-radius: unset !important;
+        -moz-border-radius: unset !important;
+        -webkit-border-radius: unset !important;
+        margin: 0px !important;
+        width: calc(100% - 40px) !important;
+        border-top: unset !important;
+        border-left: unset !important;
+        border-right: unset !important;
+    }
+    div.warmap-content-tooltip:hover {
+        display: none !important;
+    }
+    div.warmap-content-tooltip::after {
+        display: none;
+    }
+    strong.warmap-content-tooltip-realm + br {
+        display: none;
+    }
+    span.warmap-content-tooltip-time::before {
+        content: ', ';
+    }
+}
+
+div.warmap-content-tooltip {
+    width: 240px;
+    height: auto !important;
+    padding: 14px 20px;
+    line-height: 20px;
+
+    color: #f6f6f6;
+    border: 1px solid #DCA;
+    background: #262626;
+    z-index: 20;
+    
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 5px 5px 8px #666;
+    -moz-box-shadow: 5px 5px 8px #666;
+    -webkit-box-shadow: 5px 5px 8px #666;
+    
+    position: relative;
+    display: none;
+}
+
+div.warmap-content-element {
+    background-size: contain !important;
+}
+
+div.warmap-content-element:hover > div.warmap-content-tooltip {
+    display: block;
+    -webkit-animation: fadein 0.4s;
+    -moz-animation: fadein 0.4s;
+    -o-animation: fadein 0.4s;
+    animation: fadein 0.4s;
+}
+
+div.warmap-content-tooltip > img {
+    float: right;
+    margin-right: -12px;
+    margin-top: 6px;
+}
+
+div.warmap-content-tooltip::after {
+    content:url('./images/callout.gif');
+    top: 10px;
+    left: -12px;
+    position: absolute;
+}
+
+div.warmap-content-keep > div.warmap-content-tooltip {
+    margin-left: 38px;
+    margin-top: -9px;
+}
+div.warmap-content-tower > div.warmap-content-tooltip {
+    margin-left: 30px;
+    margin-top: -15px;
+}
+
+div.warmap-content-attack::before {
+    content: "";
+    background-image: url('./attack.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: inline-block;
+    -webkit-animation: flickerAnimation 2s infinite;
+    -moz-animation: flickerAnimation 2s infinite;
+    -o-animation: flickerAnimation 2s infinite;
+    animation: flickerAnimation 2s infinite;
+}
+
+@keyframes flickerAnimation {
+    0%    { opacity:1; }
+    5%    { opacity:0.2; }
+    100%  { opacity:1; }
+}
+@-o-keyframes flickerAnimation{
+    0%    { opacity:1; }
+    5%    { opacity:0.2; }
+    100%  { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+    0%    { opacity:1; }
+    5%    { opacity:0.2; }
+    100%  { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+    0%    { opacity:1; }
+    5%    { opacity:0.2; }
+    100%  { opacity:1; }
+}
+@keyframes flickerAnimation {
+    0%    { opacity:1; }
+    5%    { opacity:0.2; }
+    100%  { opacity:1; }
+}
+
+@-o-keyframes fadein {
+    0%    { opacity:0; }
+    100%  { opacity:1; }
+}
+@-moz-keyframes fadein {
+    0%    { opacity:0; }
+    100%  { opacity:1; }
+}
+@-webkit-keyframes fadein {
+    0%    { opacity:0; }
+    100%  { opacity:1; }
+}
+
+div.warmap-content-tower.warmap-content-attack::before {
+    top: -12px;
+    left: -7px;
+    height: 30px;
+    width: 28px;
+}
+div.warmap-content-keep.warmap-content-attack::before {
+    top: -6px;
+    left: -5px;
+    height: 48px;
+    width: 34px;
+}
+
+/** Albion Tooltip **/
+div.warmap-content-tower.warmap-owned-albion {
+    background: url('./images/alb-tower.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-albion {
+    background: url('./images/alb.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-albion.warmap-content-glow {
+    background-image: url('./images/alb_glow.png') !important;
+}
+
+div.warmap-owned-albion strong.warmap-content-tooltip-realm {
+    color: red;
+}
+
+/** Midgard Tooltip **/
+div.warmap-content-tower.warmap-owned-midgard {
+    background: url('./images/mid-tower.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-midgard {
+    background: url('./images/mid.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-midgard.warmap-content-glow {
+    background-image: url('./images/mid_glow.png') !important;
+}
+
+div.warmap-owned-midgard strong.warmap-content-tooltip-realm {
+    color: lightblue;
+}
+
+/** Hibernia Tooltip **/
+div.warmap-content-tower.warmap-owned-hibernia {
+    background: url('./images/hib-tower.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-hibernia {
+    background: url('./images/hib.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-hibernia.warmap-content-glow {
+    background-image: url('./images/hib_glow.png') !important;
+}
+
+div.warmap-owned-hibernia strong.warmap-content-tooltip-realm {
+    color: green;
+}
+
+/** Neutral Tooltip **/
+div.warmap-content-tower.warmap-owned-neutral {
+    background: url('./images/mob-tower.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-neutral {
+    background: url('./images/mob.png') no-repeat;
+}
+
+div.warmap-content-keep.warmap-owned-neutral.warmap-content-glow {
+    background-image: url('./images/mob_glow.png') !important;
+}
+
+div.warmap-owned-neutral strong.warmap-content-tooltip-realm {
+    color: inherit;
+}
+
+strong.warmap-content-tooltip-realm {
+    text-transform: capitalize;
 }

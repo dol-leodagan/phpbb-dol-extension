@@ -10,7 +10,21 @@
                 </div>
                 <div id="warmap-content-snowdonia">
                 </div>
-            
+            <!-- BEGIN Y_Structures_Albion -->
+                <div style="top: {Y_Structures_Albion.Top}px; left: {Y_Structures_Albion.Left}px;" class="warmap-owned-{Y_Structures_Albion.Owner} warmap-content-element warmap-content-{Y_Structures_Albion.Type} <!-- IF Y_Structures_Albion.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Albion.Supplied -->warmap-content-glow<!-- ENDIF -->">
+                    <div class="warmap-content-tooltip">
+                        <strong>{Y_Structures_Albion.Name}</strong>
+                        <!-- IF Y_Structures_Albion.Claimed -->
+                        <img src="/herald/banner/{Y_Structures_Albion.ClaimedBy}" alt="{Y_Structures_Albion.Name}" title="{Y_Structures_Albion.Name}"/>
+                        <!-- ENDIF -->
+                        <br />Keep Level : <strong>{Y_Structures_Albion.Level}</strong><br />
+                        Captured by <strong class="warmap-content-tooltip-realm">{Y_Structures_Albion.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Albion.Since}</span>
+                        <!-- IF Y_Structures_Albion.Claimed -->
+                        <br />Claimed by <strong>{Y_Structures_Albion.ClaimedBy}</strong>
+                        <!-- ENDIF -->
+                    </div>
+                </div>
+            <!-- End Y_Structures_Albion -->
             </div>
             <div class="warmap-content-realm" id="warmap-content-midgard">
                 <div id="warmap-content-uppland">
@@ -21,7 +35,21 @@
                 </div>
                 <div id="warmap-content-yggdra">
                 </div>
-            
+            <!-- BEGIN Y_Structures_Midgard -->
+                <div style="top: {Y_Structures_Midgard.Top}px; left: {Y_Structures_Midgard.Left}px;" class="warmap-owned-{Y_Structures_Midgard.Owner} warmap-content-element warmap-content-{Y_Structures_Midgard.Type} <!-- IF Y_Structures_Midgard.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Midgard.Supplied -->warmap-content-glow<!-- ENDIF -->">
+                    <div class="warmap-content-tooltip">
+                        <strong>{Y_Structures_Midgard.Name}</strong>
+                        <!-- IF Y_Structures_Midgard.Claimed -->
+                        <img src="/herald/banner/{Y_Structures_Midgard.ClaimedBy}" alt="{Y_Structures_Midgard.Name}" title="{Y_Structures_Midgard.Name}"/>
+                        <!-- ENDIF -->
+                        <br />Keep Level : <strong>{Y_Structures_Midgard.Level}</strong><br />
+                        Captured by <strong class="warmap-content-tooltip-realm">{Y_Structures_Midgard.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Midgard.Since}</span>
+                        <!-- IF Y_Structures_Midgard.Claimed -->
+                        <br />Claimed by <strong>{Y_Structures_Midgard.ClaimedBy}</strong>
+                        <!-- ENDIF -->
+                    </div>
+                </div>
+            <!-- End Y_Structures_Midgard -->
             </div>
             <div class="warmap-content-realm" id="warmap-content-hibernia">
                 <div id="warmap-content-emain">
@@ -32,7 +60,21 @@
                 </div>
                 <div id="warmap-content-collory">
                 </div>
-
+            <!-- BEGIN Y_Structures_Hibernia -->
+                <div style="top: {Y_Structures_Hibernia.Top}px; left: {Y_Structures_Hibernia.Left}px;" class="warmap-owned-{Y_Structures_Hibernia.Owner} warmap-content-element warmap-content-{Y_Structures_Hibernia.Type} <!-- IF Y_Structures_Hibernia.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Hibernia.Supplied -->warmap-content-glow<!-- ENDIF -->">
+                    <div class="warmap-content-tooltip">
+                        <strong>{Y_Structures_Hibernia.Name}</strong>
+                        <!-- IF Y_Structures_Hibernia.Claimed -->
+                        <img src="/herald/banner/{Y_Structures_Hibernia.ClaimedBy}" alt="{Y_Structures_Hibernia.Name}" title="{Y_Structures_Hibernia.Name}"/>
+                        <!-- ENDIF -->
+                        <br />Keep Level : <strong>{Y_Structures_Hibernia.Level}</strong><br />
+                        Captured by <strong class="warmap-content-tooltip-realm">{Y_Structures_Hibernia.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Hibernia.Since}</span>
+                        <!-- IF Y_Structures_Hibernia.Claimed -->
+                        <br />Claimed by <strong>{Y_Structures_Hibernia.ClaimedBy}</strong>
+                        <!-- ENDIF -->
+                    </div>
+                </div>
+            <!-- End Y_Structures_Hibernia -->
             </div>
 
             <div class="warmap-content-realm" id="warmap-content-neutral">
@@ -40,7 +82,23 @@
                 </div>
                 <div id="warmap-content-irishsea">
                 </div>
+            <!-- BEGIN Y_Structures_Central -->
+                <div style="top: {Y_Structures_Central.Top}px; left: {Y_Structures_Central.Left}px;" class="warmap-owned-{Y_Structures_Central.Owner} warmap-content-element warmap-content-{Y_Structures_Central.Type} <!-- IF Y_Structures_Central.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Central.Supplied -->warmap-content-glow<!-- ENDIF -->">
+                    <div class="warmap-content-tooltip">
+                        <strong>{Y_Structures_Central.Name}</strong>
+                        <!-- IF Y_Structures_Central.Claimed -->
+                        <img src="/herald/banner/{Y_Structures_Central.ClaimedBy}" alt="{Y_Structures_Central.Name}" title="{Y_Structures_Central.Name}"/>
+                        <!-- ENDIF -->
+                        <br />Keep Level : <strong>{Y_Structures_Central.Level}</strong><br />
+                        Captured by <strong class="warmap-content-tooltip-realm">{Y_Structures_Central.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Central.Since}</span>
+                        <!-- IF Y_Structures_Central.Claimed -->
+                        <br />Claimed by <strong>{Y_Structures_Central.ClaimedBy}</strong>
+                        <!-- ENDIF -->
+                    </div>
+                </div>
+            <!-- End Y_Structures_Central -->
             </div>
         </div>
     <span class="corners-bottom"><span></span></span></div>
 </div>
+<div class="warmap-rendertime">{Y_RenderTime}</div>

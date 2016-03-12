@@ -76,8 +76,11 @@ class main
     public function handle($cmd, $params)
     {
         $this->template->assign_var('U_HERALD_ENABLE', true);
-        if ($cmd == "warmap" || $cmd == "")
+        if ($cmd == "warmap" || $cmd == "") {
             $this->template->assign_var('U_WARMAP_ENABLE', true);
+            $warmap = $this->controller_helper->backend_yaml_query('warmap', 5 * 60);
+            $this->controller_helper->assign_yaml_vars($warmap);
+        }
         
         if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
         {
