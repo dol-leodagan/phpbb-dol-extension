@@ -172,6 +172,8 @@ class helper
     public function drawBanner($guild)
     {
         $img = imagecreatetruecolor(69, 86);
+        $emblem = imagecreatefrompng("../styles/all/theme/images/emblems/0-0-0-full.png"); 
+        imagecopyresampled($img, $emblem, 0, 0, 0, 0, imagesx($img), imagesy($img), imagesx($emblem), imagesy($emblem));
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
