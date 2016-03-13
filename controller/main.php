@@ -101,7 +101,7 @@ class main
                 foreach ($classes['Classes'] as $key => $value)
                     if (is_array($value))
                         foreach($value as $num => $item)
-                            $classes['Classes'][$key][$num]['URL'] = $this->helper->route('dol_status_controller', array('cmd' => $cmd, 'params' => $item));
+                            $classes['Classes'][$key][$num] = array('VALUE' => $item, 'URL' => $this->helper->route('dol_status_controller', array('cmd' => $cmd, 'params' => $item)));
                     
             $this->controller_helper->assign_yaml_vars($classes);
             
