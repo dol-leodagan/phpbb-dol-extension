@@ -119,11 +119,11 @@ class main
         }
         
         /** Ladders **/
-        if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia" || $cmd == "players" || $cmd == "kills" || $cmd == "solo" || $cmd == "deathblow")
+        if ($cmd == "active" || $cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia" || $cmd == "players" || $cmd == "kills" || $cmd == "solo" || $cmd == "deathblow" || $cmd == "search")
         {
             $ladder = array();
             
-            if ($params !== "" && ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia"))
+            if ($params !== "" && ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia" || $cmd == "search"))
             {
                 $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
             }

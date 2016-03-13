@@ -118,6 +118,10 @@ class listener implements EventSubscriberInterface
             $herald_link_deathblow = $this->controller_helper->route('dol_status_controller', array('cmd' => 'deathblow'));
         else
             $herald_link_deathblow = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'deathblow')));
+        if (strpos($this->controller_helper->get_current_url(), '/herald/active') === false)
+            $herald_link_active = $this->controller_helper->route('dol_status_controller', array('cmd' => 'active'));
+        else
+            $herald_link_active = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'active')));
         
         
         
@@ -148,6 +152,7 @@ class listener implements EventSubscriberInterface
             'U_HERALD_KILLS'   => $herald_link_kills,
             'U_HERALD_SOLO'   => $herald_link_solo,
             'U_HERALD_DEATHBLOW'   => $herald_link_deathblow,
+            'U_HERALD_ACTIVE'   => $herald_link_active,
             'U_DOL_STATUS_GAME'   => $game_link,
             'U_DOL_STATUS_BOOK'   => $book_link,
             'U_DOL_STATUS_STATUS'   => $status_link,
