@@ -192,23 +192,48 @@ class helper
         $headers = array(
             'Content-Type'     => 'image/png',
             'Content-Disposition' => 'inline; filename="'.$guild.'"');
+        
+        // Check Cache
+        $cache_img = $this->cache->get('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'));
+        
+        if ($cache_img !== false)
+        {
+            return new Response($cache_img, 200, $headers);
+        }
+        
         $img = imagecreatetruecolor(69, 86);
 
         if ($guild_data !== null)
         {
+            // Decompose Emblem
             $emblemID = $guild_data['Guild']['Emblem'];
             $logo = $emblemID >> 9;
             $pattern = $emblemID >> 7 & 3;
             $primary = $emblemID >> 3 & 15;
             $secondary = ($pattern != 3 ? $emblemID & 7 : 0);
             
-            $emblem = imagecreatefrompng($this->root_path.'styles/all/theme/images/emblems/'.$primary.'-'.$secondary.'-'.$pattern.'-full.png'); 
-            imagecopyresampled($img, $emblem, 0, 0, 0, 0, imagesx($img), imagesy($img), imagesx($emblem), imagesy($emblem));
+            // Get Background Emblem and Symbol
+            $emblem = imagecreatefrompng($this->root_path.'styles/all/theme/images/emblems/'.$primary.'-'.$secondary.'-'.$pattern.'-full.png');
+            $symbol = imagecreatefromgif($this->root_path.'styles/all/theme/images/emblems/symbols/'.$logo.'.gif');
+            
+            // Resize Symbol and Center
+            $imgx = imagesx($img); $imgy = imagesy($img);
+            $emblemx = imagesx($emblem); $emblemy = imagesy($emblem);
+            $symbolx = imagesx($symbol); $symboly = imagesy($symbol);
+
+            $ratiox = $imgx / (double)$emblemx * 64.0; $ratioy = $imgy / (double)$emblemy * 64.0;
+            $offsetx = ($imgx - $ratiox) / 2.0; $offsety = ($imgy - $ratioy) / 2.0;
+
+            // Draw Emblem then Symbol
+            imagecopyresampled($img, $emblem, 0, 0, 0, 0, $imgx, $imgy, $emblemx, $emblemy);
+            imagecopyresampled($img, $symbol, $offsetx + 2, $offsety, 0, 0, $ratiox, $ratioy, $symbolx, $symboly);
         }
 
+        // Send Result
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
+        $this->cache->put('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'), $data, 24 * 60 * 60);
         return new Response($data, 200, $headers);
     }
     
