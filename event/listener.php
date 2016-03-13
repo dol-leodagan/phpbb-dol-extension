@@ -87,35 +87,35 @@ class listener implements EventSubscriberInterface
             $herald_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller'));
         /** Herald **/
         if (strpos($this->controller_helper->get_current_url(), '/herald/albion') === false)
-            $herald_link_albion = $this->controller_helper->route('dol_status_controller', array('cmd' => '/albion'));
+            $herald_link_albion = $this->controller_helper->route('dol_status_controller', array('cmd' => 'albion'));
         else
             $herald_link_albion = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'albion')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/midgard') === false)
-            $herald_link_midgard = $this->controller_helper->route('dol_status_controller', array('cmd' => '/midgard'));
+            $herald_link_midgard = $this->controller_helper->route('dol_status_controller', array('cmd' => 'midgard'));
         else
             $herald_link_midgard = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'midgard')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/hibernia') === false)
-            $herald_link_hibernia = $this->controller_helper->route('dol_status_controller', array('cmd' => '/hibernia'));
+            $herald_link_hibernia = $this->controller_helper->route('dol_status_controller', array('cmd' => 'hibernia'));
         else
             $herald_link_hibernia = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'hibernia')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/players') === false)
-            $herald_link_players = $this->controller_helper->route('dol_status_controller', array('cmd' => '/players'));
+            $herald_link_players = $this->controller_helper->route('dol_status_controller', array('cmd' => 'players'));
         else
             $herald_link_players = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'players')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/kills') === false)
-            $herald_link_kills = $this->controller_helper->route('dol_status_controller', array('cmd' => '/kills'));
+            $herald_link_kills = $this->controller_helper->route('dol_status_controller', array('cmd' => 'kills'));
         else
             $herald_link_kills = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'kills')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/guilds') === false)
-            $herald_link_guilds = $this->controller_helper->route('dol_status_controller', array('cmd' => '/guilds'));
+            $herald_link_guilds = $this->controller_helper->route('dol_status_controller', array('cmd' => 'guilds'));
         else
             $herald_link_guilds = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'guilds')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/solo') === false)
-            $herald_link_solo = $this->controller_helper->route('dol_status_controller', array('cmd' => '/solo'));
+            $herald_link_solo = $this->controller_helper->route('dol_status_controller', array('cmd' => 'solo'));
         else
             $herald_link_solo = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'solo')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/deathblow') === false)
-            $herald_link_deathblow = $this->controller_helper->route('dol_status_controller', array('cmd' => '/deathblow'));
+            $herald_link_deathblow = $this->controller_helper->route('dol_status_controller', array('cmd' => '/eathblow'));
         else
             $herald_link_deathblow = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'deathblow')));
         
