@@ -86,11 +86,14 @@ class main
         /** Realm / Classes **/
         if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
         {
-            $classes = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
-            foreach ($classes as $key => $value)
-                if (is_array($value))
-                    foreach($value as $num => $item)
-                        $classes[$key][$num] = array('VALUE' => $item, 'URL' => $this->helper->route('dol_status_controller', array('cmd' => $cmd, 'param' => $item)));
+            $classes_raw = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
+            $classes = array();
+            // Build URL Routes
+            if (isset($classes_raw['Classes']))
+                foreach ($classes_raw['Classes'] as $key => $value)
+                    if (is_array($value))
+                        foreach($value as $num => $item)
+                            $classes['Classes'][$key][$num] = array('VALUE' => $item, 'URL' => $this->helper->route('dol_status_controller', array('cmd' => $cmd, 'params' => $item)));
                     
             $this->controller_helper->assign_yaml_vars($classes);
         }

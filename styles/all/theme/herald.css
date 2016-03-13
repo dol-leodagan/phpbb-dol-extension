@@ -80,7 +80,7 @@ div.herald-flags > div.herald-search {
     }
 }
 
-div.herald-classes {
+div.herald-classes, div.herald-ladder {
     border: none;
     margin-top: 10px;
 }
@@ -94,16 +94,19 @@ div.herald-classes-hibernia {
     background-color: lightgreen;
 }
 
-div.herald-classes ul > li {
+div.herald-classes ul > li, div.herald-ladder ul > li {
     display: inline-block;
 }
-div.herald-classes ul > li + li:before {
+div.herald-classes ul > li + li:before, div.herald-ladder ul > li + li:before {
     content: '\25ca';
     padding: 0px 1em;
 }
-div.herald-classes ul > li {
+div.herald-classes ul > li, div.herald-ladder ul > li {
     font-weight: bold;
 }
 div.herald-classes ul > li.herald-class-selected {
     text-shadow: 2px 2px 4px white;
+}
+div.herald-ladder ul > li.herald-ladder-selected {
+    text-shadow: 2px 2px 4px purple;
 }
