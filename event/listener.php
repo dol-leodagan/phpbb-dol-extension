@@ -115,7 +115,7 @@ class listener implements EventSubscriberInterface
         else
             $herald_link_solo = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'solo')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/deathblow') === false)
-            $herald_link_deathblow = $this->controller_helper->route('dol_status_controller', array('cmd' => '/eathblow'));
+            $herald_link_deathblow = $this->controller_helper->route('dol_status_controller', array('cmd' => 'deathblow'));
         else
             $herald_link_deathblow = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => 'deathblow')));
         
