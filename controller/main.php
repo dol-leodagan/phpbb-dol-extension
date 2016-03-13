@@ -82,7 +82,7 @@ class main
             $warmap = $this->controller_helper->backend_yaml_query('warmap', 5 * 60);
             
             if (isset($warmap['Structures']))
-                foreach($warmap['Structure'] as $realm => $structures)
+                foreach($warmap['Structures'] as $realm => $structures)
                     if (is_array($structures))
                         foreach($structures as $num => $structure)
                             if (isset($structure['Claimed']) && $structure['Claimed'] === true)
