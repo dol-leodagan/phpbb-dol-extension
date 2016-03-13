@@ -80,23 +80,63 @@ class main
         if ($cmd == "warmap" || $cmd == "") {
             $this->template->assign_var('U_WARMAP_ENABLE', true);
             $warmap = $this->controller_helper->backend_yaml_query('warmap', 5 * 60);
+            
+            if (isset($warmap['Structures']))
+                foreach($warmap['Structure'] as $realm => $structures)
+                    if (is_array($structures))
+                        foreach($structures as $num => $structure)
+                            if (isset($structure['Claimed']) && $structure['Claimed'] === true)
+                                $warmap['Structures'][$realm][$num]['IMGURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $structure['ClaimedBy']));
+                            
+            
             $this->controller_helper->assign_yaml_vars($warmap);
         }
         
         /** Realm / Classes **/
         if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
         {
-            $classes_raw = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
-            $classes = array();
+            $classes = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
             // Build URL Routes
-            if (isset($classes_raw['Classes']))
-                foreach ($classes_raw['Classes'] as $key => $value)
+            if (isset($classes['Classes']))
+                foreach ($classes['Classes'] as $key => $value)
                     if (is_array($value))
                         foreach($value as $num => $item)
-                            $classes['Classes'][$key][$num] = array('VALUE' => $item, 'URL' => $this->helper->route('dol_status_controller', array('cmd' => $cmd, 'params' => $item)));
+                            $classes['Classes'][$key][$num]['URL'] = $this->helper->route('dol_status_controller', array('cmd' => $cmd, 'params' => $item));
                     
             $this->controller_helper->assign_yaml_vars($classes);
+            
+            if ($params !== "" && array_search($param, $classes) === false)
+                $params = "";
         }
+        
+        /** Ladders **/
+        if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia" || $cmd == "players" || $cmd == "kills" || $cmd == "solo" || $cmd == "deathblow")
+        {
+            $ladder = array();
+            
+            if ($params !== "" && ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia"))
+            {
+                $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
+            }
+            else
+            {
+                $ladder = $this->controller_helper->backend_yaml_query($cmd, 5 * 60);
+            }
+            
+            // Build URL Routes
+            if (isset($ladder['Ladder']))
+            {
+                foreach ($ladder['Ladder'] as $key => $value)
+                {
+                    $ladder['Ladder'][$key]['PLAYER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'player', 'params' => $value['PlayerName']));
+                    if ($value['GuildName'] !== "")
+                        $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $value['GuildName']));
+                }
+            }
+            
+            $this->controller_helper->assign_yaml_vars($ladder);
+        }
+
         
         /** Banner **/
         if ($cmd == "banner" && $params !== "")
