@@ -3,7 +3,7 @@ dol_status_controller:
     defaults: { _controller: dol.status.main:handle, cmd: "", params: "", tslash: "/" }
     requirements:
         cmd: (players|guilds|kills|deathblow|solo|player|guild|search|albion|midgard|hibernia|signature|banner|sigsmall|siglarge|sigdetailed)?
-        params: ([\w ]+)?
+        params: ([[:alnum:]À-ÿ ]+)?
         tslash: /?
 dol_status_badsearch:
     path: /herald/{notcmd}/{notparams}{tslash}

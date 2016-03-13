@@ -25,6 +25,18 @@ class helper
      /* @var config */
     protected $config;
 
+    /**
+    * phpBB root path
+    * @var string
+    */
+    protected $phpbb_root_path;
+    
+    /**
+    * Extension root path
+    * @var string
+    */
+    protected $root_path;
+
     /** @var Symfony\Component\Yaml\Parser */
     protected $parser;
     
@@ -33,11 +45,13 @@ class helper
     *
     * @param template $template
     */
-    public function __construct(template $template, $cache, config $config)
+    public function __construct(template $template, $cache, config $config, $phpbb_root_path)
     {
         $this->template = $template;
         $this->cache = $cache;
         $this->config = $config;
+        $this->phpbb_root_path = $phpbb_root_path;
+        $this->root_path = $phpbb_root_path . 'ext/dol/status/';
         $this->parser = new Parser();
     }
     
@@ -171,15 +185,30 @@ class helper
     /** Region Banners **/
     public function drawBanner($guild)
     {
-        $img = imagecreatetruecolor(69, 86);
-        $emblem = imagecreatefrompng("../styles/all/theme/images/emblems/0-0-0-full.png"); 
-        imagecopyresampled($img, $emblem, 0, 0, 0, 0, imagesx($img), imagesy($img), imagesx($emblem), imagesy($emblem));
-        ob_start();
-        imagepng($img);
-        $data = ob_get_clean();
+        // Retrieve Guild Data
+        $guild_data = $this->backend_yaml_query('getguild/'.$guild, 15 * 60);
+        
+        // Defaults
         $headers = array(
             'Content-Type'     => 'image/png',
             'Content-Disposition' => 'inline; filename="'.$guild.'"');
+        $img = imagecreatetruecolor(69, 86);
+
+        if ($guild_data !== null)
+        {
+            $emblemID = $guild_data['Guild']['Emblem'];
+            $logo = $emblemID >> 9;
+            $pattern = $emblemID >> 7 & 3;
+            $primary = $emblemID >> 3 & 15;
+            $secondary = ($pattern != 3 ? $emblemID & 7 : 0);
+            
+            $emblem = imagecreatefrompng($this->root_path.'styles/all/theme/images/emblems/'.$primary.'-'.$secondary.'-'.$pattern.'-full.png'); 
+            imagecopyresampled($img, $emblem, 0, 0, 0, 0, imagesx($img), imagesy($img), imagesx($emblem), imagesy($emblem));
+        }
+
+        ob_start();
+        imagepng($img);
+        $data = ob_get_clean();
         return new Response($data, 200, $headers);
     }
     
