@@ -17,7 +17,7 @@
         <!-- IF U_HERALD_PARAM == Y_Classes_Albion.VALUE -->
         <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li class="herald-class-selected">{Y_Classes_Albion.VALUE}</li>' -->
         <!-- ELSE -->
-        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{U_HERALD_ALBION}/{Y_Classes_Albion.VALUE}" title="{Y_Classes_Albion.VALUE}">{Y_Classes_Albion.VALUE}</a></li>' -->
+        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{Y_Classes_Albion.URL}" title="{Y_Classes_Albion.VALUE}">{Y_Classes_Albion.VALUE}</a></li>' -->
         <!-- ENDIF -->
     <!-- END Y_Classes_Albion -->
 <!-- ELSEIF U_HERALD_COMMAND == "midgard" -->
@@ -27,7 +27,7 @@
         <!-- IF U_HERALD_PARAM == Y_Classes_Midgard.VALUE -->
         <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li class="herald-class-selected">{Y_Classes_Midgard.VALUE}</li>' -->
         <!-- ELSE -->
-        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{U_HERALD_MIDGARD}/{Y_Classes_Midgard.VALUE}" title="{Y_Classes_Midgard.VALUE}">{Y_Classes_Midgard.VALUE}</a></li>' -->
+        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{Y_Classes_Midgard.URL}" title="{Y_Classes_Midgard.VALUE}">{Y_Classes_Midgard.VALUE}</a></li>' -->
         <!-- ENDIF -->
     <!-- END Y_Classes_Midgard -->
 <!-- ELSEIF U_HERALD_COMMAND == "hibernia" -->
@@ -37,7 +37,7 @@
         <!-- IF U_HERALD_PARAM == Y_Classes_Hibernia.VALUE -->
         <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li class="herald-class-selected">{Y_Classes_Hibernia.VALUE}</li>' -->
         <!-- ELSE -->
-        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{U_HERALD_HIBERNIA}/{Y_Classes_Hibernia.VALUE}" title="{Y_Classes_Hibernia.VALUE}">{Y_Classes_Hibernia.VALUE}</a></li>' -->
+        <!-- DEFINE $CLASSES_LIST = '{$CLASSES_LIST}<li><a href="{Y_Classes_Hibernia.URL}" title="{Y_Classes_Hibernia.VALUE}">{Y_Classes_Hibernia.VALUE}</a></li>' -->
         <!-- ENDIF -->
     <!-- END Y_Classes_Hibernia -->
 <!-- ELSE -->
@@ -56,12 +56,12 @@
 <div class="panel herald-classes">
    <div class="inner"><span class="corners-top"><span></span></span>
         <div class="centered-content"><ul>
-        <li><a href="{U_HERALD_PLAYERS}" class="<!-- IF U_HERALD_COMMAND == "players" -->herald-class-selected<!-- ENDIF -->">Top 50 Players</a></li>
-        <li><a href="{U_HERALD_GUILDS}" class="<!-- IF U_HERALD_COMMAND == "guilds" -->herald-class-selected<!-- ENDIF -->">Top 50 Guilds</a></li>
-        <li><a href="{U_HERALD_KILLS}" class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-class-selected<!-- ENDIF -->">Top 50 Total Kills</a></li>
-        <li><a href="{U_HERALD_DEATHBLOW}" class="<!-- IF U_HERALD_COMMAND == "deathblow" -->herald-class-selected<!-- ENDIF -->">Top 50 Deathblows</a></li>
-        <li><a href="{U_HERALD_SOLO}" class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-class-selected<!-- ENDIF -->">Top 50 Solo Kills</a></li>
-        <li><a href="{U_HERALD_WARMAP}" class="<!-- IF U_HERALD_COMMAND == "people" -->herald-class-selected<!-- ENDIF -->">Population Statistic</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "players" -->herald-class-selected<!-- ENDIF -->"><a href="{U_HERALD_PLAYERS}">Top 50 Players</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "guilds" -->herald-class-selected<!-- ENDIF -->"><a href="{U_HERALD_GUILDS}">Top 50 Guilds</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-class-selected<!-- ENDIF -->"><a href="{U_HERALD_KILLS}">Top 50 Total Kills</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "deathblow" -->herald-class-selected<!-- ENDIF -->"><a href="{U_HERALD_DEATHBLOW}">Top 50 Deathblows</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-class-selected<!-- ENDIF -->"><a href="{U_HERALD_SOLO}">Top 50 Solo Kills</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "people" -->herald-class-selected<!-- ENDIF -->"><a href="{U_HERALD_WARMAP}">Population Statistic</a></li>
         </ul></div>
     <span class="corners-bottom"><span></span></span></div>
 </div>
