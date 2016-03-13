@@ -119,20 +119,20 @@ table.herald-ladder {
 }
 
 tr.ladder-realm-albion td {
-    background-color: rgba(255, 40, 40, 0.35);
+    background-color: rgba(255, 80, 80, 0.35);
 }
 tr.ladder-realm-albion:hover > td {
-    background-color: rgba(255, 40, 40, 0.20);
+    background-color: rgba(255, 80, 80, 0.20);
 }
 tr.ladder-realm-midgard td {
-    background-color: rgba(40, 40, 255, 0.35);
+    background-color: rgba(100, 180, 255, 0.35);
 }
 tr.ladder-realm-midgard:hover > td {
-    background-color: rgba(40, 40, 255, 0.20);
+    background-color: rgba(100, 180, 255, 0.20);
 }
 tr.ladder-realm-hibernia td {
-    background-color: rgba(40, 255, 40, 0.35);
+    background-color: rgba(80, 255, 80, 0.35);
 }
 tr.ladder-realm-hibernia:hover > td {
-    background-color: rgba(40, 255, 40, 0.20);
+    background-color: rgba(80, 255, 80, 0.20);
 }
