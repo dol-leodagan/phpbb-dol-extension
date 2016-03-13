@@ -3,10 +3,10 @@
 <h2>{L_DOL_STATUS_HERALD}</h2>
 
 <div class="herald-flags">
-    <a href="{U_HERALD_WARMAP}" class="herald-knotflag herald-flag<!-- IF U_HERALD_COMMAND === "" --> herald-flag-selected<!-- ENDIF -->"><span>Warmap</span></a>
-    <a href="{U_HERALD_ALBION}" class="herald-albflag herald-flag<!-- IF U_HERALD_COMMAND == "albion" --> herald-flag-selected<!-- ENDIF -->"><span>Albion</span></a>
-    <a href="{U_HERALD_MIDGARD}" class="herald-midflag herald-flag<!-- IF U_HERALD_COMMAND == "midgard" --> herald-flag-selected<!-- ENDIF -->"><span>Midgard</span></a>
-    <a href="{U_HERALD_HIBERNIA}" class="herald-hibflag herald-flag<!-- IF U_HERALD_COMMAND == "hibernia" --> herald-flag-selected<!-- ENDIF -->"><span>Hibernia</span></a>
+    <a href="{U_HERALD_WARMAP}" title="Warmap" class="herald-knotflag herald-flag<!-- IF U_HERALD_COMMAND === "" --> herald-flag-selected<!-- ENDIF -->"><span>Warmap</span></a>
+    <a href="{U_HERALD_ALBION}" title="Albion" class="herald-albflag herald-flag<!-- IF U_HERALD_COMMAND == "albion" --> herald-flag-selected<!-- ENDIF -->"><span>Albion</span></a>
+    <a href="{U_HERALD_MIDGARD}" title="Midgard" class="herald-midflag herald-flag<!-- IF U_HERALD_COMMAND == "midgard" --> herald-flag-selected<!-- ENDIF -->"><span>Midgard</span></a>
+    <a href="{U_HERALD_HIBERNIA}" title="Hibernia" class="herald-hibflag herald-flag<!-- IF U_HERALD_COMMAND == "hibernia" --> herald-flag-selected<!-- ENDIF -->"><span>Hibernia</span></a>
     <div class="herald-search  search-box"><span>Search</span><form method="post" action="/herald/search"><fieldset><input placeholder="Players and Guilds..."" class="inputbox search tiny" type="text" /><button class="button icon-button search-icon" title="Players and Guilds" type="submit" /></fieldset></form></div>
 </div>
 
@@ -49,6 +49,19 @@
    <div class="inner"><span class="corners-top"><span></span></span>
         <div class="centered-content"><ul>
         {$CLASSES_LIST}
+        </ul></div>
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ELSE -->
+<div class="panel herald-classes">
+   <div class="inner"><span class="corners-top"><span></span></span>
+        <div class="centered-content"><ul>
+        <li><a href="{U_HERALD_PLAYERS}" class="<!-- IF U_HERALD_COMMAND == "players" -->herald-class-selected<!-- ENDIF -->">Top 50 Players</a></li>
+        <li><a href="{U_HERALD_GUILDS}" class="<!-- IF U_HERALD_COMMAND == "guilds" -->herald-class-selected<!-- ENDIF -->">Top 50 Guilds</a></li>
+        <li><a href="{U_HERALD_KILLS}" class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-class-selected<!-- ENDIF -->">Top 50 Total Kills</a></li>
+        <li><a href="{U_HERALD_DEATHBLOW}" class="<!-- IF U_HERALD_COMMAND == "deathblow" -->herald-class-selected<!-- ENDIF -->">Top 50 Deathblows</a></li>
+        <li><a href="{U_HERALD_SOLO}" class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-class-selected<!-- ENDIF -->">Top 50 Solo Kills</a></li>
+        <li><a href="{U_HERALD_WARMAP}" class="<!-- IF U_HERALD_COMMAND == "people" -->herald-class-selected<!-- ENDIF -->">Population Statistic</a></li>
         </ul></div>
     <span class="corners-bottom"><span></span></span></div>
 </div>

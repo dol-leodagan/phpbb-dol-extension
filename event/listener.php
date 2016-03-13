@@ -87,17 +87,37 @@ class listener implements EventSubscriberInterface
             $herald_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller'));
         /** Herald **/
         if (strpos($this->controller_helper->get_current_url(), '/herald/albion') === false)
-            $herald_link_albion = $this->controller_helper->route('dol_status_controller').'/albion';
+            $herald_link_albion = $this->controller_helper->route('dol_status_controller', array('cmd' => '/albion'));
         else
-            $herald_link_albion = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller').'/albion');
+            $herald_link_albion = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/albion')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/midgard') === false)
-            $herald_link_midgard = $this->controller_helper->route('dol_status_controller').'/midgard';
+            $herald_link_midgard = $this->controller_helper->route('dol_status_controller', array('cmd' => '/midgard'));
         else
-            $herald_link_midgard = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller').'/midgard');
+            $herald_link_midgard = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/midgard')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/hibernia') === false)
-            $herald_link_hibernia = $this->controller_helper->route('dol_status_controller').'/hibernia';
+            $herald_link_hibernia = $this->controller_helper->route('dol_status_controller', array('cmd' => '/hibernia'));
         else
-            $herald_link_hibernia = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller').'/hibernia');
+            $herald_link_hibernia = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/hibernia')));
+        if (strpos($this->controller_helper->get_current_url(), '/herald/players') === false)
+            $herald_link_players = $this->controller_helper->route('dol_status_controller', array('cmd' => '/players'));
+        else
+            $herald_link_players = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/players')));
+        if (strpos($this->controller_helper->get_current_url(), '/herald/kills') === false)
+            $herald_link_kills = $this->controller_helper->route('dol_status_controller', array('cmd' => '/kills'));
+        else
+            $herald_link_kills = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/kills')));
+        if (strpos($this->controller_helper->get_current_url(), '/herald/guilds') === false)
+            $herald_link_guilds = $this->controller_helper->route('dol_status_controller', array('cmd' => '/guilds'));
+        else
+            $herald_link_guilds = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/guilds')));
+        if (strpos($this->controller_helper->get_current_url(), '/herald/solo') === false)
+            $herald_link_solo = $this->controller_helper->route('dol_status_controller', array('cmd' => '/solo'));
+        else
+            $herald_link_solo = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/solo')));
+        if (strpos($this->controller_helper->get_current_url(), '/herald/deathblow') === false)
+            $herald_link_deathblow = $this->controller_helper->route('dol_status_controller', array('cmd' => '/deathblow'));
+        else
+            $herald_link_deathblow = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_controller', array('cmd' => '/deathblow')));
         
         
         
@@ -123,6 +143,11 @@ class listener implements EventSubscriberInterface
             'U_HERALD_ALBION'   => $herald_link_albion,
             'U_HERALD_MIDGARD'   => $herald_link_midgard,
             'U_HERALD_HIBERNIA'   => $herald_link_hibernia,
+            'U_HERALD_PLAYERS'   => $herald_link_players,
+            'U_HERALD_GUILDS'   => $herald_link_guilds,
+            'U_HERALD_KILLS'   => $herald_link_kills,
+            'U_HERALD_SOLO'   => $herald_link_solo,
+            'U_HERALD_DEATHBLOW'   => $herald_link_deathblow,
             'U_DOL_STATUS_GAME'   => $game_link,
             'U_DOL_STATUS_BOOK'   => $book_link,
             'U_DOL_STATUS_STATUS'   => $status_link,
