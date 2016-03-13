@@ -101,12 +101,14 @@ div.herald-classes ul > li + li:before, div.herald-ladder ul > li + li:before {
     content: '\25ca';
     padding: 0px 1em;
 }
-div.herald-classes ul > li, div.herald-ladder ul > li {
+div.herald-classes ul > li > a, div.herald-classes ul > li > span, div.herald-ladder ul > li > a {
     font-weight: bold;
 }
-div.herald-classes ul > li.herald-class-selected {
+div.herald-classes ul > li.herald-class-selected > span {
     text-shadow: 2px 2px 4px white;
+    text-decoration: underline;
 }
-div.herald-ladder ul > li.herald-ladder-selected {
+div.herald-ladder ul > li.herald-ladder-selected > a {
     text-shadow: 2px 2px 4px;
+    text-decoration: underline;
 }
