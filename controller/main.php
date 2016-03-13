@@ -96,16 +96,25 @@ class main
         if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
         {
             $classes = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
+            $existing_classes = array();
             // Build URL Routes
             if (isset($classes['Classes']))
+            {
                 foreach ($classes['Classes'] as $key => $value)
+                {
                     if (is_array($value))
+                    {
                         foreach($value as $num => $item)
+                        {
                             $classes['Classes'][$key][$num] = array('VALUE' => $item, 'URL' => $this->helper->route('dol_status_controller', array('cmd' => $cmd, 'params' => $item)));
-                    
+                            $existing_classes[] = $item;
+                        }
+                    }
+                }
+            }        
             $this->controller_helper->assign_yaml_vars($classes);
             
-            if ($params !== "" && array_search($param, $classes) === false)
+            if ($params !== "" && array_search($params, $existing_classes) === false)
                 $params = "";
         }
         
@@ -128,6 +137,7 @@ class main
             {
                 foreach ($ladder['Ladder'] as $key => $value)
                 {
+                    $ladder['Ladder'][$key]['LastPlayed'] = date('M j Y', $value['LastPlayed']);
                     $ladder['Ladder'][$key]['PLAYER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'player', 'params' => $value['PlayerName']));
                     if ($value['GuildName'] !== "")
                         $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $value['GuildName']));
