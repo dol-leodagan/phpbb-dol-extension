@@ -176,6 +176,22 @@ class main
             
             $this->controller_helper->assign_yaml_vars($ladder);
         }
+        else if ($cmd == 'guilds')
+        {
+            $ladder = $this->controller_helper->backend_yaml_query($cmd, 5 * 60);
+            // Build Guilds Routes
+            if (isset($ladder['Ladder']))
+            {
+                foreach ($ladder['Ladder'] as $key => $value)
+                {
+                    $ladder['Ladder'][$key]['LastPlayed'] = date('M j Y', $value['LastPlayed']);
+                    $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $value['GuildName']));
+                    if ($value['AllianceName'] !== "")
+                        $ladder['Ladder'][$key]['ALLIANCE_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $value['AllianceName']));
+                }
+            }
+        }
+        
 
         
         /** Banner **/

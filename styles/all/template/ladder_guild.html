@@ -1,0 +1,26 @@
+
+    <table class="herald-ladder table1 responsive">
+    <thead>
+        <tr>
+        <th></th>
+        <th>Guild Name</th>
+        <th>Alliance Name</th>
+        <th>RealmPoints</th>
+        <th>Members</th>
+        <th>LastPlayed</th>
+        </tr>
+    </thead>
+    <tbody>
+    <!-- BEGIN Y_Ladder -->
+        <tr class="ladder-realm-{Y_Ladder.Realm}">
+        <!-- DEFINE $RANKING = Y_Ladder.S_ROW_NUM + 1 -->
+        <td>{$RANKING}</td>
+        <td><a href="{Y_Ladder.GUILD_URL}" title="{Y_Ladder.GuildName}">{Y_Ladder.GuildName}</a></td>
+        <td><!-- IF Y_Ladder.AllianceName !== ""  --><a href="{Y_Ladder.ALLIANCE_URL}" title="{Y_Ladder.AllianceName}">{Y_Ladder.AllianceName}<!-- ENDIF --></td>
+        <td>{Y_Ladder.RealmPoints}</td>
+        <td>{Y_Ladder.Members}</td>
+        <td>{Y_Ladder.LastPlayed}</td>
+        </tr>
+    <!-- END Y_Ladder -->
+    </tbody>
+    </table>
