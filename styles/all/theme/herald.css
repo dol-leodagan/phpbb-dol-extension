@@ -113,12 +113,12 @@ div.herald-ladder ul > li.herald-ladder-selected > a {
     text-decoration: underline;
 }
 
-table.herald-ladder {
+table.herald-ladder, table.herald-guild-members, div.herald-guild  {
     width: 80%;
     margin: 20px auto;
 }
 @media (max-width: 700px) {
-    table.herald-ladder {
+    table.herald-ladder, table.herald-guild-members, div.herald-guild  {
         width: inherit;
     }
 }
@@ -149,4 +149,52 @@ tr.ladder-realm-hibernia td {
 }
 tr.ladder-realm-hibernia:hover > td {
     background-color: rgba(80, 255, 80, 0.20);
+}
+
+table.herald-guild-members tr > td:nth-of-type(4),
+table.herald-guild-members tr > td:nth-of-type(5),
+table.herald-guild-members tr > td:nth-of-type(6) {
+    text-align: right;
+}
+
+div.herald-guild {
+    position: relative;
+}
+
+div.herald-guild-name {
+    font-size: large;
+    text-align: center;
+    padding: 0.5em;
+}
+
+@media (max-width: 450px) {
+    div.herald-guild-name {
+        text-align: left;
+    }
+}
+
+div.herald-guild-banner {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+div.herald-guild div + div {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+div.herald-guild div + div > span:first-of-type:after {
+    content: ':';
+    margin-right: 10px;
+}
+
+div.herald-guild-albion {
+    background-color: rgba(255, 80, 80, 0.35);
+}
+div.herald-guild-midgard {
+    background-color: rgba(100, 180, 255, 0.35);
+}
+div.herald-guild-hibernia {
+    background-color: rgba(80, 255, 80, 0.35);
 }
