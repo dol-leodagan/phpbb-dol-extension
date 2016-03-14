@@ -1,0 +1,36 @@
+<div class="panel herald-guild herald-guild-{Y_Guild_Realm}">
+    <div class="inner"><span class="corners-top"><span></span></span>
+    <div class="herald-guild-name"><span>{Y_Guild_Name}</span></div>
+    <div class="herald-guild-rps"><span>Realm Points</span><span>{Y_Guild_RealmPoints}</span></div>
+    <div class="herald-guild-members"><span>Members</span><span>{Y_Guild_Members}</span></div>
+    <div class="herald-guild-alliance"><span>Alliance</span><!-- IF --><span><a href="{Y_Guild_ALLIANCE_URL}" title="{Y_Guild_AllianceName}">{Y_Guild_AllianceName}</a></span><!-- ENDIF --></div>
+    <div class="herald-guild-web"><span>Website</span><!-- IF --><span>{Y_Guild_WebPage}</span><!-- ENDIF --></div>
+    <div class="herald-guild-banner"><img src="{Y_Guild_BANNER_URL}" title="{Y_Guild_Name}" alt="{Y_Guild_Name}" /></div>
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+
+    <table class="herald-guild-members table1 responsive">
+    <thead>
+        <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Race / Class</th>
+        <th>Realm Points</th>
+        <th>RR</th>
+        <th>Last Played</th>
+        </tr>
+    </thead>
+    <tbody>
+    <!-- BEGIN Y_Guild_Players -->
+        <tr class="ladder-guild-member">
+        <!-- DEFINE $RANKING = Y_Guild_Players.S_ROW_NUM + 1 -->
+        <td>{$RANKING}</td>
+        <td><a href="{Y_Guild_Players.PLAYER_URL}" title="{Y_Guild_Players.PlayerName}">{Y_Guild_Players.PlayerName}<!-- IF Y_Ladder.LastName !== ""  --> {Y_Guild_Players.LastName}<!-- ENDIF --></a></td>
+        <td>{Y_Guild_Players.Race} {Y_Guild_Players.Class}</td>
+        <td>{Y_Guild_Players.RealmPoints}</td>
+        <td>{Y_Guild_Players.RealmRank}</td>
+        <td>{Y_Guild_Players.LastPlayed}</td>
+        </tr>
+    <!-- END Y_Guild_Players -->
+    </tbody>
+    </table>

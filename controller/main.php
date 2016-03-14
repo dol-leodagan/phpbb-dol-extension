@@ -192,16 +192,43 @@ class main
             }
              
             $this->controller_helper->assign_yaml_vars($ladder);
-       }
-        
-
-        
-        /** Banner **/
-        if ($cmd == 'banner' && $params !== '')
-        {
-            return $this->controller_helper->drawBanner($params);
         }
+       
+        /** Player and Guild Select **/
+        if ($params !== '')
+        {
+            if ($cmd == 'player')
+            {
+                $guild_display = $this->controller_helper->backend_yaml_query('getplayer/'.$params, 5 * 60);
+                $this->controller_helper->assign_yaml_vars($ladder);
+            }
+            else if ($cmd == 'guild')
+            {
+                $guild_display = $this->controller_helper->backend_yaml_query('getguild/'.$params, 5 * 60);
+                //Build Routes
+                if (isset($guild_display['Guild']))
+                {
+                    if (isset($guild_display['Guild']['AllianceName']) && $guild_display['Guild']['AllianceName'] !== '')
+                        $guild_display['Guild']['ALLIANCE_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $guild_display['Guild']['AllianceName']));
+                    
+                    $guild_display['Guild']['BANNER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $guild_display['Guild']['Name']));
+                    if (isset($guild_display['Guild']['Players']) && is_array($guild_display['Guild']['Players']))
+                    {
+                        foreach($guild_display['Guild']['Players'] as $num => $player)
+                            $guild_display['Guild']['Players'][$num]['PLAYER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'player', 'params' => $player['PlayerName']));
+                    }
+                }
+                
+                $this->controller_helper->assign_yaml_vars($guild_display);
+            }
+             /** Banner **/
+            else if ($cmd == 'banner' && $params !== '')
+            {
+                return $this->controller_helper->drawBanner($params);
+            }
         
+        }
+       
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);
         $this->template->assign_var('U_HERALD_PARAM', $params);
 
