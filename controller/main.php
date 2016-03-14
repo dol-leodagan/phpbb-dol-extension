@@ -87,7 +87,10 @@ class main
 
             if ($search_string !== '')
             {
-                $headers = array('Location' => $this->helper->route('dol_status_controller', array('cmd' => 'search', 'params' => $search_string)));
+                if (preg_match('/([[:alnum:]À-ÿ ]+)?/s', $search_string))
+                    $headers = array('Location' => $this->helper->route('dol_status_controller', array('cmd' => 'search', 'params' => $search_string)));
+                else
+                    $headers = array('Location' => $this->helper->route('dol_status_badsearch', array('cmd' => 'search', 'params' => $search_string)));
                 return new Response('', 303, $headers);
             }
         }
