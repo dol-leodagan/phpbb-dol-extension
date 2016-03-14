@@ -12,6 +12,7 @@ use phpbb\config\config;
 use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\user;
+use \phpbb\request\request;
 use Symfony\Component\HttpFoundation\Response;
 
 class main
@@ -27,6 +28,9 @@ class main
 
     /* @var user */
     protected $user;
+    
+    /* @var request */
+    protected $request;
 
     /**
     * phpBB root path
@@ -60,12 +64,13 @@ class main
     * @param string $phpbb_root_path
     * @param string $php_ext
     */
-    public function __construct(config $config, helper $helper, template $template, user $user, $phpbb_root_path, $php_ext, $controller_helper)
+    public function __construct(config $config, helper $helper, template $template, user $user, request $request, $phpbb_root_path, $php_ext, $controller_helper)
     {
         $this->config = $config;
         $this->helper = $helper;
         $this->template = $template;
         $this->user = $user;
+        $this->request = $request;
         $this->phpbb_root_path = $phpbb_root_path;
         $this->php_ext = $php_ext;
         $this->root_path = $phpbb_root_path . 'ext/dol/status/';
@@ -75,9 +80,21 @@ class main
     /** Herald Handler **/
     public function handle($cmd, $params)
     {
+        /** Redirect Search POST **/
+        if ($cmd == 'search' && $this->request->is_set('herald_search'))
+        {
+            $search_string = $this->request->variable('herald_search', '', true);
+
+            if ($search_string !== '')
+            {
+                $headers = array('Location' => $this->helper->route('dol_status_controller', array('cmd' => 'search', 'params' => $search_string)));
+                return new Response('', 303, $headers);
+            }
+        }
+        
         /** Warmap **/
         $this->template->assign_var('U_HERALD_ENABLE', true);
-        if ($cmd == "warmap" || $cmd == "") {
+        if ($cmd == 'warmap' || $cmd === '') {
             $this->template->assign_var('U_WARMAP_ENABLE', true);
             $warmap = $this->controller_helper->backend_yaml_query('warmap', 5 * 60);
             
@@ -93,7 +110,7 @@ class main
         }
         
         /** Realm / Classes **/
-        if ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia")
+        if ($cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia')
         {
             $classes = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
             $existing_classes = array();
@@ -119,15 +136,16 @@ class main
         }
         
         /** Ladders **/
-        if ($cmd == "active" || $cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia" || $cmd == "players" || $cmd == "kills" || $cmd == "solo" || $cmd == "deathblow" || $cmd == "search")
+        if ($cmd == 'active' || $cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia' || $cmd == 'players' || $cmd == 'kills' || $cmd == 'solo' || $cmd == 'deathblow' || $cmd == 'search')
         {
             $ladder = array();
             
-            if ($params !== "" && ($cmd == "albion" || $cmd == "midgard" || $cmd == "hibernia" || $cmd == "search"))
+            // Filter Request Type from Command
+            if ($params !== '' && ($cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia' || $cmd == 'search'))
             {
                 $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
             }
-            else
+            else if ($cmd != 'search')
             {
                 $ladder = $this->controller_helper->backend_yaml_query($cmd, 5 * 60);
             }
@@ -149,7 +167,7 @@ class main
 
         
         /** Banner **/
-        if ($cmd == "banner" && $params !== "")
+        if ($cmd == 'banner' && $params !== '')
         {
             return $this->controller_helper->drawBanner($params);
         }

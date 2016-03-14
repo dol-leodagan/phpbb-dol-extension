@@ -7,7 +7,7 @@
     <a href="{U_HERALD_ALBION}" title="Albion" class="herald-albflag herald-flag<!-- IF U_HERALD_COMMAND == "albion" --> herald-flag-selected<!-- ENDIF -->"><span>Albion</span></a>
     <a href="{U_HERALD_MIDGARD}" title="Midgard" class="herald-midflag herald-flag<!-- IF U_HERALD_COMMAND == "midgard" --> herald-flag-selected<!-- ENDIF -->"><span>Midgard</span></a>
     <a href="{U_HERALD_HIBERNIA}" title="Hibernia" class="herald-hibflag herald-flag<!-- IF U_HERALD_COMMAND == "hibernia" --> herald-flag-selected<!-- ENDIF -->"><span>Hibernia</span></a>
-    <div class="herald-search  search-box"><span>Search</span><form method="post" action="/herald/search"><fieldset><input placeholder="Players and Guilds..."" class="inputbox search tiny" type="text" /><button class="button icon-button search-icon" title="Players and Guilds" type="submit" /></fieldset></form></div>
+    <div class="herald-search  search-box"><span>Search</span><form method="post" action="/herald/search"><fieldset><input name="herald_search" placeholder="Players and Guilds..." class="inputbox search tiny" type="text" /><button class="button icon-button search-icon" title="Players and Guilds" type="submit" /></fieldset></form></div>
 </div>
 
 <!-- IF U_HERALD_COMMAND == "albion" -->
@@ -70,7 +70,7 @@
 
 <!-- IF U_HERALD_COMMAND === "" -->
     <!-- INCLUDE warmap.html -->
-<!-- ELSEIF U_HERALD_COMMAND == "active" || U_HERALD_COMMAND == "players" || U_HERALD_COMMAND == "kills" || U_HERALD_COMMAND == "deathblow" || U_HERALD_COMMAND == "solo" || U_HERALD_COMMAND == "albion" || U_HERALD_COMMAND == "midgard" || U_HERALD_COMMAND == "hibernia" -->
+<!-- ELSEIF U_HERALD_COMMAND == "search" || U_HERALD_COMMAND == "active" || U_HERALD_COMMAND == "players" || U_HERALD_COMMAND == "kills" || U_HERALD_COMMAND == "deathblow" || U_HERALD_COMMAND == "solo" || U_HERALD_COMMAND == "albion" || U_HERALD_COMMAND == "midgard" || U_HERALD_COMMAND == "hibernia" -->
     <!-- INCLUDE ladder.html -->
 <!-- ENDIF -->
 
