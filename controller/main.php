@@ -190,7 +190,9 @@ class main
                         $ladder['Ladder'][$key]['ALLIANCE_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $value['AllianceName']));
                 }
             }
-        }
+             
+            $this->controller_helper->assign_yaml_vars($ladder);
+       }
         
 
         
