@@ -87,10 +87,11 @@ class main
 
             if ($search_string !== '')
             {
-                if (preg_match('/([[:alnum:]À-ÿ ]+)?/s', $search_string))
+                if (preg_match('/^([[:alnum:]À-ÿ ]+)$/s', $search_string))
                     $headers = array('Location' => $this->helper->route('dol_status_controller', array('cmd' => 'search', 'params' => $search_string)));
                 else
-                    $headers = array('Location' => $this->helper->route('dol_status_badsearch', array('cmd' => 'search', 'params' => $search_string)));
+                    $headers = array('Location' => $this->helper->route('dol_status_badsearch', array('notcmd' => 'search', 'notparams' => $search_string)));
+
                 return new Response('', 303, $headers);
             }
         }
@@ -144,11 +145,19 @@ class main
             $ladder = array();
             
             // Filter Request Type from Command
-            if ($params !== '' && ($cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia' || $cmd == 'search'))
+            if ($params !== '' && ($cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia'))
             {
                 $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
             }
-            else if ($cmd != 'search')
+            else if ($cmd == 'search')
+            {
+                // Prevent too short search
+                if (strlen($params) > 2)
+                    $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
+                else
+                    $cmd = 'badsearch';
+            }
+            else
             {
                 $ladder = $this->controller_helper->backend_yaml_query($cmd, 5 * 60);
             }
