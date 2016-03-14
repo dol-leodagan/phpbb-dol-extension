@@ -3,8 +3,8 @@
     <div class="herald-guild-name"><span>{Y_Guild_Name}</span></div>
     <div class="herald-guild-rps"><span>Realm Points</span><span>{Y_Guild_RealmPoints}</span></div>
     <div class="herald-guild-members"><span>Members</span><span>{Y_Guild_Members}</span></div>
-    <div class="herald-guild-alliance"><span>Alliance</span><!-- IF --><span><a href="{Y_Guild_ALLIANCE_URL}" title="{Y_Guild_AllianceName}">{Y_Guild_AllianceName}</a></span><!-- ENDIF --></div>
-    <div class="herald-guild-web"><span>Website</span><!-- IF --><span>{Y_Guild_WebPage}</span><!-- ENDIF --></div>
+    <div class="herald-guild-alliance"><span>Alliance</span><!-- IF Y_Guild_AllianceName !== "" --><span><a href="{Y_Guild_ALLIANCE_URL}" title="{Y_Guild_AllianceName}">{Y_Guild_AllianceName}</a></span><!-- ENDIF --></div>
+    <div class="herald-guild-web"><span>Website</span><!-- IF Y_Guild_WebPage !== "" --><span>{Y_Guild_WebPage}</span><!-- ENDIF --></div>
     <div class="herald-guild-banner"><img src="{Y_Guild_BANNER_URL}" title="{Y_Guild_Name}" alt="{Y_Guild_Name}" /></div>
     <span class="corners-bottom"><span></span></span></div>
 </div>

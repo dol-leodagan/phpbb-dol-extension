@@ -215,7 +215,10 @@ class main
                     if (isset($guild_display['Guild']['Players']) && is_array($guild_display['Guild']['Players']))
                     {
                         foreach($guild_display['Guild']['Players'] as $num => $player)
+                        {
                             $guild_display['Guild']['Players'][$num]['PLAYER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'player', 'params' => $player['PlayerName']));
+                            $guild_display['Guild']['Players'][$num]['LastPlayed'] = date('M j Y', $player['LastPlayed']);
+                        }
                     }
                 }
                 
