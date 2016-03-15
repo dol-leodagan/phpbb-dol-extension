@@ -237,5 +237,69 @@ class helper
         return new Response($data, 200, $headers);
     }
     
+    public function drawSignatureSmall($player)
+    {
+        $player_data = $this->backend_yaml_query('getplayer/'.$player, 15 * 60);
+        
+        // Defaults
+        $headers = array(
+            'Content-Type'     => 'image/png',
+            'Content-Disposition' => 'inline; filename="'.$player.'"');
+        
+        // Check Cache
+        $cache_img = $this->cache->get('_BANNERCACHE_sigsmall_'.($player_data !== null ? md5($player) : 'null'));
+        
+        if ($cache_img !== false)
+        {
+            return new Response($cache_img, 200, $headers);
+        }
+        // Transparent Image
+        $img = imagecreatetruecolor(400, 100);
+        imagesavealpha($img, true);
+        $trans_colour = imagecolorallocatealpha($img, 0, 0, 0, 127);
+        imagefill($img, 0, 0, $trans_colour);
+        
+        if ($player_data !== null)
+        {
+            $emblem = false;
+            // Get Background and Emblem
+            if (player_data['GuildName'] !== '')
+                $emblem = imagecreatefromstring($this->drawBanner()->getContent());
+            
+            $logo = false;
+            switch($player_data['Realm'])
+            {
+                case 'albion':
+                    $logo = 'alb';
+                break;
+                case 'midgard':
+                    $logo = 'mid';
+                break;
+                case 'hibernia':
+                    $logo = 'hib';
+                break;
+            }
+            
+            $background = imagecreatefromgif($this->root_path.'styles/all/theme/images/signatures/bc_'.$logo.'.png');
+            
+            $imgx = imagesx($img); $imgy = imagesy($img);
+            $backgroundx = imagesx($background); $backgroundy = imagesy($background);
+            // Draw Background then Emblem
+            imagecopyresampled($img, $background, 0, 0, 0, 0, $imgx, $imgy, $backgroundx, $backgroundy);
+            
+            if ($emblem !== false)
+            {
+                $emblemx = imagesx($emblem); $emblemy = imagesy($emblem);
+                imagecopyresampled($img, $emblem, 324, 7, 0, 0, $emblemx, $emblemy, $emblemx, $emblemy);
+            }
+        }
+        
+        // Send Result
+        ob_start();
+        imagepng($img);
+        $data = ob_get_clean();
+        $this->cache->put('_BANNERCACHE_banner_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        return new Response($data, 200, $headers);
+    }
     /** EndRegion Banners **/
 }

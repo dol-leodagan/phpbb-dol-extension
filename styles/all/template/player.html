@@ -1,6 +1,6 @@
 <div class="panel herald-player herald-player-{Y_Player_Realm}">
     <div class="inner"><span class="corners-top"><span></span></span>
-    <div class="herald-player-name"><span>{Y_Player_Name}</span><!-- IF Y_Player_LastName !== "" --><span>{Y_Player_LastName}</span><!-- ENDIF --><span>{Y_Player_RealmTitle}</span></div>
+    <div class="herald-player-name"><span>{Y_Player_Name}</span><span><!-- IF Y_Player_LastName !== "" -->{Y_Player_LastName}<!-- ENDIF --></span><span>{Y_Player_RealmTitle}</span></div>
     <div class="herald-player-guild"><span>Guild</span><!-- IF Y_Player_GuildName !== "" --><span><a href="{Y_Player_GUILD_URL}" title="{Y_Player_GuildName}">{Y_Player_GuildName}</a></span><!-- ENDIF --></div>
     <div class="herald-player-realmrank"><span>Realm Rank</span><span>{Y_Player_RealmRank}</span></div>
     <div class="herald-player-realmrank"><span>Realm Points</span><span>{Y_Player_RealmPoints}</span></div>
@@ -55,7 +55,7 @@
     <span class="corners-bottom"><span></span></span></div>
 </div>
 
-<div class="panel herald-player">
+<div class="panel herald-player herald-player-signatures">
     <div class="inner"><span class="corners-top"><span></span></span>
     <span class="corners-bottom"><span></span></span></div>
 </div>

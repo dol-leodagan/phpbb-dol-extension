@@ -254,9 +254,13 @@ class main
                 $this->controller_helper->assign_yaml_vars($guild_display);
             }
              /** Banner **/
-            else if ($cmd == 'banner' && $params !== '')
+            else if ($cmd == 'banner')
             {
                 return $this->controller_helper->drawBanner($params);
+            }
+            else if ($cmd == 'sigsmall')
+            {
+                return $this->controller_helper->drawSignatureSmall($params);
             }
         
         }

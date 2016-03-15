@@ -113,12 +113,12 @@ div.herald-ladder ul > li.herald-ladder-selected > a {
     text-decoration: underline;
 }
 
-table.herald-ladder, table.herald-guild-members, div.herald-guild  {
+table.herald-ladder, table.herald-guild-members, div.herald-guild, div.herald-player {
     width: 80%;
     margin: 20px auto;
 }
 @media (max-width: 700px) {
-    table.herald-ladder, table.herald-guild-members, div.herald-guild  {
+    table.herald-ladder, table.herald-guild-members, div.herald-guild, div.herald-player {
         width: inherit;
     }
 }
@@ -209,7 +209,7 @@ div.herald-player-name {
     padding: 0.5em;
 }
 
-div.herald-player-name > span + span {
+div.herald-player-name > span + span + span {
     display: block;
     font-size: x-small;    
 }
