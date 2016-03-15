@@ -199,18 +199,47 @@ class main
         {
             if ($cmd == 'player')
             {
-                $guild_display = $this->controller_helper->backend_yaml_query('getplayer/'.$params, 5 * 60);
-                $this->controller_helper->assign_yaml_vars($ladder);
+                $player_display = $this->controller_helper->backend_yaml_query('getplayer/'.$params, 5 * 60);
+                //Build Routes and Stats
+                if (isset($player_display['Player']))
+                {
+                    if (isset($player_display['Player']['GuildName']) && $player_display['Player']['GuildName'] !== '')
+                    {
+                        $player_display['Player']['GUILD_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $player_display['Player']['GuildName']));
+                        $player_display['Player']['BANNER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $player_display['Player']['GuildName']));
+                    }
+                    // Stats
+                    $player_display['Player']['KILLSTOTAL'] = $player_display['Player']['KillsAlbionPlayers'] + $player_display['Player']['KillsMidgardPlayers'] + $player_display['Player']['KillsHiberniaPlayers'];
+                    $player_display['Player']['DEATHBLOWSTOTAL'] = $player_display['Player']['KillsAlbionDeathBlows'] + $player_display['Player']['KillsMidgardDeathBlows'] + $player_display['Player']['KillsHiberniaDeathBlows'];
+                    $player_display['Player']['SOLOTOTAL'] = $player_display['Player']['KillsAlbionSolo'] + $player_display['Player']['KillsMidgardSolo'] + $player_display['Player']['KillsHiberniaSolo'];
+                    
+                    $player_display['Player']['KILLSRATIODEATHBLOWS'] = round($player_display['Player']['DEATHBLOWSTOTAL'] / ($player_display['Player']['KILLSTOTAL'] == 0 ? 1 : $player_display['Player']['KILLSTOTAL']) * 100, 2);
+                    $player_display['Player']['KILLSRATIOSOLO'] = round($player_display['Player']['SOLOTOTAL'] / ($player_display['Player']['KILLSTOTAL'] == 0 ? 1 : $player_display['Player']['KILLSTOTAL']) * 100, 2);
+                    
+                    $player_display['Player']['KILLSRATIO_ALBION'] = round($player_display['Player']['KillsAlbionPlayers'] / ($player_display['Player']['KILLSTOTAL'] == 0 ? 1 : $player_display['Player']['KILLSTOTAL']) * 100, 2);
+                    $player_display['Player']['KILLSRATIO_MIDGARD'] = round($player_display['Player']['KillsMidgardPlayers'] / ($player_display['Player']['KILLSTOTAL'] == 0 ? 1 : $player_display['Player']['KILLSTOTAL']) * 100, 2);
+                    $player_display['Player']['KILLSRATIO_HIBERNIA'] = round($player_display['Player']['KillsHiberniaPlayers'] / ($player_display['Player']['KILLSTOTAL'] == 0 ? 1 : $player_display['Player']['KILLSTOTAL']) * 100, 2);
+
+                    $player_display['Player']['DEATHBLOWSRATIO_ALBION'] = round($player_display['Player']['KillsAlbionDeathBlows'] / ($player_display['Player']['DEATHBLOWSTOTAL'] == 0 ? 1 : $player_display['Player']['DEATHBLOWSTOTAL']) * 100, 2);
+                    $player_display['Player']['DEATHBLOWSRATIO_MIDGARD'] = round($player_display['Player']['KillsMidgardDeathBlows'] / ($player_display['Player']['DEATHBLOWSTOTAL'] == 0 ? 1 : $player_display['Player']['DEATHBLOWSTOTAL']) * 100, 2);
+                    $player_display['Player']['DEATHBLOWSRATIO_HIBERNIA'] = round($player_display['Player']['KillsHiberniaDeathBlows'] / ($player_display['Player']['DEATHBLOWSTOTAL'] == 0 ? 1 : $player_display['Player']['DEATHBLOWSTOTAL']) * 100, 2);
+                    
+                    $player_display['Player']['SOLORATIO_ALBION'] = round($player_display['Player']['KillsAlbionSolo'] / ($player_display['Player']['SOLOTOTAL'] == 0 ? 1 : $player_display['Player']['SOLOTOTAL']) * 100, 2);
+                    $player_display['Player']['SOLORATIO_MIDGARD'] = round($player_display['Player']['KillsMidgardSolo'] / ($player_display['Player']['SOLOTOTAL'] == 0 ? 1 : $player_display['Player']['SOLOTOTAL']) * 100, 2);
+                    $player_display['Player']['SOLORATIO_HIBERNIA'] = round($player_display['Player']['KillsHiberniaSolo'] / ($player_display['Player']['SOLOTOTAL'] == 0 ? 1 : $player_display['Player']['SOLOTOTAL']) * 100, 2);
+
+                    $player_display['Player']['KILLDEATHRATIO'] = round($player_display['Player']['KILLDEATHRATIO'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']), 2);
+                    $player_display['Player']['RPDEATHRATIO'] = round($player_display['Player']['RealmPoints'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']), 2);
+                }
+                
+                $this->controller_helper->assign_yaml_vars($player_display);
             }
             else if ($cmd == 'guild')
             {
                 $guild_display = $this->controller_helper->backend_yaml_query('getguild/'.$params, 5 * 60);
                 //Build Routes
                 if (isset($guild_display['Guild']))
-                {
-                    if (isset($guild_display['Guild']['AllianceName']) && $guild_display['Guild']['AllianceName'] !== '')
-                        $guild_display['Guild']['ALLIANCE_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $guild_display['Guild']['AllianceName']));
-                    
+                {                    
                     $guild_display['Guild']['BANNER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $guild_display['Guild']['Name']));
                     if (isset($guild_display['Guild']['Players']) && is_array($guild_display['Guild']['Players']))
                     {
