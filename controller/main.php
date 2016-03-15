@@ -228,8 +228,8 @@ class main
                     $player_display['Player']['SOLORATIO_MIDGARD'] = round($player_display['Player']['KillsMidgardSolo'] / ($player_display['Player']['SOLOTOTAL'] == 0 ? 1 : $player_display['Player']['SOLOTOTAL']) * 100, 2);
                     $player_display['Player']['SOLORATIO_HIBERNIA'] = round($player_display['Player']['KillsHiberniaSolo'] / ($player_display['Player']['SOLOTOTAL'] == 0 ? 1 : $player_display['Player']['SOLOTOTAL']) * 100, 2);
 
-                    $player_display['Player']['KILLDEATHRATIO'] = round($player_display['Player']['KILLDEATHRATIO'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']), 2);
-                    $player_display['Player']['RPDEATHRATIO'] = round($player_display['Player']['RealmPoints'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']), 2);
+                    $player_display['Player']['KILLDEATHRATIO'] = round($player_display['Player']['KILLSTOTAL'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']), 2);
+                    $player_display['Player']['RPDEATHRATIO'] = round($player_display['Player']['RealmPoints'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']));
                 }
                 
                 $this->controller_helper->assign_yaml_vars($player_display);

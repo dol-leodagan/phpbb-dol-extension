@@ -189,12 +189,77 @@ div.herald-guild div + div > span:first-of-type:after {
     margin-right: 10px;
 }
 
-div.herald-guild-albion {
+div.herald-guild-albion, div.herald-player-albion {
     background-color: rgba(255, 80, 80, 0.35);
 }
-div.herald-guild-midgard {
+div.herald-guild-midgard, div.herald-player-midgard {
     background-color: rgba(100, 180, 255, 0.35);
 }
-div.herald-guild-hibernia {
+div.herald-guild-hibernia, div.herald-player-hibernia {
     background-color: rgba(80, 255, 80, 0.35);
+}
+
+div.herald-player {
+    position: relative;
+}
+
+div.herald-player-name {
+    font-size: large;
+    text-align: center;
+    padding: 0.5em;
+}
+
+div.herald-player-name > span + span {
+    display: block;
+    font-size: x-small;    
+}
+
+@media (max-width: 450px) {
+    div.herald-player-name {
+        text-align: left;
+    }
+}
+
+div.herald-player-banner {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+div.herald-player div + div > span:first-of-type:after {
+    content: ':';
+    margin-right: 10px;
+}
+
+div.herald-player > div > div:nth-of-type(8),
+div.herald-player > div > div:nth-of-type(11),
+div.herald-player > div > div:nth-of-type(14),
+div.herald-player > div > div:nth-of-type(17) {
+    margin-top: 20px;
+}
+
+div.herald-player-stats > span:nth-of-type(3):after {
+    content: '% ';
+}
+
+div.herald-player-stats > span:nth-of-type(3),
+div.herald-player-stats > span:nth-of-type(4) {
+    color: grey;    
+}
+
+div.herald-player-stats > span:nth-of-type(3) {
+    margin-left: 40px;
+}
+
+div.herald-player div.herald-player-guild,
+div.herald-player div.herald-player-rank,
+div.herald-player div.herald-player-realmrank {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 375px) {
+    div.herald-player-stats > span:nth-of-type(4)  {
+        display: none;
+    }
 }
