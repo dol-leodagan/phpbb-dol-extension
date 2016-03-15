@@ -1,13 +1,13 @@
 <div class="panel herald-player herald-player-{Y_Guild_Realm}">
     <div class="inner"><span class="corners-top"><span></span></span>
-    <div class="herald-player-name"><span>{Y_Player_Name}</span><!-- IF {Y_Player_LastName} !== "" --><span>{Y_Player_LastName}</span><!-- ENDIF --><span>{Y_Player_RealmTitle}</span></div>
-    <div class="herald-player-guild"><span>Guild</span><!-- IF {Y_Player_GuildName} !== "" --><span><a href="{Y_Player_GUILD_URL}" title="{Y_Player_GuildName}">{Y_Player_GuildName}</a></span><!-- ENDIF --></div>
+    <div class="herald-player-name"><span>{Y_Player_Name}</span><!-- IF Y_Player_LastName !== "" --><span>{Y_Player_LastName}</span><!-- ENDIF --><span>{Y_Player_RealmTitle}</span></div>
+    <div class="herald-player-guild"><span>Guild</span><!-- IF Y_Player_GuildName !== "" --><span><a href="{Y_Player_GUILD_URL}" title="{Y_Player_GuildName}">{Y_Player_GuildName}</a></span><!-- ENDIF --></div>
     <div class="herald-player-realmrank"><span>Realm Rank</span><span>{Y_Player_RealmRank}</span></div>
     <div class="herald-player-realmrank"><span>Realm Points</span><span>{Y_Player_RealmPoints}</span></div>
     <div class="herald-player-rank"><span>Rank on Server</span><span>{Y_Player_Ranking}</span></div>
     <div class="herald-player-rank"><span>Rank in Realm</span><span>{Y_Player_RankingRealm}</span></div>
     <div class="herald-player-rank"><span>Rank in Class</span><span>{Y_Player_RankingClass}</span></div>
-    <!-- IF {Y_Guild_Realm} == "albion" -->
+    <!-- IF Y_Guild_Realm == "albion" -->
     <div class="herald-player-stats"><span>Total Player Kills</span><span>{Y_Player_KILLSTOTAL}</span></div>
     <div class="herald-player-stats"><span>Midgard Player Kills</span><span>{Y_Player_KillsMidgardPlayers}</span><span>{Y_Player_KILLSRATIO_MIDGARD}</span><span>of total Kills</span></div>
     <div class="herald-player-stats"><span>Hibernia Player Kills</span><span>{Y_Player_KillsHiberniaPlayers}</span><span>{Y_Player_KILLSRATIO_HIBERNIA}</span><span>of total Kills</span></div>
@@ -19,7 +19,7 @@
     <div class="herald-player-stats"><span>Total Solo Kills</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>of total Kills</span></div>
     <div class="herald-player-stats"><span>Midgard Player Solo Kills</span><span>{Y_Player_KillsMidgardSolo}</span><span>{Y_Player_SOLORATIO_MIDGARD}</span><span>of total Solo Kills</span></div>
     <div class="herald-player-stats"><span>Hibernia Player Solo Kills</span><span>{Y_Player_KillsHiberniaSolo}</span><span>{Y_Player_SOLORATIO_HIBERNIA}</span><span>of total Solo Kills</span></div>
-    <!-- ELSEIF {Y_Guild_Realm} == "midgard" -->
+    <!-- ELSEIF Y_Guild_Realm == "midgard" -->
     <div class="herald-player-stats"><span>Total Player Kills</span><span>{Y_Player_KILLSTOTAL}</span></div>
     <div class="herald-player-stats"><span>Albion Player Kills</span><span>{Y_Player_KillsAlbionPlayers}</span><span>{Y_Player_KILLSRATIO_ALBION}</span><span>of total Kills</span></div>
     <div class="herald-player-stats"><span>Hibernia Player Kills</span><span>{Y_Player_KillsHiberniaPlayers}</span><span>{Y_Player_KILLSRATIO_HIBERNIA}</span><span>of total Kills</span></div>
@@ -31,7 +31,7 @@
     <div class="herald-player-stats"><span>Total Solo Kills</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>of total Kills</span></div>
     <div class="herald-player-stats"><span>Albion Player Solo Kills</span><span>{Y_Player_KillsAlbionSolo}</span><span>{Y_Player_SOLORATIO_ALBION}</span><span>of total Solo Kills</span></div>
     <div class="herald-player-stats"><span>Hibernia Player Solo Kills</span><span>{Y_Player_KillsHiberniaSolo}</span><span>{Y_Player_SOLORATIO_HIBERNIA}</span><span>of total Solo Kills</span></div>
-    <!-- ELSEIF {Y_Guild_Realm} == "hibernia" -->
+    <!-- ELSEIF Y_Guild_Realm == "hibernia" -->
     <div class="herald-player-stats"><span>Total Player Kills</span><span>{Y_Player_KILLSTOTAL}</span></div>
     <div class="herald-player-stats"><span>Albion Player Kills</span><span>{Y_Player_KillsAlbionPlayers}</span><span>{Y_Player_KILLSRATIO_ALBION}</span><span>of total Kills</span></div>
     <div class="herald-player-stats"><span>Midgard Player Kills</span><span>{Y_Player_KillsMidgardPlayers}</span><span>{Y_Player_KILLSRATIO_MIDGARD}</span><span>of total Kills</span></div>
@@ -49,7 +49,7 @@
     <div class="herald-player-stats"><span>Kill / Death Ratio</span><span>{Y_Player_KILLDEATHRATIO}</span></div>
     <div class="herald-player-stats"><span>Realm Points per Death</span><span>{Y_Player_RPDEATHRATIO}</span></div>
     
-    <!-- IF {Y_Player_GuildName} !== "" -->
+    <!-- IF Y_Player_GuildName !== "" -->
     <div class="herald-player-banner"><img src="{Y_Player_BANNER_URL}" title="{Y_Player_GuildName}" alt="{Y_Player_GuildName}" /></div>
     <!-- ENDIF -->
     <span class="corners-bottom"><span></span></span></div>
