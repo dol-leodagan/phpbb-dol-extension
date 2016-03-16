@@ -253,11 +253,11 @@ class helper
         {
             $emblem = false;
             // Get Background and Emblem
-            if ($player_data['GuildName'] !== '')
-                $emblem = imagecreatefromstring($this->drawBanner(rawurlencode($player_data['GuildName'])));
+            if ($player_data['Player']['GuildName'] !== '')
+                $emblem = imagecreatefromstring($this->drawBanner(rawurlencode($player_data['Player']['GuildName'])));
             
             $logo = false;
-            switch($player_data['Realm'])
+            switch($player_data['Player']['Realm'])
             {
                 case 'albion':
                     $logo = 'alb';
@@ -282,6 +282,22 @@ class helper
                 $emblemx = imagesx($emblem); $emblemy = imagesy($emblem);
                 imagecopyresampled($img, $emblem, 324, 7, 0, 0, $emblemx, $emblemy, $emblemx, $emblemy);
             }
+            
+            // Draw Text
+            $font = 'verdana';
+            $textcolor = imagecolorallocate($img, 180, 180, 180);
+            ImageTTFText($img, 9, 0, 22, 25, $textcolor, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
+            ImageTTFText($img, 8, 0, 22, 40, $textcolor, $font, $player_data['Player']['GuildName']);
+            ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $player_data['Player']['Race'].' '.$player_data['Player']['Class']);
+            ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $player_data['Player']['RealmRank']);
+            ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $player_data['Player']['RealmPoints']);
+
+            //if ($mlLevel > 0)
+            //ImageTTFText($background, 8, 0, $length, 40, $textcolor, $font4, $ml);
+
+            ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, $player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers']);
+            ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, $player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows']);
+            ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, $player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo']);
         }
         
         // Send Result
