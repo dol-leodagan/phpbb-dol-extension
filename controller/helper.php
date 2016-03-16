@@ -188,11 +188,6 @@ class helper
         // Retrieve Guild Data
         $guild_data = $this->backend_yaml_query('getguild/'.$guild, 15 * 60);
         
-        // Defaults
-        $headers = array(
-            'Content-Type'     => 'image/png',
-            'Content-Disposition' => 'inline; filename="'.$guild.'"');
-        
         // Check Cache
         $cache_img = $this->cache->get('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'));
         
@@ -234,18 +229,13 @@ class helper
         imagepng($img);
         $data = ob_get_clean();
         $this->cache->put('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'), $data, 24 * 60 * 60);
-        return new Response($data, 200, $headers);
+        return $data;
     }
     
     public function drawSignatureSmall($player)
     {
         $player_data = $this->backend_yaml_query('getplayer/'.$player, 15 * 60);
-        
-        // Defaults
-        $headers = array(
-            'Content-Type'     => 'image/png',
-            'Content-Disposition' => 'inline; filename="'.$player.'"');
-        
+                
         // Check Cache
         $cache_img = $this->cache->get('_BANNERCACHE_sigsmall_'.($player_data !== null ? md5($player) : 'null'));
         
@@ -264,7 +254,7 @@ class helper
             $emblem = false;
             // Get Background and Emblem
             if ($player_data['GuildName'] !== '')
-                $emblem = imagecreatefromstring($this->drawBanner($player_data['GuildName'])->getContent());
+                $emblem = imagecreatefromstring($this->drawBanner(rawurlencode($player_data['GuildName'])));
             
             $logo = false;
             switch($player_data['Realm'])
@@ -299,7 +289,7 @@ class helper
         imagepng($img);
         $data = ob_get_clean();
         $this->cache->put('_BANNERCACHE_banner_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
-        return new Response($data, 200, $headers);
+        return $data;
     }
     /** EndRegion Banners **/
 }

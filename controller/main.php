@@ -256,11 +256,17 @@ class main
              /** Banner **/
             else if ($cmd == 'banner')
             {
-                return $this->controller_helper->drawBanner($params);
+                $headers = array(
+                    'Content-Type'     => 'image/png',
+                    'Content-Disposition' => 'inline; filename="'.$params.'"');
+                return new Response($this->controller_helper->drawBanner($params), 200, $headers);
             }
             else if ($cmd == 'sigsmall')
             {
-                return $this->controller_helper->drawSignatureSmall($params);
+                $headers = array(
+                    'Content-Type'     => 'image/png',
+                    'Content-Disposition' => 'inline; filename="'.$params.'"');
+               return new Response($this->controller_helper->drawSignatureSmall($params), 200, $headers);
             }
         
         }
