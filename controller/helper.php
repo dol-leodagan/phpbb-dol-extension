@@ -263,8 +263,8 @@ class helper
         {
             $emblem = false;
             // Get Background and Emblem
-            if (player_data['GuildName'] !== '')
-                $emblem = imagecreatefromstring($this->drawBanner()->getContent());
+            if ($player_data['GuildName'] !== '')
+                $emblem = imagecreatefromstring($this->drawBanner($player_data['GuildName'])->getContent());
             
             $logo = false;
             switch($player_data['Realm'])
@@ -280,7 +280,7 @@ class helper
                 break;
             }
             
-            $background = imagecreatefromgif($this->root_path.'styles/all/theme/images/signatures/bc_'.$logo.'.png');
+            $background = imagecreatefrompng($this->root_path.'styles/all/theme/images/signatures/bc_'.$logo.'.png');
             
             $imgx = imagesx($img); $imgy = imagesy($img);
             $backgroundx = imagesx($background); $backgroundy = imagesy($background);
