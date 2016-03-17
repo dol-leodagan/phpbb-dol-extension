@@ -286,15 +286,22 @@ class helper
             // Draw Text
             $font = $this->root_path.'styles/all/theme/images/fonts/verdana.ttf';
             $textcolor = imagecolorallocate($img, 180, 180, 180);
-            ImageTTFText($img, 9, 0, 22, 25, $textcolor, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
-            ImageTTFText($img, 8, 0, 22, 40, $textcolor, $font, $player_data['Player']['GuildName']);
-            ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $player_data['Player']['Race'].' '.$player_data['Player']['Class']);
-            ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $player_data['Player']['RealmRank']);
+            
+            $namestring = $player_data['Player']['Name'].' '.$player_data['Player']['LastName'];
+            $guildstring = $font, $player_data['Player']['GuildName'] !== '' ? '<'.$player_data['Player']['GuildName'].'>' : '';
+            $raceclassstring = $player_data['Player']['Race'].' '.$player_data['Player']['Class'];
+            $realmstring = $player_data['Player']['RealmTitle'].' - '.$player_data['Player']['RealmRank'];
+            
+            ImageTTFText($img, 9, 0, 22, 25, $textcolor, $font, $namestring);
+            ImageTTFText($img, 8, 0, 22, 40, $textcolor, $font, $guildstring);
+            ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $raceclassstring);
+            ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $realmstring);
             ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $player_data['Player']['RealmPoints']);
             
-            $longest = strlen($player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
-            $longest = strlen($player_data['Player']['GuildName']) > $longest ? strlen($player_data['Player']['GuildName']) : $longest;
-            $longest = strlen($player_data['Player']['Race'].' '.$player_data['Player']['Class']) > $longest ? strlen($player_data['Player']['Race'].' '.$player_data['Player']['Class']) : $longest;
+            $longest = strlen($namestring);
+            $longest = strlen($guildstring) > $longest ? strlen($guildstring) : $longest;
+            $longest = strlen($raceclassstring) > $longest ? strlen($raceclassstring) : $longest;
+            $longest = strlen($realmstring) > $longest ? strlen($realmstring) : $longest;
             $length = $longest * 5 + 75;
 
             //if ($mlLevel > 0)

@@ -208,6 +208,9 @@ class main
                         $player_display['Player']['GUILD_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $player_display['Player']['GuildName']));
                         $player_display['Player']['BANNER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $player_display['Player']['GuildName']));
                     }
+                    
+                    $player_display['Player']['SIGSMALL_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigsmall', 'params' => $params));
+                    
                     // Stats
                     $player_display['Player']['KILLSTOTAL'] = $player_display['Player']['KillsAlbionPlayers'] + $player_display['Player']['KillsMidgardPlayers'] + $player_display['Player']['KillsHiberniaPlayers'];
                     $player_display['Player']['DEATHBLOWSTOTAL'] = $player_display['Player']['KillsAlbionDeathBlows'] + $player_display['Player']['KillsMidgardDeathBlows'] + $player_display['Player']['KillsHiberniaDeathBlows'];
