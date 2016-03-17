@@ -288,7 +288,7 @@ class helper
             $textcolor = imagecolorallocate($img, 180, 180, 180);
             
             $namestring = $player_data['Player']['Name'].' '.$player_data['Player']['LastName'];
-            $guildstring = $font, $player_data['Player']['GuildName'] !== '' ? '<'.$player_data['Player']['GuildName'].'>' : '';
+            $guildstring = $player_data['Player']['GuildName'] !== '' ? '<'.$player_data['Player']['GuildName'].'>' : '';
             $raceclassstring = $player_data['Player']['Race'].' '.$player_data['Player']['Class'];
             $realmstring = $player_data['Player']['RealmTitle'].' - '.$player_data['Player']['RealmRank'];
             
@@ -307,9 +307,9 @@ class helper
             //if ($mlLevel > 0)
             //ImageTTFText($background, 8, 0, $length, 40, $textcolor, $font4, $ml);
 
-            ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, $player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers']);
-            ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, $player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows']);
-            ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, $player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo']);
+            ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, ($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers']).' Kills');
+            ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, ($player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows']).' Deathblows');
+            ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, ($player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo']).' Solo Kills');
         }
         
         // Send Result
