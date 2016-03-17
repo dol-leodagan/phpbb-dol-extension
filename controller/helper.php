@@ -253,7 +253,7 @@ class helper
         {
             $emblem = false;
             // Get Background and Emblem
-            if ($player_data['Player']['GuildName'] !== '')
+            if ($player_data['Player']['GuildName'] !== null && $player_data['Player']['GuildName'] !== '')
                 $emblem = imagecreatefromstring($this->drawBanner(rawurlencode($player_data['Player']['GuildName'])));
             
             $logo = false;
@@ -288,28 +288,30 @@ class helper
             $textcolor = imagecolorallocate($img, 180, 180, 180);
             
             $namestring = $player_data['Player']['Name'].' '.$player_data['Player']['LastName'];
-            $guildstring = $player_data['Player']['GuildName'] !== '' ? '<'.$player_data['Player']['GuildName'].'>' : '';
+            $guildstring = $player_data['Player']['GuildName'] !== null && $player_data['Player']['GuildName'] !== '' ? '<'.$player_data['Player']['GuildName'].'>' : '';
             $raceclassstring = $player_data['Player']['Race'].' '.$player_data['Player']['Class'];
             $realmstring = $player_data['Player']['RealmTitle'].' - '.$player_data['Player']['RealmRank'];
-            
+            $rpstring = number_format($player_data['Player']['RealmPoints'], 0, ',', ' ').' RP';
+
             ImageTTFText($img, 9, 0, 22, 25, $textcolor, $font, $namestring);
             ImageTTFText($img, 8, 0, 22, 40, $textcolor, $font, $guildstring);
             ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $raceclassstring);
             ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $realmstring);
-            ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $player_data['Player']['RealmPoints']);
+            ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $rpstring);
             
             $longest = strlen($namestring);
             $longest = strlen($guildstring) > $longest ? strlen($guildstring) : $longest;
             $longest = strlen($raceclassstring) > $longest ? strlen($raceclassstring) : $longest;
             $longest = strlen($realmstring) > $longest ? strlen($realmstring) : $longest;
+            $longest = strlen($rpstring) > $longest ? strlen($rpstring) : $longest;
             $length = $longest * 5 + 75;
 
             //if ($mlLevel > 0)
             //ImageTTFText($background, 8, 0, $length, 40, $textcolor, $font4, $ml);
 
-            ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, ($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers']).' Kills');
-            ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, ($player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows']).' Deathblows');
-            ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, ($player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo']).' Solo Kills');
+            ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' ').' Kills');
+            ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, number_format($player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows'], 0, ',', ' ').' Deathblows');
+            ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, number_format($player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo'], 0, ',', ' ').' Solo Kills');
         }
         
         // Send Result
