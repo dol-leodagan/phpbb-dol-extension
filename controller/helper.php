@@ -193,7 +193,7 @@ class helper
         
         if ($cache_img !== false)
         {
-            return new Response($cache_img, 200, $headers);
+            $cache_img;
         }
         
         $img = imagecreatetruecolor(69, 86);
@@ -241,7 +241,7 @@ class helper
         
         if ($cache_img !== false)
         {
-            return new Response($cache_img, 200, $headers);
+            $cache_img;
         }
         // Transparent Image
         $img = imagecreatetruecolor(400, 100);
@@ -284,13 +284,18 @@ class helper
             }
             
             // Draw Text
-            $font = 'verdana';
+            $font = $this->root_path.'styles/all/theme/images/fonts/verdana.ttf';
             $textcolor = imagecolorallocate($img, 180, 180, 180);
             ImageTTFText($img, 9, 0, 22, 25, $textcolor, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
             ImageTTFText($img, 8, 0, 22, 40, $textcolor, $font, $player_data['Player']['GuildName']);
             ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $player_data['Player']['Race'].' '.$player_data['Player']['Class']);
             ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $player_data['Player']['RealmRank']);
             ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $player_data['Player']['RealmPoints']);
+            
+            $longest = strlen($player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
+            $longest = strlen($player_data['Player']['GuildName']) > $longest ? strlen($player_data['Player']['GuildName']) : $longest;
+            $longest = strlen($player_data['Player']['Race'].' '.$player_data['Player']['Class']) > $longest ? strlen($player_data['Player']['Race'].' '.$player_data['Player']['Class']) : $longest;
+            $length = $longest * 5 + 75;
 
             //if ($mlLevel > 0)
             //ImageTTFText($background, 8, 0, $length, 40, $textcolor, $font4, $ml);
