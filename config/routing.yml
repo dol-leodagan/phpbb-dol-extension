@@ -30,8 +30,17 @@ dol_status_book:
     defaults: { _controller: dol.status.main:handle_book }
 
 dol_status_status:
-    path: /status/{type}{tslash}
-    defaults: { _controller: dol.status.main:handle_status, type: "all", tslash: "/" }
+    path: /status{tslash}
+    defaults: { _controller: dol.status.status:handle, tslash: "/" }
     requirements:
-        type: (mini|rvrmini)?
+        tslash: /?
+dol_status_statusmini:
+    path: /status/mini{tslash}
+    defaults: { _controller: dol.status.status:handle_mini, tslash: "/" }
+    requirements:
+        tslash: /?
+dol_status_statusrvr:
+    path: /status/rvrmini{tslash}
+    defaults: { _controller: dol.status.status:handle_rvrmini, tslash: "/" }
+    requirements:
         tslash: /?

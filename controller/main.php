@@ -282,35 +282,4 @@ class main
     {
         return $this->helper->render('book_body.html');
     }
-
-    /** Status Handler **/
-    public function handle_status($type = 'all')
-    {
-        $template_name = 'status_body.html';
-        switch($type)
-        {
-            case 'mini':
-                $status_mini = $this->controller_helper->backend_yaml_query('serverstatus', 45);
-                $this->controller_helper->assign_yaml_vars($status_mini);
-                $template_name = 'statusmini_body.html';
-            break;
-            case 'rvrmini':
-                $status_rvrmini = $this->controller_helper->backend_yaml_query('serverrvrstatus', 45);
-                $this->controller_helper->assign_yaml_vars($status_rvrmini);
-                $template_name = 'statusrvrmini_body.html';
-            break;
-            case 'all':
-            default:
-                $status_mini = $this->controller_helper->backend_yaml_query('serverstatus', 45);
-                $this->controller_helper->assign_yaml_vars($status_mini);
-                $status_rvrmini = $this->controller_helper->backend_yaml_query('serverrvrstatus', 45);
-                $this->controller_helper->assign_yaml_vars($status_rvrmini);
-            break;
-        }
-        
-        /** Debug
-        $arr = (array)$this->template;
-        $this->template->assign_var('Y_DEBUG_DUMP', print_r($arr["\0*\0context"], 1)."\n\n"); **/
-        return $this->helper->render($template_name);
-    }
 }

@@ -22,6 +22,18 @@ services:
             - %core.root_path%
             - .%core.php_ext%
             - '@dol.status.controller_helper'
+   
+    dol.status.status:
+        class: dol\status\controller\status
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '@request'
+            - %core.root_path%
+            - .%core.php_ext%
+            - '@dol.status.controller_helper'
 
     dol.status.controller_helper:
         class: dol\status\controller\helper
