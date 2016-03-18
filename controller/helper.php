@@ -365,7 +365,7 @@ class helper
             $background = imagecreatefrompng($this->root_path.'styles/all/theme/images/signatures/detailed_'.$logo.'.png');
             $imgx = imagesx($img); $imgy = imagesy($img);
             $backgroundx = imagesx($background); $backgroundy = imagesy($background);
-            // Draw Background then Emblem
+            // Draw Background
             imagecopyresampled($img, $background, 0, 0, 0, 0, $imgx, $imgy, $backgroundx, $backgroundy);
             $font = $this->root_path.'styles/all/theme/images/fonts/celtic.ttf';
             $font2 = $this->root_path.'styles/all/theme/images/fonts/univers.ttf';
@@ -430,13 +430,44 @@ class helper
             $cache_img;
         }
         // Transparent Image
-        $img = imagecreatetruecolor(400, 100);
+        $img = imagecreatetruecolor(550, 100);
         imagesavealpha($img, true);
         $trans_colour = imagecolorallocatealpha($img, 0, 0, 0, 127);
         imagefill($img, 0, 0, $trans_colour);
         
         if ($player_data !== null)
         {
+            $logo = false;
+            switch($player_data['Player']['Realm'])
+            {
+                case 'albion':
+                    $logo = 'alb';
+                break;
+                case 'midgard':
+                    $logo = 'mid';
+                break;
+                case 'hibernia':
+                    $logo = 'hib';
+                break;
+            }
+            
+            $background = imagecreatefrompng($this->root_path.'styles/all/theme/images/signatures/detailed_'.$logo.'.png');
+            $imgx = imagesx($img); $imgy = imagesy($img);
+            $backgroundx = imagesx($background); $backgroundy = imagesy($background);
+            // Draw Background
+            imagecopyresampled($img, $background, 0, 0, 0, 0, $imgx, $imgy, $backgroundx, $backgroundy);
+            
+            $emblem = false;
+            // Get Emblem
+            if ($player_data['Player']['GuildName'] !== null && $player_data['Player']['GuildName'] !== '')
+            {
+                $emblem = imagecreatefromstring($this->drawBanner(rawurlencode($player_data['Player']['GuildName'])));
+                $emblemx = imagesx($emblem); $emblemy = imagesy($emblem);
+                imagecopyresampled($img, $emblem, 3, 7, 0, 0, $emblemx, $emblemy, $emblemx, $emblemy);
+
+            }
+
+
         }
         // Send Result
         ob_start();
