@@ -209,6 +209,10 @@ div.herald-player-name {
     padding: 0.5em;
 }
 
+div.herald-player-name > span:nth-of-type(2) {
+    margin-left: 10px;
+}
+
 div.herald-player-name > span + span + span {
     display: block;
     font-size: x-small;    
@@ -217,6 +221,10 @@ div.herald-player-name > span + span + span {
 @media (max-width: 450px) {
     div.herald-player-name {
         text-align: left;
+    }
+    div.herald-player-name > span:nth-of-type(2) {
+        margin-left: 0px;
+        display: block;
     }
 }
 

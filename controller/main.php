@@ -210,6 +210,11 @@ class main
                     }
                     
                     $player_display['Player']['SIGSMALL_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigsmall', 'params' => $params));
+                    $player_display['Player']['SIGSMALL_ABSURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigsmall', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                    $player_display['Player']['SIGDETAILED_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigdetailed', 'params' => $params));
+                    $player_display['Player']['SIGDETAILED_ABSURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigdetailed', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                    $player_display['Player']['SIGLARGE_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'siglarge', 'params' => $params));
+                    $player_display['Player']['SIGLARGE_ABSURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'siglarge', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
                     
                     // Stats
                     $player_display['Player']['KILLSTOTAL'] = $player_display['Player']['KillsAlbionPlayers'] + $player_display['Player']['KillsMidgardPlayers'] + $player_display['Player']['KillsHiberniaPlayers'];
@@ -270,6 +275,20 @@ class main
                     'Content-Type'     => 'image/png',
                     'Content-Disposition' => 'inline; filename="'.$params.'"');
                return new Response($this->controller_helper->drawSignatureSmall($params), 200, $headers);
+            }
+            else if ($cmd == 'sigdetailed')
+            {
+                $headers = array(
+                    'Content-Type'     => 'image/png',
+                    'Content-Disposition' => 'inline; filename="'.$params.'"');
+               return new Response($this->controller_helper->drawSignatureDetailed($params), 200, $headers);
+            }
+            else if ($cmd == 'siglarge')
+            {
+                $headers = array(
+                    'Content-Type'     => 'image/png',
+                    'Content-Disposition' => 'inline; filename="'.$params.'"');
+               return new Response($this->controller_helper->drawSignatureLarge($params), 200, $headers);
             }
         
         }

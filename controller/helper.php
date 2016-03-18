@@ -293,18 +293,18 @@ class helper
             $realmstring = $player_data['Player']['RealmTitle'].' - '.$player_data['Player']['RealmRank'];
             $rpstring = number_format($player_data['Player']['RealmPoints'], 0, ',', ' ').' RP';
 
-            ImageTTFText($img, 9, 0, 22, 25, $textcolor, $font, $namestring);
-            ImageTTFText($img, 8, 0, 22, 40, $textcolor, $font, $guildstring);
-            ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $raceclassstring);
-            ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $realmstring);
-            ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $rpstring);
+            $namebox = ImageTTFText($img, 9, 0, 22, 25, $textcolor, $font, $namestring);
+            $guildbox = ImageTTFText($img, 8, 0, 22, 40, $textcolor, $font, $guildstring);
+            $raceclassbox = ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $raceclassstring);
+            $realmbox = ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $realmstring);
+            $rpbox = ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $rpstring);
             
-            $longest = strlen($namestring);
-            $longest = strlen($guildstring) > $longest ? strlen($guildstring) : $longest;
-            $longest = strlen($raceclassstring) > $longest ? strlen($raceclassstring) : $longest;
-            $longest = strlen($realmstring) > $longest ? strlen($realmstring) : $longest;
-            $longest = strlen($rpstring) > $longest ? strlen($rpstring) : $longest;
-            $length = $longest * 5 + 75;
+            $longest = abs($namebox[4] - $namebox[0]);
+            $longest = abs($guildbox[4] - $guildbox[0]) > $longest ? abs($guildbox[4] - $guildbox[0]) : $longest;
+            $longest = abs($raceclassbox[4] - $raceclassbox[0]) > $longest ? abs($raceclassbox[4] - $raceclassbox[0]) : $longest;
+            $longest = abs($realmbox[4] - $realmbox[0]) > $longest ? abs($realmbox[4] - $realmbox[0]) : $longest;
+            $longest = abs($rpbox[4] - $rpbox[0]) > $longest ? abs($rpbox[4] - $rpbox[0]) : $longest;
+            $length = $longest + 22;
 
             //if ($mlLevel > 0)
             //ImageTTFText($background, 8, 0, $length, 40, $textcolor, $font4, $ml);
@@ -314,6 +314,102 @@ class helper
             ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, number_format($player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo'], 0, ',', ' ').' Solo Kills');
         }
         
+        // Send Result
+        ob_start();
+        imagepng($img);
+        $data = ob_get_clean();
+        $this->cache->put('_BANNERCACHE_banner_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        return $data;
+    }
+    
+    public function drawSignatureDetailed($player)
+    {
+        $player_data = $this->backend_yaml_query('getplayer/'.$player, 15 * 60);
+                
+        // Check Cache
+        $cache_img = $this->cache->get('_BANNERCACHE_sigdetailed_'.($player_data !== null ? md5($player) : 'null'));
+        
+        if ($cache_img !== false)
+        {
+            $cache_img;
+        }
+        // Transparent Image
+        $img = imagecreatetruecolor(460, 100);
+        imagesavealpha($img, true);
+        $trans_colour = imagecolorallocatealpha($img, 0, 0, 0, 127);
+        imagefill($img, 0, 0, $trans_colour);
+        
+        if ($player_data !== null)
+        {
+            $logo = false;
+            switch($player_data['Player']['Realm'])
+            {
+                case 'albion':
+                    $logo = 'alb';
+                break;
+                case 'midgard':
+                    $logo = 'mid';
+                break;
+                case 'hibernia':
+                    $logo = 'hib';
+                break;
+            }
+            
+            $background = imagecreatefrompng($this->root_path.'styles/all/theme/images/signatures/detailed_'.$logo.'.png');
+            $imgx = imagesx($img); $imgy = imagesy($img);
+            $backgroundx = imagesx($background); $backgroundy = imagesy($background);
+            // Draw Background then Emblem
+            imagecopyresampled($img, $background, 0, 0, 0, 0, $imgx, $imgy, $backgroundx, $backgroundy);
+            $font = $this->root_path.'styles/all/theme/images/fonts/celtic.ttf';
+            $font = $this->root_path.'styles/all/theme/images/fonts/univers.ttf';
+            $textcolor = imagecolorallocate($img, 220, 220, 220);
+
+            // Draw Details
+            ImageTTFText($img, 9, 0, 12, 30, $textcolor, $font2, $player_data['Player']['RealmTitle'].' - '.$player_data['Player']['RealmRank']);
+            ImageTTFText($img, 9, 0, 12, 46, $textcolor, $font2, 'Rank on Server: '.$player_data['Player']['Ranking']);
+            ImageTTFText($img, 9, 0, 12, 62, $textcolor, $font2, 'Rank in Realm: '.$player_data['Player']['RealmRanking']);
+            ImageTTFText($img, 9, 0, 12, 78, $textcolor, $font2, 'Rank in Class: '.$player_data['Player']['ClassRanking']);
+            
+            // Draw Title and Guild
+            $namebox = imagettfbbox(11, 0, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
+            ImageTTFText($img, 11, 0, ($imgx - abs($namebox[4] - $namebox[0])) / 2, 44, $textcolor, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
+            if ($player_data['Player']['GuildName'] !== null && $player_data['Player']['GuildName'] !== '')
+            {
+                $guildbox = imagettfbbox(10, 0, $font2, '< '.$player_data['Player']['GuildName'].' >');
+                ImageTTFText($img, 10, 0, ($imgx - abs($guildbox[4] - $guildbox[0])) / 2, 60, $textcolor, $font2, '< '.$player_data['Player']['GuildName'].' >');
+            }
+            
+            // Draw Right Aligned Detail
+            
+        }
+        // Send Result
+        ob_start();
+        imagepng($img);
+        $data = ob_get_clean();
+        $this->cache->put('_BANNERCACHE_banner_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        return $data;
+    }
+    
+    public function drawSignatureLarge($player)
+    {
+        $player_data = $this->backend_yaml_query('getplayer/'.$player, 15 * 60);
+                
+        // Check Cache
+        $cache_img = $this->cache->get('_BANNERCACHE_siglarge_'.($player_data !== null ? md5($player) : 'null'));
+        
+        if ($cache_img !== false)
+        {
+            $cache_img;
+        }
+        // Transparent Image
+        $img = imagecreatetruecolor(400, 100);
+        imagesavealpha($img, true);
+        $trans_colour = imagecolorallocatealpha($img, 0, 0, 0, 127);
+        imagefill($img, 0, 0, $trans_colour);
+        
+        if ($player_data !== null)
+        {
+        }
         // Send Result
         ob_start();
         imagepng($img);
