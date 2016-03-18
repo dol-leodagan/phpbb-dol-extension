@@ -298,20 +298,27 @@ class helper
             $raceclassbox = ImageTTFText($img, 8, 0, 22, 55, $textcolor, $font, $raceclassstring);
             $realmbox = ImageTTFText($img, 8, 0, 22, 70, $textcolor, $font, $realmstring);
             $rpbox = ImageTTFText($img, 8, 0, 22, 85, $textcolor, $font, $rpstring);
-            
-            $longest = abs($namebox[4] - $namebox[0]);
-            $longest = abs($guildbox[4] - $guildbox[0]) > $longest ? abs($guildbox[4] - $guildbox[0]) : $longest;
-            $longest = abs($raceclassbox[4] - $raceclassbox[0]) > $longest ? abs($raceclassbox[4] - $raceclassbox[0]) : $longest;
-            $longest = abs($realmbox[4] - $realmbox[0]) > $longest ? abs($realmbox[4] - $realmbox[0]) : $longest;
-            $longest = abs($rpbox[4] - $rpbox[0]) > $longest ? abs($rpbox[4] - $rpbox[0]) : $longest;
-            $length = $longest + 22;
 
             //if ($mlLevel > 0)
             //ImageTTFText($background, 8, 0, $length, 40, $textcolor, $font4, $ml);
 
-            ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' ').' Kills');
-            ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, number_format($player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows'], 0, ',', ' ').' Deathblows');
-            ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, number_format($player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo'], 0, ',', ' ').' Solo Kills');
+            //Align Right
+            $killstring = number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' ').' Kills';
+            $deathblowstring = number_format($player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows'], 0, ',', ' ').' Deathblows';
+            $solostring = number_format($player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo'], 0, ',', ' ').' Solo Kills';
+            
+            $killsbox = imagettfbbox(8, 0, $font, $killstring);
+            $deathblowbox = imagettfbbox(8, 0, $font, $deathblowstring);
+            $solobox = imagettfbbox(8, 0, $font, $solostring);
+            
+            $longest = abs($killsbox[4] - $killsbox[0]);
+            $longest = abs($deathblowbox[4] - $deathblowbox[0]) > $longest ? abs($deathblowbox[4] - $deathblowbox[0]) : $longest;
+            $longest = abs($solobox[4] - $solobox[0]) > $longest ? abs($solobox[4] - $solobox[0]) : $longest;
+            $length = $imgy - $longest + 100;
+            
+            ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, $killstring);
+            ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, $deathblowstring);
+            ImageTTFText($img, 8, 0, $length, 85, $textcolor, $font, $solostring);
         }
         
         // Send Result
@@ -361,14 +368,14 @@ class helper
             // Draw Background then Emblem
             imagecopyresampled($img, $background, 0, 0, 0, 0, $imgx, $imgy, $backgroundx, $backgroundy);
             $font = $this->root_path.'styles/all/theme/images/fonts/celtic.ttf';
-            $font = $this->root_path.'styles/all/theme/images/fonts/univers.ttf';
+            $font2 = $this->root_path.'styles/all/theme/images/fonts/univers.ttf';
             $textcolor = imagecolorallocate($img, 220, 220, 220);
 
             // Draw Details
             ImageTTFText($img, 9, 0, 12, 30, $textcolor, $font2, $player_data['Player']['RealmTitle'].' - '.$player_data['Player']['RealmRank']);
             ImageTTFText($img, 9, 0, 12, 46, $textcolor, $font2, 'Rank on Server: '.$player_data['Player']['Ranking']);
-            ImageTTFText($img, 9, 0, 12, 62, $textcolor, $font2, 'Rank in Realm: '.$player_data['Player']['RealmRanking']);
-            ImageTTFText($img, 9, 0, 12, 78, $textcolor, $font2, 'Rank in Class: '.$player_data['Player']['ClassRanking']);
+            ImageTTFText($img, 9, 0, 12, 62, $textcolor, $font2, 'Rank in Realm: '.$player_data['Player']['RankingRealm']);
+            ImageTTFText($img, 9, 0, 12, 78, $textcolor, $font2, 'Rank in Class: '.$player_data['Player']['RankingClass']);
             
             // Draw Title and Guild
             $namebox = imagettfbbox(11, 0, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);

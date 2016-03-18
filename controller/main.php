@@ -14,6 +14,7 @@ use phpbb\template\template;
 use phpbb\user;
 use \phpbb\request\request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class main
 {
