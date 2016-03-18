@@ -16,9 +16,10 @@ dol_status_badsearch:
 dol_status_images:
     path: /herald/{cmd}/{params}{tslash}
     defaults: { _controller: dol.status.images:handle, cmd: "", params: "", tslash: "/" }
-    cmd: (banner|sigsmall|siglarge|sigdetailed)
-    params: ([[:alnum:]À-ÿ ]+)?
-    tslash: /?
+    requirements:
+        cmd: (banner|sigsmall|siglarge|sigdetailed)
+        params: ([[:alnum:]À-ÿ ]+)?
+        tslash: /?
 
 dol_status_game:
     path: /game
