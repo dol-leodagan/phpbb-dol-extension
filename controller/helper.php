@@ -401,12 +401,12 @@ class helper
             $longest = abs($deathblowbox[4] - $deathblowbox[0]) > $longest ? abs($deathblowbox[4] - $deathblowbox[0]) : $longest;
             $longest = abs($solobox[4] - $solobox[0]) > $longest ? abs($solobox[4] - $solobox[0]) : $longest;
             $longest = abs($raceclassbox[4] - $raceclassbox[0]) > $longest ? abs($raceclassbox[4] - $raceclassbox[0]) : $longest;
-            $length = $imgx - $longest - 22;
+            $length = $imgx - $longest - 12;
             
-            ImageTTFText($img, 8, 0, $length, 30, $textcolor, $font2, $raceclassstring);
-            ImageTTFText($img, 8, 0, $length, 46, $textcolor, $font2, $killstring);
-            ImageTTFText($img, 8, 0, $length, 62, $textcolor, $font2, $deathblowstring);
-            ImageTTFText($img, 8, 0, $length, 78, $textcolor, $font2, $solostring);
+            ImageTTFText($img, 9, 0, $length, 30, $textcolor, $font2, $raceclassstring);
+            ImageTTFText($img, 9, 0, $length, 46, $textcolor, $font2, $killstring);
+            ImageTTFText($img, 9, 0, $length, 62, $textcolor, $font2, $deathblowstring);
+            ImageTTFText($img, 9, 0, $length, 78, $textcolor, $font2, $solostring);
             
         }
         // Send Result
