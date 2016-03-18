@@ -403,10 +403,10 @@ class helper
             $longest = abs($raceclassbox[4] - $raceclassbox[0]) > $longest ? abs($raceclassbox[4] - $raceclassbox[0]) : $longest;
             $length = $imgx - $longest - 22;
             
-            ImageTTFText($img, 8, 0, $length, 30, $textcolor, $font, $raceclassstring);
-            ImageTTFText($img, 8, 0, $length, 46, $textcolor, $font, $killstring);
-            ImageTTFText($img, 8, 0, $length, 62, $textcolor, $font, $deathblowstring);
-            ImageTTFText($img, 8, 0, $length, 78, $textcolor, $font, $solostring);
+            ImageTTFText($img, 8, 0, $length, 30, $textcolor, $font2, $raceclassstring);
+            ImageTTFText($img, 8, 0, $length, 46, $textcolor, $font2, $killstring);
+            ImageTTFText($img, 8, 0, $length, 62, $textcolor, $font2, $deathblowstring);
+            ImageTTFText($img, 8, 0, $length, 78, $textcolor, $font2, $solostring);
             
         }
         // Send Result
