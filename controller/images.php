@@ -116,7 +116,7 @@ class images
         $guild_data = $this->controller_helper->backend_yaml_query('getguild/'.$guild, 15 * 60);
         
         // Check Cache
-        $cache_img = $this->cache->get('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'));
+        $cache_img = $this->controller_helper->cache->get('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'));
         
         if ($cache_img !== false)
         {
@@ -155,7 +155,7 @@ class images
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        $this->cache->put('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'), $data, 24 * 60 * 60);
+        $this->controller_helper->cache->put('_BANNERCACHE_banner_'.($guild_data !== null ? md5($guild) : 'null'), $data, 24 * 60 * 60);
         return $data;
     }
     
@@ -164,7 +164,7 @@ class images
         $player_data = $this->controller_helper->backend_yaml_query('getplayer/'.$player, 15 * 60);
                 
         // Check Cache
-        $cache_img = $this->cache->get('_BANNERCACHE_sigsmall_'.($player_data !== null ? md5($player) : 'null'));
+        $cache_img = $this->controller_helper->cache->get('_BANNERCACHE_sigsmall_'.($player_data !== null ? md5($player) : 'null'));
         
         if ($cache_img !== false)
         {
@@ -252,7 +252,7 @@ class images
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        $this->cache->put('_BANNERCACHE_sigsmall_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        $this->controller_helper->cache->put('_BANNERCACHE_sigsmall_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
         return $data;
     }
     
@@ -261,7 +261,7 @@ class images
         $player_data = $this->controller_helper->backend_yaml_query('getplayer/'.$player, 15 * 60);
                 
         // Check Cache
-        $cache_img = $this->cache->get('_BANNERCACHE_sigdetailed_'.($player_data !== null ? md5($player) : 'null'));
+        $cache_img = $this->controller_helper->cache->get('_BANNERCACHE_sigdetailed_'.($player_data !== null ? md5($player) : 'null'));
         
         if ($cache_img !== false)
         {
@@ -341,7 +341,7 @@ class images
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        $this->cache->put('_BANNERCACHE_sigdetailed_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        $this->controller_helper->cache->put('_BANNERCACHE_sigdetailed_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
         return $data;
     }
     
@@ -350,7 +350,7 @@ class images
         $player_data = $this->controller_helper->backend_yaml_query('getplayer/'.$player, 15 * 60);
                 
         // Check Cache
-        $cache_img = $this->cache->get('_BANNERCACHE_siglarge_'.($player_data !== null ? md5($player) : 'null'));
+        $cache_img = $this->controller_helper->cache->get('_BANNERCACHE_siglarge_'.($player_data !== null ? md5($player) : 'null'));
         
         if ($cache_img !== false)
         {
@@ -441,7 +441,7 @@ class images
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        $this->cache->put('_BANNERCACHE_siglarge_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        $this->controller_helper->cache->put('_BANNERCACHE_siglarge_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
         return $data;
     }
     /** EndRegion Banners **/

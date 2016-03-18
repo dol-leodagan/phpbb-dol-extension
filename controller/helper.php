@@ -20,7 +20,7 @@ class helper
     protected $template;
     
     /** @var \phpbb\cache\driver\driver_interface */
-    protected $cache;
+    public $cache;
 
      /* @var config */
     protected $config;
