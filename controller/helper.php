@@ -483,22 +483,32 @@ class helper
             $rpstring = number_format($player_data['Player']['RealmPoints'], 0, ',', ' ').' RP';
 
             $namebox = ImageTTFText($img, 11, 0, $offset, 25, $textcolor, $font2, $namestring);
-            $length = abs($namebox[4] - $namebox[0]);
             $guildbox = ImageTTFText($img, 10, 0, $offset, 42, $textcolor, $font, $guildstring);
-            $length = abs($guildbox[4] - $guildbox[0]) > $length ? abs($guildbox[4] - $guildbox[0]) : $length;
             $raceclassbox = ImageTTFText($img, 10, 0, $offset, 57, $textcolor, $font, $raceclassstring);
-            $length = abs($raceclassbox[4] - $raceclassbox[0]) > $length ? abs($raceclassbox[4] - $raceclassbox[0]) : $length;
             $realmbox = ImageTTFText($img, 10, 0, $offset, 72, $textcolor, $font, $realmstring);
-            $length = abs($realmbox[4] - $realmbox[0]) > $length ? abs($realmbox[4] - $realmbox[0]) : $length;
             $rpbox = ImageTTFText($img, 10, 0, $offset, 87, $textcolor, $font, $rpstring);
-            $length = abs($rpbox[4] - $rpbox[0]) > $length ? abs($rpbox[4] - $rpbox[0]) : $length;
             
-            $offset += $length + 42;
             // Right Box
-            ImageTTFText($img, 10, 0, $offset, 42, $textcolor, $font, 'Kills: '.number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' '));
-            ImageTTFText($img, 10, 0, $offset, 57, $textcolor, $font, 'Rank on Server: '.$player_data['Player']['Ranking']);
-            ImageTTFText($img, 10, 0, $offset, 72, $textcolor, $font, 'Rank in Realm: '.$player_data['Player']['RankingRealm']);
-            ImageTTFText($img, 10, 0, $offset, 87, $textcolor, $font, 'Rank in Class: '.$player_data['Player']['RankingClass']);
+            $killstring = number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' ');
+            $rankstring = $player_data['Player']['Ranking'];
+            $rankrealmstring = $player_data['Player']['RankingRealm'];
+            $rankclassstring = $player_data['Player']['RankingClass']
+            
+            $killsbox = imagettfbbox(10, 0, $font, $killstring);
+            $length = abs($killsbox[4] - $killsbox[0]);
+            $rankbox = imagettfbbox(10, 0, $font, $rankstring);
+            $length = abs($rankbox[4] - $rankbox[0]) > $length ? abs($rankbox[4] - $rankbox[0]) : $length;
+            $rankrealmbox = imagettfbbox(10, 0, $font, $rankrealmstring);
+            $length = abs($rankrealmbox[4] - $rankrealmbox[0]) > $length ? abs($rankrealmbox[4] - $rankrealmbox[0]) : $length;
+            $rankclassbox = imagettfbbox(10, 0, $font, $rankclassstring);
+            $length = abs($rankclassbox[4] - $rankclassbox[0]) > $length ? abs($rankclassbox[4] - $rankclassbox[0]) : $length;
+            
+            $offset = $imgx - $length - 30;
+            
+            ImageTTFText($img, 10, 0, $offset, 42, $textcolor, $font, 'Kills: '.$killstring);
+            ImageTTFText($img, 10, 0, $offset, 57, $textcolor, $font, 'Rank on Server: '.$rankstring);
+            ImageTTFText($img, 10, 0, $offset, 72, $textcolor, $font, 'Rank in Realm: '.$rankrealmstring);
+            ImageTTFText($img, 10, 0, $offset, 87, $textcolor, $font, 'Rank in Class: '.$rankclassstring);
        }
         // Send Result
         ob_start();
