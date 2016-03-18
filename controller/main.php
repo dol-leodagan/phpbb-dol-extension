@@ -108,7 +108,7 @@ class main
                     if (is_array($structures))
                         foreach($structures as $num => $structure)
                             if (isset($structure['Claimed']) && $structure['Claimed'] === true)
-                                $warmap['Structures'][$realm][$num]['IMGURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $structure['ClaimedBy']));
+                                $warmap['Structures'][$realm][$num]['IMGURL'] = $this->helper->route('dol_status_images', array('cmd' => 'banner', 'params' => $structure['ClaimedBy']));
                             
             
             $this->controller_helper->assign_yaml_vars($warmap);
@@ -187,8 +187,6 @@ class main
                 {
                     $ladder['Ladder'][$key]['LastPlayed'] = date('M j Y', $value['LastPlayed']);
                     $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $value['GuildName']));
-                    if ($value['AllianceName'] !== "")
-                        $ladder['Ladder'][$key]['ALLIANCE_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $value['AllianceName']));
                 }
             }
              
@@ -207,15 +205,15 @@ class main
                     if (isset($player_display['Player']['GuildName']) && $player_display['Player']['GuildName'] !== '')
                     {
                         $player_display['Player']['GUILD_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'guild', 'params' => $player_display['Player']['GuildName']));
-                        $player_display['Player']['BANNER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $player_display['Player']['GuildName']));
+                        $player_display['Player']['BANNER_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'banner', 'params' => $player_display['Player']['GuildName']));
                     }
                     
-                    $player_display['Player']['SIGSMALL_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigsmall', 'params' => $params));
-                    $player_display['Player']['SIGSMALL_ABSURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigsmall', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
-                    $player_display['Player']['SIGDETAILED_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigdetailed', 'params' => $params));
-                    $player_display['Player']['SIGDETAILED_ABSURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'sigdetailed', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
-                    $player_display['Player']['SIGLARGE_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'siglarge', 'params' => $params));
-                    $player_display['Player']['SIGLARGE_ABSURL'] = $this->helper->route('dol_status_controller', array('cmd' => 'siglarge', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                    $player_display['Player']['SIGSMALL_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigsmall', 'params' => $params));
+                    $player_display['Player']['SIGSMALL_ABSURL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigsmall', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                    $player_display['Player']['SIGDETAILED_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigdetailed', 'params' => $params));
+                    $player_display['Player']['SIGDETAILED_ABSURL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigdetailed', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                    $player_display['Player']['SIGLARGE_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'siglarge', 'params' => $params));
+                    $player_display['Player']['SIGLARGE_ABSURL'] = $this->helper->route('dol_status_images', array('cmd' => 'siglarge', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
                     
                     // Stats
                     $player_display['Player']['KILLSTOTAL'] = $player_display['Player']['KillsAlbionPlayers'] + $player_display['Player']['KillsMidgardPlayers'] + $player_display['Player']['KillsHiberniaPlayers'];
@@ -249,7 +247,7 @@ class main
                 //Build Routes
                 if (isset($guild_display['Guild']))
                 {                    
-                    $guild_display['Guild']['BANNER_URL'] = $this->helper->route('dol_status_controller', array('cmd' => 'banner', 'params' => $guild_display['Guild']['Name']));
+                    $guild_display['Guild']['BANNER_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'banner', 'params' => $guild_display['Guild']['Name']));
                     if (isset($guild_display['Guild']['Players']) && is_array($guild_display['Guild']['Players']))
                     {
                         foreach($guild_display['Guild']['Players'] as $num => $player)
@@ -262,36 +260,6 @@ class main
                 
                 $this->controller_helper->assign_yaml_vars($guild_display);
             }
-             /** Banner **/
-            else if ($cmd == 'banner')
-            {
-                $headers = array(
-                    'Content-Type'     => 'image/png',
-                    'Content-Disposition' => 'inline; filename="'.$params.'"');
-                return new Response($this->controller_helper->drawBanner($params), 200, $headers);
-            }
-            else if ($cmd == 'sigsmall')
-            {
-                $headers = array(
-                    'Content-Type'     => 'image/png',
-                    'Content-Disposition' => 'inline; filename="'.$params.'"');
-               return new Response($this->controller_helper->drawSignatureSmall($params), 200, $headers);
-            }
-            else if ($cmd == 'sigdetailed')
-            {
-                $headers = array(
-                    'Content-Type'     => 'image/png',
-                    'Content-Disposition' => 'inline; filename="'.$params.'"');
-               return new Response($this->controller_helper->drawSignatureDetailed($params), 200, $headers);
-            }
-            else if ($cmd == 'siglarge')
-            {
-                $headers = array(
-                    'Content-Type'     => 'image/png',
-                    'Content-Disposition' => 'inline; filename="'.$params.'"');
-               return new Response($this->controller_helper->drawSignatureLarge($params), 200, $headers);
-            }
-        
         }
        
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);

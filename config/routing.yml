@@ -13,6 +13,13 @@ dol_status_badsearch:
         notparams: .*
         tslash: /?
 
+dol_status_images:
+    path: /herald/{cmd}/{params}{tslash}
+    defaults: { _controller: dol.status.images:handle, cmd: "", params: "", tslash: "/" }
+    cmd: (banner|sigsmall|siglarge|sigdetailed)
+    params: ([[:alnum:]À-ÿ ]+)?
+    tslash: /?
+
 dol_status_game:
     path: /game
     defaults: { _controller: dol.status.main:handle_game }
