@@ -314,7 +314,7 @@ class helper
             $longest = abs($killsbox[4] - $killsbox[0]);
             $longest = abs($deathblowbox[4] - $deathblowbox[0]) > $longest ? abs($deathblowbox[4] - $deathblowbox[0]) : $longest;
             $longest = abs($solobox[4] - $solobox[0]) > $longest ? abs($solobox[4] - $solobox[0]) : $longest;
-            $length = $imgy - $longest + 100;
+            $length = $imgx - $longest - 90;
             
             ImageTTFText($img, 8, 0, $length, 55, $textcolor, $font, $killstring);
             ImageTTFText($img, 8, 0, $length, 70, $textcolor, $font, $deathblowstring);
@@ -325,7 +325,7 @@ class helper
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        $this->cache->put('_BANNERCACHE_banner_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        $this->cache->put('_BANNERCACHE_sigsmall_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
         return $data;
     }
     
@@ -387,13 +387,33 @@ class helper
             }
             
             // Draw Right Aligned Detail
+            $raceclassstring = $player_data['Player']['Race'].' '.$player_data['Player']['Class'];
+            $killstring = number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' ').' Kills';
+            $deathblowstring = number_format($player_data['Player']['KillsAlbionDeathBlows'] + $player_data['Player']['KillsMidgardDeathBlows'] + $player_data['Player']['KillsHiberniaDeathBlows'], 0, ',', ' ').' Deathblows';
+            $solostring = number_format($player_data['Player']['KillsHiberniaDeathBlows'] + $player_data['Player']['KillsMidgardSolo'] + $player_data['Player']['KillsHiberniaSolo'], 0, ',', ' ').' Solo Kills';
+            
+            $raceclassbox = imagettfbbox(9, 0, $font2, $raceclassstring);
+            $killsbox = imagettfbbox(9, 0, $font2, $killstring);
+            $deathblowbox = imagettfbbox(9, 0, $font2, $deathblowstring);
+            $solobox = imagettfbbox(9, 0, $font2, $solostring);
+            
+            $longest = abs($killsbox[4] - $killsbox[0]);
+            $longest = abs($deathblowbox[4] - $deathblowbox[0]) > $longest ? abs($deathblowbox[4] - $deathblowbox[0]) : $longest;
+            $longest = abs($solobox[4] - $solobox[0]) > $longest ? abs($solobox[4] - $solobox[0]) : $longest;
+            $longest = abs($raceclassbox[4] - $raceclassbox[0]) > $longest ? abs($raceclassbox[4] - $raceclassbox[0]) : $longest;
+            $length = $imgx - $longest - 22;
+            
+            ImageTTFText($img, 8, 0, $length, 30, $textcolor, $font, $raceclassstring);
+            ImageTTFText($img, 8, 0, $length, 46, $textcolor, $font, $killstring);
+            ImageTTFText($img, 8, 0, $length, 62, $textcolor, $font, $deathblowstring);
+            ImageTTFText($img, 8, 0, $length, 78, $textcolor, $font, $solostring);
             
         }
         // Send Result
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        $this->cache->put('_BANNERCACHE_banner_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        $this->cache->put('_BANNERCACHE_sigdetailed_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
         return $data;
     }
     
@@ -421,7 +441,7 @@ class helper
         ob_start();
         imagepng($img);
         $data = ob_get_clean();
-        $this->cache->put('_BANNERCACHE_banner_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
+        $this->cache->put('_BANNERCACHE_siglarge_'.($player_data !== null ? md5($player) : 'null'), $data, 24 * 60 * 60);
         return $data;
     }
     /** EndRegion Banners **/
