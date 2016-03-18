@@ -271,3 +271,12 @@ div.herald-player div.herald-player-realmrank {
         display: none;
     }
 }
+
+div.herald-player-signatures {
+    text-align: center;
+    overflow: scroll;
+}
+
+div.herald-player-signatures > div > p {
+    font-size: large;
+}
