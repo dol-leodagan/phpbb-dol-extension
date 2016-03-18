@@ -378,8 +378,9 @@ class helper
             ImageTTFText($img, 9, 0, 12, 78, $textcolor, $font2, 'Rank in Class: '.$player_data['Player']['RankingClass']);
             
             // Draw Title and Guild
-            $namebox = imagettfbbox(11, 0, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
-            ImageTTFText($img, 11, 0, ($imgx - abs($namebox[4] - $namebox[0])) / 2, 44, $textcolor, $font, $player_data['Player']['Name'].' '.$player_data['Player']['LastName']);
+            $namestring = $player_data['Player']['Name'].($player_data['Player']['LastName'] !== null && $player_data['Player']['LastName'] !== '' ? ' '.$player_data['Player']['LastName'] : '');
+            $namebox = imagettfbbox(11, 0, $font, $namestring);
+            ImageTTFText($img, 11, 0, ($imgx - abs($namebox[4] - $namebox[0])) / 2, 44, $textcolor, $font, $namestring);
             if ($player_data['Player']['GuildName'] !== null && $player_data['Player']['GuildName'] !== '')
             {
                 $guildbox = imagettfbbox(10, 0, $font2, '< '.$player_data['Player']['GuildName'].' >');
