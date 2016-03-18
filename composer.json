@@ -26,6 +26,7 @@
             "phpbb/phpbb": ">=3.1.5,<3.2.*@dev"
         },
         "version-check": {
+            "ssl": "true",
             "host": "raw.githubusercontent.com",
             "directory": "/dol-leodagan/phpbb-dol-extension/master",
             "filename": "dol_extension.json"

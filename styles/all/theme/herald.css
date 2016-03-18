@@ -274,7 +274,7 @@ div.herald-player div.herald-player-realmrank {
 
 div.herald-player-signatures {
     text-align: center;
-    overflow: scroll;
+    overflow: auto;
 }
 
 div.herald-player-signatures > div > p {
