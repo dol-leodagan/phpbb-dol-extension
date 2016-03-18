@@ -489,10 +489,10 @@ class helper
             $rpbox = ImageTTFText($img, 10, 0, $offset, 87, $textcolor, $font, $rpstring);
             
             // Right Box
-            $killstring = number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' ');
-            $rankstring = $player_data['Player']['Ranking'];
-            $rankrealmstring = $player_data['Player']['RankingRealm'];
-            $rankclassstring = $player_data['Player']['RankingClass']
+            $killstring = 'Kills: '.number_format($player_data['Player']['KillsAlbionPlayers'] + $player_data['Player']['KillsMidgardPlayers'] + $player_data['Player']['KillsHiberniaPlayers'], 0, ',', ' ');
+            $rankstring = 'Rank on Server: '.$player_data['Player']['Ranking'];
+            $rankrealmstring = 'Rank in Realm: '.$player_data['Player']['RankingRealm'];
+            $rankclassstring = 'Rank in Class: '.$player_data['Player']['RankingClass'];
             
             $killsbox = imagettfbbox(10, 0, $font, $killstring);
             $length = abs($killsbox[4] - $killsbox[0]);
@@ -505,10 +505,10 @@ class helper
             
             $offset = $imgx - $length - 30;
             
-            ImageTTFText($img, 10, 0, $offset, 42, $textcolor, $font, 'Kills: '.$killstring);
-            ImageTTFText($img, 10, 0, $offset, 57, $textcolor, $font, 'Rank on Server: '.$rankstring);
-            ImageTTFText($img, 10, 0, $offset, 72, $textcolor, $font, 'Rank in Realm: '.$rankrealmstring);
-            ImageTTFText($img, 10, 0, $offset, 87, $textcolor, $font, 'Rank in Class: '.$rankclassstring);
+            ImageTTFText($img, 10, 0, $offset, 42, $textcolor, $font, $killstring);
+            ImageTTFText($img, 10, 0, $offset, 57, $textcolor, $font, $rankstring);
+            ImageTTFText($img, 10, 0, $offset, 72, $textcolor, $font, $rankrealmstring);
+            ImageTTFText($img, 10, 0, $offset, 87, $textcolor, $font, $rankclassstring);
        }
         // Send Result
         ob_start();
