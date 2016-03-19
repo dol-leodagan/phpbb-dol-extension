@@ -121,6 +121,7 @@ class main
             $this->assign_class_uris();
         
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);
+        $this->template->assign_var('U_HERALD_ENABLE', true);
         return $this->helper->render('herald_body.html');
     }
     
@@ -219,6 +220,7 @@ class main
         }
         
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);
+        $this->template->assign_var('U_HERALD_ENABLE', true);
         return $this->helper->render('herald_body.html');
     }
     
@@ -237,6 +239,8 @@ class main
         
         $this->controller_helper->assign_yaml_vars($warmap);
         $this->template->assign_var('U_HERALD_COMMAND', '');
+        $this->template->assign_var('U_HERALD_ENABLE', true);
+        $this->template->assign_var('U_WARMAP_ENABLE', true);
         return $this->helper->render('herald_body.html');
     }
     
@@ -264,7 +268,7 @@ class main
         /** Search **/
         if ($cmd == 'search')
         {
-            if (strlen($params > 2)
+            if (strlen($params) > 2)
                 $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
             else
                 $cmd = 'badsearch';
@@ -272,7 +276,7 @@ class main
         /** Realm / Classes **/
         else if ($cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia')
         {
-            $this->assign_class_uris($cmd, $params)
+            $this->assign_class_uris($cmd, $params);
         }
 
         // Build URL Routes
@@ -290,6 +294,7 @@ class main
         
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);
         $this->template->assign_var('U_HERALD_PARAM', $params);
+        $this->template->assign_var('U_HERALD_ENABLE', true);
 
         return $this->helper->render('herald_body.html');
     }
