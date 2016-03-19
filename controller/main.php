@@ -118,7 +118,7 @@ class main
         }
         
         if ($cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia')
-            $this->assign_class_uris();
+            $this->assign_class_uris($cmd);
         
         $this->template->assign_var('U_HERALD_COMMAND', $cmd);
         $this->template->assign_var('U_HERALD_ENABLE', true);

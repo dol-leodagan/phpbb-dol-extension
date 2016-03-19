@@ -28,7 +28,7 @@ dol_herald_sheet:
         cmd: (player|guild)
         params: ([[:alnum:]À-ÿ ]+)
         tslash: /?
-dol_status_images:
+dol_herald_images:
     path: /herald/{cmd}/{params}{tslash}
     defaults: { _controller: dol.status.images:handle, cmd: "", params: "", tslash: "/" }
     requirements:
