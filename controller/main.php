@@ -244,7 +244,7 @@ class main
     public function handle_searchform()
     {
         /** Redirect Search POST **/
-        if ($this->request->is_set('herald_search') && )
+        if ($this->request->is_set('herald_search'))
         {
             $search_string = $this->request->variable('herald_search', '', true);
             if (preg_match('/^([[:alnum:]À-ÿ ]+){3,}$/s', $search_string))
@@ -253,7 +253,7 @@ class main
                 return new Response('', 303, $headers);
             }
         }
-        return handle_badsearch();
+        return $this->handle_badsearch();
     }
     
     /** Search and Class Ladder **/
