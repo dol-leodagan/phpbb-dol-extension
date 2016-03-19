@@ -123,9 +123,9 @@ class listener implements EventSubscriberInterface
         else
             $herald_link_active = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_herald_ladder', array('cmd' => 'active')));
         if (strpos($this->controller_helper->get_current_url(), '/herald/search') === false)
-            $herald_link_search = $this->controller_helper->route('dol_status_searchform', array('cmd' => 'search'));
+            $herald_link_search = $this->controller_helper->route('dol_herald_searchform', array('cmd' => 'search'));
         else
-            $herald_link_search = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_searchform', array('cmd' => 'search')));
+            $herald_link_search = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_herald_searchform', array('cmd' => 'search')));
         
         
         

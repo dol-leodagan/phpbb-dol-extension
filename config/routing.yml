@@ -9,12 +9,12 @@ dol_herald_ladder:
     requirements:
         cmd: (active|players|guilds|kills|deathblow|solo|albion|midgard|hibernia)?
         tslash: /?
-dol_status_searchform:
+dol_herald_searchform:
     path: /herald/search{tslash}
     defaults: { _controller: dol.status.main:handle_searchform, tslash: "/" }
     requirements:
         tslash: /?
-dol_status_search:
+dol_herald_search:
     path: /herald/{cmd}/{params}{tslash}
     defaults: { _controller: dol.status.main:handle, cmd: "", params: "", tslash: "/" }
     requirements:
@@ -36,7 +36,7 @@ dol_status_images:
         params: ([[:alnum:]À-ÿ ]+)?
         tslash: /?
 
-dol_status_badsearch:
+dol_herald_badsearch:
     path: /herald/{notcmd}/{notparams}{tslash}
     defaults: { _controller: dol.status.main:handle_badsearch, cmd: "badsearch", params: "", tslash: "/", notcmd: "", notparams: "" }
     requirements:

@@ -90,7 +90,7 @@ class main
                 foreach ($ladder['Ladder'] as $key => $value)
                 {
                     $ladder['Ladder'][$key]['LastPlayed'] = date('M j Y', $value['LastPlayed']);
-                    $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_status_sheet', array('cmd' => 'guild', 'params' => $value['GuildName']));
+                    $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'guild', 'params' => $value['GuildName']));
                 }
             }
              
@@ -108,9 +108,9 @@ class main
                 foreach ($ladder['Ladder'] as $key => $value)
                 {
                     $ladder['Ladder'][$key]['LastPlayed'] = date('M j Y', $value['LastPlayed']);
-                    $ladder['Ladder'][$key]['PLAYER_URL'] = $this->helper->route('dol_status_sheet', array('cmd' => 'player', 'params' => $value['PlayerName']));
+                    $ladder['Ladder'][$key]['PLAYER_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'player', 'params' => $value['PlayerName']));
                     if ($value['GuildName'] !== "")
-                        $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_status_sheet', array('cmd' => 'guild', 'params' => $value['GuildName']));
+                        $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'guild', 'params' => $value['GuildName']));
                 }
             }
             
@@ -138,7 +138,7 @@ class main
                 {
                     foreach($value as $num => $item)
                     {
-                        $classes['Classes'][$key][$num] = array('VALUE' => $item, 'URL' => $this->helper->route('dol_status_search', array('cmd' => $cmd, 'params' => $item)));
+                        $classes['Classes'][$key][$num] = array('VALUE' => $item, 'URL' => $this->helper->route('dol_herald_search', array('cmd' => $cmd, 'params' => $item)));
                         $existing_classes[] = $item;
                     }
                 }
@@ -162,16 +162,16 @@ class main
             {
                 if (isset($player_display['Player']['GuildName']) && $player_display['Player']['GuildName'] !== '')
                 {
-                    $player_display['Player']['GUILD_URL'] = $this->helper->route('dol_status_sheet', array('cmd' => 'guild', 'params' => $player_display['Player']['GuildName']));
-                    $player_display['Player']['BANNER_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'banner', 'params' => $player_display['Player']['GuildName']));
+                    $player_display['Player']['GUILD_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'guild', 'params' => $player_display['Player']['GuildName']));
+                    $player_display['Player']['BANNER_URL'] = $this->helper->route('dol_herald_images', array('cmd' => 'banner', 'params' => $player_display['Player']['GuildName']));
                 }
                 
-                $player_display['Player']['SIGSMALL_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigsmall', 'params' => $params));
-                $player_display['Player']['SIGSMALL_ABSURL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigsmall', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
-                $player_display['Player']['SIGDETAILED_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigdetailed', 'params' => $params));
-                $player_display['Player']['SIGDETAILED_ABSURL'] = $this->helper->route('dol_status_images', array('cmd' => 'sigdetailed', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
-                $player_display['Player']['SIGLARGE_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'siglarge', 'params' => $params));
-                $player_display['Player']['SIGLARGE_ABSURL'] = $this->helper->route('dol_status_images', array('cmd' => 'siglarge', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                $player_display['Player']['SIGSMALL_URL'] = $this->helper->route('dol_herald_images', array('cmd' => 'sigsmall', 'params' => $params));
+                $player_display['Player']['SIGSMALL_ABSURL'] = $this->helper->route('dol_herald_images', array('cmd' => 'sigsmall', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                $player_display['Player']['SIGDETAILED_URL'] = $this->helper->route('dol_herald_images', array('cmd' => 'sigdetailed', 'params' => $params));
+                $player_display['Player']['SIGDETAILED_ABSURL'] = $this->helper->route('dol_herald_images', array('cmd' => 'sigdetailed', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
+                $player_display['Player']['SIGLARGE_URL'] = $this->helper->route('dol_herald_images', array('cmd' => 'siglarge', 'params' => $params));
+                $player_display['Player']['SIGLARGE_ABSURL'] = $this->helper->route('dol_herald_images', array('cmd' => 'siglarge', 'params' => $params), true, false, UrlGeneratorInterface::ABSOLUTE_URL);
                 
                 // Stats
                 $player_display['Player']['KILLSTOTAL'] = $player_display['Player']['KillsAlbionPlayers'] + $player_display['Player']['KillsMidgardPlayers'] + $player_display['Player']['KillsHiberniaPlayers'];
@@ -205,12 +205,12 @@ class main
             //Build Routes
             if (isset($guild_display['Guild']))
             {                    
-                $guild_display['Guild']['BANNER_URL'] = $this->helper->route('dol_status_images', array('cmd' => 'banner', 'params' => $guild_display['Guild']['Name']));
+                $guild_display['Guild']['BANNER_URL'] = $this->helper->route('dol_herald_images', array('cmd' => 'banner', 'params' => $guild_display['Guild']['Name']));
                 if (isset($guild_display['Guild']['Players']) && is_array($guild_display['Guild']['Players']))
                 {
                     foreach($guild_display['Guild']['Players'] as $num => $player)
                     {
-                        $guild_display['Guild']['Players'][$num]['PLAYER_URL'] = $this->helper->route('dol_status_sheet', array('cmd' => 'player', 'params' => $player['PlayerName']));
+                        $guild_display['Guild']['Players'][$num]['PLAYER_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'player', 'params' => $player['PlayerName']));
                         $guild_display['Guild']['Players'][$num]['LastPlayed'] = date('M j Y', $player['LastPlayed']);
                     }
                 }
@@ -234,7 +234,7 @@ class main
                 if (is_array($structures))
                     foreach($structures as $num => $structure)
                         if (isset($structure['Claimed']) && $structure['Claimed'] === true)
-                            $warmap['Structures'][$realm][$num]['IMGURL'] = $this->helper->route('dol_status_images', array('cmd' => 'banner', 'params' => $structure['ClaimedBy']));
+                            $warmap['Structures'][$realm][$num]['IMGURL'] = $this->helper->route('dol_herald_images', array('cmd' => 'banner', 'params' => $structure['ClaimedBy']));
                         
         
         $this->controller_helper->assign_yaml_vars($warmap);
@@ -253,7 +253,7 @@ class main
             $search_string = $this->request->variable('herald_search', '', true);
             if (preg_match('/^([[:alnum:]À-ÿ ]+){3,}$/s', $search_string))
             {
-                $headers = array('Location' => $this->helper->route('dol_status_search', array('cmd' => 'search', 'params' => $search_string)));
+                $headers = array('Location' => $this->helper->route('dol_herald_search', array('cmd' => 'search', 'params' => $search_string)));
                 return new Response('', 303, $headers);
             }
         }
@@ -285,9 +285,9 @@ class main
             foreach ($ladder['Ladder'] as $key => $value)
             {
                 $ladder['Ladder'][$key]['LastPlayed'] = date('M j Y', $value['LastPlayed']);
-                $ladder['Ladder'][$key]['PLAYER_URL'] = $this->helper->route('dol_status_sheet', array('cmd' => 'player', 'params' => $value['PlayerName']));
+                $ladder['Ladder'][$key]['PLAYER_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'player', 'params' => $value['PlayerName']));
                 if ($value['GuildName'] !== "")
-                    $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_status_sheet', array('cmd' => 'guild', 'params' => $value['GuildName']));
+                    $ladder['Ladder'][$key]['GUILD_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'guild', 'params' => $value['GuildName']));
             }
             $this->controller_helper->assign_yaml_vars($ladder);
         }
