@@ -1,24 +1,47 @@
 dol_status_controller:
+    path: /herald{tslash}
+    defaults: { _controller: dol.status.main:handle_warmap, tslash: "/" }
+    requirements:
+        tslash: /?
+dol_herald_ladder:
+    path: /herald/{cmd}{tslash}
+    defaults: { _controller: dol.status.main:handle_ladder, cmd: "", tslash: "/" }
+    requirements:
+        cmd: (active|players|guilds|kills|deathblow|solo|albion|midgard|hibernia)?
+        tslash: /?
+dol_status_searchform:
+    path: /herald/search{tslash}
+    defaults: { _controller: dol.status.main:handle_searchform, tslash: "/" }
+    requirements:
+        tslash: /?
+dol_status_search:
     path: /herald/{cmd}/{params}{tslash}
     defaults: { _controller: dol.status.main:handle, cmd: "", params: "", tslash: "/" }
     requirements:
-        cmd: (active|players|guilds|kills|deathblow|solo|player|guild|search|albion|midgard|hibernia|signature|banner|sigsmall|siglarge|sigdetailed)?
-        params: ([[:alnum:]À-ÿ ]+)?
+        cmd: (search|albion|midgard|hibernia)
+        params: ([[:alnum:]À-ÿ ]+)
         tslash: /?
-dol_status_badsearch:
-    path: /herald/{notcmd}/{notparams}{tslash}
-    defaults: { _controller: dol.status.main:handle, cmd: "badsearch", params: "", tslash: "/", notcmd: "", notparams: "" }
+dol_herald_sheet:
+    path: /herald/{cmd}/{params}{tslash}
+    defaults: { _controller: dol.status.main:handle_sheet, cmd: "", params: "", tslash: "/" }
     requirements:
-        notcmd: (search)
-        notparams: .*
+        cmd: (player|guild)
+        params: ([[:alnum:]À-ÿ ]+)
         tslash: /?
-
 dol_status_images:
     path: /herald/{cmd}/{params}{tslash}
     defaults: { _controller: dol.status.images:handle, cmd: "", params: "", tslash: "/" }
     requirements:
         cmd: (banner|sigsmall|siglarge|sigdetailed)
         params: ([[:alnum:]À-ÿ ]+)?
+        tslash: /?
+
+dol_status_badsearch:
+    path: /herald/{notcmd}/{notparams}{tslash}
+    defaults: { _controller: dol.status.main:handle_badsearch, cmd: "badsearch", params: "", tslash: "/", notcmd: "", notparams: "" }
+    requirements:
+        notcmd: (search)
+        notparams: .*
         tslash: /?
 
 dol_status_game:
