@@ -71,7 +71,7 @@ class helper
             }
             catch (ParseException $e)
             {
-                return array('Y_Exception' => $e->getMessage());
+                return array('Yaml_Exception' => $e->getMessage());
             }
         }
         
@@ -100,6 +100,9 @@ class helper
     /** Region - YAML to Template Parser **/
     public function assign_yaml_vars($yaml)
     {
+        if (!is_array($yaml))
+            return;
+        
         foreach($yaml as $key => $value)
         {
             if (is_array($value))

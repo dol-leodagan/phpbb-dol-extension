@@ -1,53 +1,54 @@
 <div class="panel herald-player herald-player-{Y_Player_Realm}">
     <div class="inner"><span class="corners-top"><span></span></span>
     <div class="herald-player-name"><span>{Y_Player_Name}</span><span><!-- IF Y_Player_LastName !== "" -->{Y_Player_LastName}<!-- ENDIF --></span><span>{Y_Player_RealmTitle}</span></div>
-    <div class="herald-player-guild"><span>Guild</span><!-- IF Y_Player_GuildName !== "" --><span><a href="{Y_Player_GUILD_URL}" title="{Y_Player_GuildName}">{Y_Player_GuildName}</a></span><!-- ENDIF --></div>
-    <div class="herald-player-realmrank"><span>Realm Rank</span><span>{Y_Player_RealmRank}</span></div>
-    <div class="herald-player-realmrank"><span>Realm Points</span><span>{Y_Player_RealmPoints}</span></div>
-    <div class="herald-player-rank"><span>Rank on Server</span><span>{Y_Player_Ranking}</span></div>
-    <div class="herald-player-rank"><span>Rank in Realm</span><span>{Y_Player_RankingRealm}</span></div>
-    <div class="herald-player-rank"><span>Rank in Class</span><span>{Y_Player_RankingClass}</span></div>
+    <div class="herald-player-guild"><span>{L_DOL_HERALD_PLAYERGUILD}</span><!-- IF Y_Player_GuildName !== "" --><span><a href="{Y_Player_GUILD_URL}" title="{Y_Player_GuildName}">{Y_Player_GuildName}</a></span><!-- ENDIF --></div>
+    <div class="herald-player-realmrank"><span>{L_DOL_HERALD_PLAYERREALMRANK}</span><span>{Y_Player_RealmRank}</span></div>
+    <div class="herald-player-realmrank"><span>{L_DOL_HERALD_PLAYERREALMPOINTS}</span><span>{Y_Player_RealmPoints}</span></div>
+    <div class="herald-player-rank"><span>{L_DOL_HERALD_PLAYERRANKINGSERVER}</span><span>{Y_Player_Ranking}</span></div>
+    <div class="herald-player-rank"><span>{L_DOL_HERALD_PLAYERRANKINGREALM}</span><span>{Y_Player_RankingRealm}</span></div>
+    <div class="herald-player-rank"><span>{L_DOL_HERALD_PLAYERRANKINGCLASS}</span><span>{Y_Player_RankingClass}</span></div>
     <!-- IF Y_Player_Realm == "albion" -->
-    <div class="herald-player-stats"><span>Total Player Kills</span><span>{Y_Player_KILLSTOTAL}</span></div>
-    <div class="herald-player-stats"><span>Midgard Player Kills</span><span>{Y_Player_KillsMidgardPlayers}</span><span>{Y_Player_KILLSRATIO_MIDGARD}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Hibernia Player Kills</span><span>{Y_Player_KillsHiberniaPlayers}</span><span>{Y_Player_KILLSRATIO_HIBERNIA}</span><span>of total Kills</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALKILLS}</span><span>{Y_Player_KILLSTOTAL}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERMIDGARDKILLS}</span><span>{Y_Player_KillsMidgardPlayers}</span><span>{Y_Player_KILLSRATIO_MIDGARD}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERHIBERNIAKILLS}</span><span>{Y_Player_KillsHiberniaPlayers}</span><span>{Y_Player_KILLSRATIO_HIBERNIA}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
 
-    <div class="herald-player-stats"><span>Total Deathblow</span><span>{Y_Player_DEATHBLOWSTOTAL}</span><span>{Y_Player_KILLSRATIODEATHBLOWS}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Deathblow Midgard</span><span>{Y_Player_KillsMidgardDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_MIDGARD}</span><span>of total Deathblows</span></div>
-    <div class="herald-player-stats"><span>Deathblow Hibernia</span><span>{Y_Player_KillsHiberniaDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_HIBERNIA}</span><span>of total Deathblows</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALDEATHBLOW}</span><span>{Y_Player_DEATHBLOWSTOTAL}</span><span>{Y_Player_KILLSRATIODEATHBLOWS}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERMIDGARDDEATHBLOW}</span><span>{Y_Player_KillsMidgardDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_MIDGARD}</span><span>{L_DOL_HERALD_PLAYEROFTOTALDEATHBLOW}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERHIBERNIADEATHBLOW}</span><span>{Y_Player_KillsHiberniaDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_HIBERNIA}</span><span>{L_DOL_HERALD_PLAYEROFTOTALDEATHBLOW}</span></div>
 
-    <div class="herald-player-stats"><span>Total Solo Kills</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Midgard Player Solo Kills</span><span>{Y_Player_KillsMidgardSolo}</span><span>{Y_Player_SOLORATIO_MIDGARD}</span><span>of total Solo Kills</span></div>
-    <div class="herald-player-stats"><span>Hibernia Player Solo Kills</span><span>{Y_Player_KillsHiberniaSolo}</span><span>{Y_Player_SOLORATIO_HIBERNIA}</span><span>of total Solo Kills</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALSOLO}</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERMIDGARDSOLO}</span><span>{Y_Player_KillsMidgardSolo}</span><span>{Y_Player_SOLORATIO_MIDGARD}</span><span>{L_DOL_HERALD_PLAYEROFTOTALSOLO}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERHIBERNIASOLO}</span><span>{Y_Player_KillsHiberniaSolo}</span><span>{Y_Player_SOLORATIO_HIBERNIA}</span><span>{L_DOL_HERALD_PLAYEROFTOTALSOLO}</span></div>
     <!-- ELSEIF Y_Player_Realm == "midgard" -->
-    <div class="herald-player-stats"><span>Total Player Kills</span><span>{Y_Player_KILLSTOTAL}</span></div>
-    <div class="herald-player-stats"><span>Albion Player Kills</span><span>{Y_Player_KillsAlbionPlayers}</span><span>{Y_Player_KILLSRATIO_ALBION}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Hibernia Player Kills</span><span>{Y_Player_KillsHiberniaPlayers}</span><span>{Y_Player_KILLSRATIO_HIBERNIA}</span><span>of total Kills</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALKILLS}</span><span>{Y_Player_KILLSTOTAL}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERALBIONKILLS}</span><span>{Y_Player_KillsAlbionPlayers}</span><span>{Y_Player_KILLSRATIO_ALBION}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERHIBERNIAKILLS}</span><span>{Y_Player_KillsHiberniaPlayers}</span><span>{Y_Player_KILLSRATIO_HIBERNIA}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
 
-    <div class="herald-player-stats"><span>Total Deathblow</span><span>{Y_Player_DEATHBLOWSTOTAL}</span><span>{Y_Player_KILLSRATIODEATHBLOWS}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Deathblow Albion</span><span>{Y_Player_KillsAlbionDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_ALBION}</span><span>of total Deathblows</span></div>
-    <div class="herald-player-stats"><span>Deathblow Hibernia</span><span>{Y_Player_KillsHiberniaDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_HIBERNIA}</span><span>of total Deathblows</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALDEATHBLOW}</span><span>{Y_Player_DEATHBLOWSTOTAL}</span><span>{Y_Player_KILLSRATIODEATHBLOWS}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERALBIONDEATHBLOW}</span><span>{Y_Player_KillsAlbionDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_ALBION}</span><span>{L_DOL_HERALD_PLAYEROFTOTALDEATHBLOW}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERHIBERNIADEATHBLOW}</span><span>{Y_Player_KillsHiberniaDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_HIBERNIA}</span><span>{L_DOL_HERALD_PLAYEROFTOTALDEATHBLOW}</span></div>
 
-    <div class="herald-player-stats"><span>Total Solo Kills</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Albion Player Solo Kills</span><span>{Y_Player_KillsAlbionSolo}</span><span>{Y_Player_SOLORATIO_ALBION}</span><span>of total Solo Kills</span></div>
-    <div class="herald-player-stats"><span>Hibernia Player Solo Kills</span><span>{Y_Player_KillsHiberniaSolo}</span><span>{Y_Player_SOLORATIO_HIBERNIA}</span><span>of total Solo Kills</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALSOLO}</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERALBIONSOLO}</span><span>{Y_Player_KillsAlbionSolo}</span><span>{Y_Player_SOLORATIO_ALBION}</span><span>{L_DOL_HERALD_PLAYEROFTOTALSOLO}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERHIBERNIASOLO}</span><span>{Y_Player_KillsHiberniaSolo}</span><span>{Y_Player_SOLORATIO_HIBERNIA}</span><span>{L_DOL_HERALD_PLAYEROFTOTALSOLO}</span></div>
     <!-- ELSEIF Y_Player_Realm == "hibernia" -->
-    <div class="herald-player-stats"><span>Total Player Kills</span><span>{Y_Player_KILLSTOTAL}</span></div>
-    <div class="herald-player-stats"><span>Albion Player Kills</span><span>{Y_Player_KillsAlbionPlayers}</span><span>{Y_Player_KILLSRATIO_ALBION}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Midgard Player Kills</span><span>{Y_Player_KillsMidgardPlayers}</span><span>{Y_Player_KILLSRATIO_MIDGARD}</span><span>of total Kills</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALKILLS}</span><span>{Y_Player_KILLSTOTAL}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERALBIONKILLS}</span><span>{Y_Player_KillsAlbionPlayers}</span><span>{Y_Player_KILLSRATIO_ALBION}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERMIDGARDKILLS}</span><span>{Y_Player_KillsMidgardPlayers}</span><span>{Y_Player_KILLSRATIO_MIDGARD}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
 
-    <div class="herald-player-stats"><span>Total Deathblow</span><span>{Y_Player_DEATHBLOWSTOTAL}</span><span>{Y_Player_KILLSRATIODEATHBLOWS}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Deathblow Albion</span><span>{Y_Player_KillsAlbionDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_ALBION}</span><span>of total Deathblows</span></div>
-    <div class="herald-player-stats"><span>Deathblow Midgard</span><span>{Y_Player_KillsMidgardDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_MIDGARD}</span><span>of total Deathblows</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALDEATHBLOW}</span><span>{Y_Player_DEATHBLOWSTOTAL}</span><span>{Y_Player_KILLSRATIODEATHBLOWS}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERALBIONDEATHBLOW}</span><span>{Y_Player_KillsAlbionDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_ALBION}</span><span>{L_DOL_HERALD_PLAYEROFTOTALDEATHBLOW}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERMIDGARDDEATHBLOW}</span><span>{Y_Player_KillsMidgardDeathBlows}</span><span>{Y_Player_DEATHBLOWSRATIO_MIDGARD}</span><span>{L_DOL_HERALD_PLAYEROFTOTALDEATHBLOW}</span></div>
 
-    <div class="herald-player-stats"><span>Total Solo Kills</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>of total Kills</span></div>
-    <div class="herald-player-stats"><span>Albion Player Solo Kills</span><span>{Y_Player_KillsAlbionSolo}</span><span>{Y_Player_SOLORATIO_ALBION}</span><span>of total Solo Kills</span></div>
-    <div class="herald-player-stats"><span>Midgard Player Solo Kills</span><span>{Y_Player_KillsMidgardSolo}</span><span>{Y_Player_SOLORATIO_MIDGARD}</span><span>of total Solo Kills</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERTOTALSOLO}</span><span>{Y_Player_SOLOTOTAL}</span><span>{Y_Player_KILLSRATIOSOLO}</span><span>{L_DOL_HERALD_PLAYEROFTOTALKILLS}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERALBIONSOLO}</span><span>{Y_Player_KillsAlbionSolo}</span><span>{Y_Player_SOLORATIO_ALBION}</span><span>{L_DOL_HERALD_PLAYEROFTOTALSOLO}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERMIDGARDSOLO}</span><span>{Y_Player_KillsMidgardSolo}</span><span>{Y_Player_SOLORATIO_MIDGARD}</span><span>{L_DOL_HERALD_PLAYEROFTOTALSOLO}</span></div>
     <!-- ENDIF -->
     
-    <div class="herald-player-stats"><span>RvR Deaths</span><span>{Y_Player_DeathsPvP}</span></div>
-    <div class="herald-player-stats"><span>Kill / Death Ratio</span><span>{Y_Player_KILLDEATHRATIO}</span></div>
-    <div class="herald-player-stats"><span>Realm Points per Death</span><span>{Y_Player_RPDEATHRATIO}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERRVRDEATHS}</span><span>{Y_Player_DeathsPvP}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERKILLDEATHRATIO}</span><span>{Y_Player_KILLDEATHRATIO}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERRPPERDEATH}</span><span>{Y_Player_RPDEATHRATIO}</span></div>
+    <div class="herald-player-stats"><span>{L_DOL_HERALD_PLAYERLASTPLAYED}</span><span>{Y_Player_LastPlayed}</span></div>
     
     <!-- IF Y_Player_GuildName !== "" -->
     <div class="herald-player-banner"><img src="{Y_Player_BANNER_URL}" title="{Y_Player_GuildName}" alt="{Y_Player_GuildName}" /></div>
@@ -57,7 +58,7 @@
 
 <div class="panel herald-player herald-player-signatures">
     <div class="inner"><span class="corners-top"><span></span></span>
-    <p>Signatures</p>
+    <p>{L_DOL_HERALD_PLAYERSIGNATURES}</p>
     <div><img src="{Y_Player_SIGSMALL_URL}" title="{Y_Player_Name}" alt="{Y_Player_Name}" /><p>[img]{Y_Player_SIGSMALL_ABSURL}[/img]</p></div>
     <div><img src="{Y_Player_SIGDETAILED_URL}" title="{Y_Player_Name}" alt="{Y_Player_Name}" /><p>[img]{Y_Player_SIGDETAILED_ABSURL}[/img]</p></div>
     <div><img src="{Y_Player_SIGLARGE_URL}" title="{Y_Player_Name}" alt="{Y_Player_Name}" /><p>[img]{Y_Player_SIGLARGE_ABSURL}[/img]</p></div>

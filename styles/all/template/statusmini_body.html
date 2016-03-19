@@ -3,31 +3,31 @@
 <!-- ELSE -->
 <table>
     <tr class="server-state server-{Y_Status}">
-        <td>Freyad Shard:</td>
-        <td><!-- IF Y_Status == "online" -->Online<!-- ELSEIF Y_Status == "starting" -->Starting<!-- ELSE -->Offline<!-- ENDIF --></td>
+        <td>Freyad {L_DOL_STATUS_SHARD}:</td>
+        <td><!-- IF Y_Status == "online" -->{L_DOL_STATUS_ONLINE}<!-- ELSEIF Y_Status == "starting" -->{L_DOL_STATUS_STARTING}<!-- ELSE -->{L_DOL_STATUS_OFFLINE}<!-- ENDIF --></td>
     </tr><tr class="server-load server-<!-- IF Y_Load < 40 -->light<!-- ELSEIF Y_Load < 80 -->normal<!-- ELSE -->heavy<!-- ENDIF -->">
-        <td>Server Load:</td>
-        <td><!-- IF Y_Load < 40 -->Light<!-- ELSEIF Y_Load < 80 -->Normal<!-- ELSE -->Heavy<!-- ENDIF --></td>
+        <td>{L_DOL_STATUS_SERVERLOAD}:</td>
+        <td><!-- IF Y_Load < 40 -->{L_DOL_STATUS_LIGHT}<!-- ELSEIF Y_Load < 80 -->{L_DOL_STATUS_NORMAL}<!-- ELSE -->{L_DOL_STATUS_HEAVY}<!-- ENDIF --></td>
     </tr><tr class="server-replication server-{Y_Replication}">
-        <td>Replication:</td>
-        <td><!-- IF Y_Replication == "working" -->Working<!-- ELSEIF Y_Replication == "delayed" -->Delayed<!-- ELSE -->Broken<!-- ENDIF --></td>
+        <td>{L_DOL_STATUS_REPLICATION}:</td>
+        <td><!-- IF Y_Replication == "working" -->{L_DOL_STATUS_WORKING}<!-- ELSEIF Y_Replication == "delayed" -->{L_DOL_STATUS_DELAYED}<!-- ELSE -->{L_DOL_STATUS_BROKEN}<!-- ENDIF --></td>
     </tr><tr class="server-players">
-        <td>Online Players:</td>
+        <td>{L_DOL_STATUS_ONLINEPLAYERS}:</td>
         <td>{Y_Players}</td>
     </tr><tr class="server-account">
-        <td>Accounts:</td>
+        <td>{L_DOL_STATUS_ACCOUNTS}:</td>
         <td>{Y_Accounts}</td>
     </tr><tr class="server-validated">
-        <td>Validated:</td>
+        <td>{L_DOL_STATUS_VALIDATED}:</td>
         <td>{Y_Validated}</td>
     </tr><tr class="server-mobs">
-        <td>Mobs spawned:</td>
+        <td>{L_DOL_STATUS_MOBSSPAWNED}:</td>
         <td>{Y_Mobs}</td>
     </tr><tr class="server-restarted">
-        <td>Server Restarted:</td>
+        <td>{L_DOL_STATUS_RESTARTED}:</td>
         <td>{Y_Restarted}</td>
     </tr><tr class="server-time">
-        <td>Server Time:</td>
+        <td>{L_DOL_STATUS_TIME}:</td>
         <td>{Y_Time}</td>
     </tr>
 </table>

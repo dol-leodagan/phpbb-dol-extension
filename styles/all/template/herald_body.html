@@ -3,11 +3,11 @@
 <h2>{L_DOL_STATUS_HERALD}</h2>
 
 <div class="herald-flags">
-    <a href="{U_HERALD_WARMAP}" title="Warmap" class="herald-knotflag herald-flag<!-- IF U_HERALD_COMMAND === "" --> herald-flag-selected<!-- ENDIF -->"><span>Warmap</span></a>
-    <a href="{U_HERALD_ALBION}" title="Albion" class="herald-albflag herald-flag<!-- IF U_HERALD_COMMAND == "albion" --> herald-flag-selected<!-- ENDIF -->"><span>Albion</span></a>
-    <a href="{U_HERALD_MIDGARD}" title="Midgard" class="herald-midflag herald-flag<!-- IF U_HERALD_COMMAND == "midgard" --> herald-flag-selected<!-- ENDIF -->"><span>Midgard</span></a>
-    <a href="{U_HERALD_HIBERNIA}" title="Hibernia" class="herald-hibflag herald-flag<!-- IF U_HERALD_COMMAND == "hibernia" --> herald-flag-selected<!-- ENDIF -->"><span>Hibernia</span></a>
-    <div class="herald-search  search-box"><span>Search</span><form method="post" action="{U_HERALD_SEARCH}"><fieldset><input name="herald_search" placeholder="Players and Guilds..." class="inputbox search tiny" type="text" /><button class="button icon-button search-icon" title="Players and Guilds" type="submit" /></fieldset></form></div>
+    <a href="{U_HERALD_WARMAP}" title="{L_DOL_HERALD_WARMAP}" class="herald-knotflag herald-flag<!-- IF U_HERALD_COMMAND === "" --> herald-flag-selected<!-- ENDIF -->"><span>{L_DOL_HERALD_WARMAP}</span></a>
+    <a href="{U_HERALD_ALBION}" title="{L_DOL_STATUS_ALBION}" class="herald-albflag herald-flag<!-- IF U_HERALD_COMMAND == "albion" --> herald-flag-selected<!-- ENDIF -->"><span>{L_DOL_STATUS_ALBION}</span></a>
+    <a href="{U_HERALD_MIDGARD}" title="{L_DOL_STATUS_MIDGARD}" class="herald-midflag herald-flag<!-- IF U_HERALD_COMMAND == "midgard" --> herald-flag-selected<!-- ENDIF -->"><span>{L_DOL_STATUS_MIDGARD}</span></a>
+    <a href="{U_HERALD_HIBERNIA}" title="{L_DOL_STATUS_HIBERNIA}" class="herald-hibflag herald-flag<!-- IF U_HERALD_COMMAND == "hibernia" --> herald-flag-selected<!-- ENDIF -->"><span>{L_DOL_STATUS_HIBERNIA}</span></a>
+    <div class="herald-search  search-box"><span>{L_DOL_HERALD_SEARCH}</span><form method="post" action="{U_HERALD_SEARCH}"><fieldset><input name="herald_search" placeholder="{L_DOL_HERALD_PLACEHOLDER}" class="inputbox search tiny" type="text" /><button class="button icon-button search-icon" title="{L_DOL_HERALD_PLACEHOLDER}" type="submit" /></fieldset></form></div>
 </div>
 
 <!-- IF U_HERALD_COMMAND == "albion" -->
@@ -56,13 +56,13 @@
 <div class="panel herald-ladder">
    <div class="inner"><span class="corners-top"><span></span></span>
         <div class="centered-content"><ul>
-        <li class="<!-- IF U_HERALD_COMMAND == "active" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_ACTIVE}">Top Active Players</a></li>
-        <li class="<!-- IF U_HERALD_COMMAND == "players" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_PLAYERS}">Top 50 Players</a></li>
-        <li class="<!-- IF U_HERALD_COMMAND == "guilds" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_GUILDS}">Top 50 Guilds</a></li>
-        <li class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_KILLS}">Top 50 Total Kills</a></li>
-        <li class="<!-- IF U_HERALD_COMMAND == "deathblow" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_DEATHBLOW}">Top 50 Deathblows</a></li>
-        <li class="<!-- IF U_HERALD_COMMAND == "solo" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_SOLO}">Top 50 Solo Kills</a></li>
-        <li class="<!-- IF U_HERALD_COMMAND == "people" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_WARMAP}">Population Statistic</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "active" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_ACTIVE}" title="{L_DOL_HERALD_LADDERACTIVE}">{L_DOL_HERALD_LADDERACTIVE}</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "players" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_PLAYERS}" title="{L_DOL_HERALD_LADDERTOP}">{L_DOL_HERALD_LADDERTOP}</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "guilds" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_GUILDS}" title="{L_DOL_HERALD_LADDERGUILDS}">{L_DOL_HERALD_LADDERGUILDS}</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "kills" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_KILLS}" title="{L_DOL_HERALD_LADDERKILLS}">{L_DOL_HERALD_LADDERKILLS}</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "deathblow" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_DEATHBLOW}" title="{L_DOL_HERALD_LADDERDEATHBLOW}">{L_DOL_HERALD_LADDERDEATHBLOW}</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "solo" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_SOLO}" title="{L_DOL_HERALD_LADDERSOLO}">{L_DOL_HERALD_LADDERSOLO}</a></li>
+        <li class="<!-- IF U_HERALD_COMMAND == "people" -->herald-ladder-selected<!-- ENDIF -->"><a href="{U_HERALD_WARMAP}" title="{L_DOL_HERALD_RESUME}">{L_DOL_HERALD_RESUME}</a></li>
         </ul></div>
     <span class="corners-bottom"><span></span></span></div>
 </div>
@@ -81,7 +81,7 @@
 <!-- ELSEIF U_HERALD_COMMAND == "badsearch" -->
 <div class="panel herald-ladder">
    <div class="inner"><span class="corners-top"><span></span></span>
-        <div class="centered-content">Invalid Search Terms ! Search Query must consist of at least 3 characters and no special characters...</div>
+        <div class="centered-content">{L_DOL_HERALD_BADSEARCH}</div>
     <span class="corners-bottom"><span></span></span></div>
 </div>
 <!-- ENDIF -->
