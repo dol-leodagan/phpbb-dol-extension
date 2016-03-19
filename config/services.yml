@@ -35,6 +35,18 @@ services:
             - .%core.php_ext%
             - '@dol.status.controller_helper'
 
+    dol.status.game:
+        class: dol\status\controller\game
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '@request'
+            - %core.root_path%
+            - .%core.php_ext%
+            - '@dol.status.controller_helper'
+
     dol.status.controller_helper:
         class: dol\status\controller\helper
         arguments:

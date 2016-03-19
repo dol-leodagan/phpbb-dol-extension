@@ -44,14 +44,6 @@ dol_herald_badsearch:
         notparams: .*
         tslash: /?
 
-dol_status_game:
-    path: /game
-    defaults: { _controller: dol.status.main:handle_game }
-
-dol_status_book:
-    path: /grimoire
-    defaults: { _controller: dol.status.main:handle_book }
-
 dol_status_status:
     path: /status{tslash}
     defaults: { _controller: dol.status.status:handle, tslash: "/" }
@@ -67,3 +59,12 @@ dol_status_statusrvr:
     defaults: { _controller: dol.status.status:handle_rvrmini, tslash: "/" }
     requirements:
         tslash: /?
+
+
+dol_status_game:
+    path: /game
+    defaults: { _controller: dol.status.game:handle }
+
+dol_status_book:
+    path: /grimoire
+    defaults: { _controller: dol.status.main:handle_book }

@@ -156,6 +156,9 @@ class main
     /** Guild/Player Handler **/
     public function handle_sheet($cmd, $params)
     {
+        if ($this->user->data['user_id'] == ANONYMOUS)
+            return $this->helper->message('LOGIN_REQUIRED', array(), 'NO_AUTH_OPERATION', 403);
+        
         if ($params === null || $params === '')
             return $this->handle_badsearch();
         
@@ -254,6 +257,8 @@ class main
     /** Search Form Handler **/
     public function handle_searchform()
     {
+        if ($this->user->data['user_id'] == ANONYMOUS)
+            return $this->helper->message('LOGIN_REQUIRED', array(), 'NO_AUTH_OPERATION', 403);
         /** Redirect Search POST **/
         if ($this->request->is_set('herald_search'))
         {
@@ -275,6 +280,8 @@ class main
         /** Search **/
         if ($cmd == 'search')
         {
+            if ($this->user->data['user_id'] == ANONYMOUS)
+                return $this->helper->message('LOGIN_REQUIRED', array(), 'NO_AUTH_OPERATION', 403);
             if (strlen($params) > 2)
                 $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
             else
