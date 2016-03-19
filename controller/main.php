@@ -276,7 +276,8 @@ class main
         /** Realm / Classes **/
         else if ($cmd == 'albion' || $cmd == 'midgard' || $cmd == 'hibernia')
         {
-            $this->assign_class_uris($cmd, $params);
+            if ($this->assign_class_uris($cmd, $params))
+                $ladder = $this->controller_helper->backend_yaml_query($cmd.'/'.$params, 5 * 60);
         }
 
         // Build URL Routes
