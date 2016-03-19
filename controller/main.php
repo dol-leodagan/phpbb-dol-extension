@@ -78,7 +78,7 @@ class main
         $this->controller_helper = $controller_helper;
     }
     
-    /** Herald Handler **/
+    /** Ladder Handler **/
     public function handle_ladder($cmd)
     {
         if ($cmd == 'guilds')
@@ -125,6 +125,7 @@ class main
         return $this->helper->render('herald_body.html');
     }
     
+    /** Class List Helper **/
     private function assign_class_uris($cmd, $params = '')
     {
         $classes = $this->controller_helper->backend_yaml_query('classes', 24 * 60 * 60);
@@ -152,8 +153,12 @@ class main
         return true;
     }
     
+    /** Guild/Player Handler **/
     public function handle_sheet($cmd, $params)
     {
+        if ($params === null || $params === '')
+            return $this->handle_badsearch();
+        
         if ($cmd == 'player')
         {
             $player_display = $this->controller_helper->backend_yaml_query('getplayer/'.$params, 5 * 60);
@@ -195,6 +200,8 @@ class main
 
                 $player_display['Player']['KILLDEATHRATIO'] = round($player_display['Player']['KILLSTOTAL'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']), 2);
                 $player_display['Player']['RPDEATHRATIO'] = round($player_display['Player']['RealmPoints'] / ($player_display['Player']['DeathsPvP'] == 0 ? 1 : $player_display['Player']['DeathsPvP']));
+                
+                $player_display['Player']['LastPlayed'] = date('M j Y', $player_display['Player']['LastPlayed']);
             }
             
             $this->controller_helper->assign_yaml_vars($player_display);
@@ -224,7 +231,7 @@ class main
         return $this->helper->render('herald_body.html');
     }
     
-    /** Warmap **/
+    /** Warmap Handler **/
     public function handle_warmap()
     {
         $warmap = $this->controller_helper->backend_yaml_query('warmap', 5 * 60);
@@ -244,7 +251,7 @@ class main
         return $this->helper->render('herald_body.html');
     }
     
-    /** Search Form **/
+    /** Search Form Handler **/
     public function handle_searchform()
     {
         /** Redirect Search POST **/
