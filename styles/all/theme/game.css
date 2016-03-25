@@ -1,0 +1,87 @@
+.game-validated table.table1 thead {
+    display: none;
+}
+
+.game-validated table.table1 tbody th:first-child {
+    border-top-left-radius: 4px;
+}
+
+.game-validated table.table1 tbody th:last-child {
+    border-top-right-radius: 4px;
+}
+
+.game-validated table.table1 tbody th {
+    color: #fff;
+}
+
+.game-validated table.table1 tbody th {
+    background: #5d6578;
+    border: 0 solid #5d6578;
+    color: #fff;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#30FFFFFF, endColorstr=#00FFFFFF);
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+    text-transform: none;
+    line-height: 1.4;
+    font-weight: normal;
+    font-size: 13px;
+    padding: 4px;
+    text-align: center;
+}
+
+.game-validated table.table1 tbody > tr:first-child,
+.game-validated table.table1 tbody > tr:first-child > td {
+    border-top: none;
+}
+
+.game-pending tr > td {
+    text-align: center;
+}
+.game-pending tr > td:first-child {
+    text-align: left;
+}
+.game-pending tr > td:nth-child(3) {
+    text-transform: capitalize;
+}
+
+.game-validated tr > td:nth-child(2),
+.game-validated tr > td:nth-child(3),
+.game-validated tr > td:nth-child(8) {
+    text-align: center;
+}
+.game-validated tr > td:nth-child(4),
+.game-validated tr > td:nth-child(5),
+.game-validated tr > td:nth-child(6),
+.game-validated tr > td:nth-child(7),
+.game-validated tr > td:nth-child(9) {
+    text-align: right;
+}
+
+.game-validated tr > td > h4 {
+    font-size: large;
+    margin-top: 10px;
+}
+
+.game-validated tr > td > span {
+    display: inline-block;
+    margin: 0 5px;
+}
+.game-validated tr > td > span:nth-of-type(2n):after {
+    content: '-';
+    margin-left: 10px; 
+}
+.game-validated tr > td > span:last-of-type:after {
+    content: '';
+}
+.game-validated tr > td > span:nth-of-type(2) {
+    text-transform: capitalize;
+}
+
+.game-pending div.game-help {
+    margin: 10px 0px 5px 5px;
+}
+
+.game-pending div.game-help ul {
+    margin-left: 25px;
+}

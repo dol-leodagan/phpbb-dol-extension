@@ -62,7 +62,7 @@ dol_status_statusrvr:
 
 
 dol_status_game:
-    path: /game
+    path: /account
     defaults: { _controller: dol.status.game:handle }
 
 dol_status_book:

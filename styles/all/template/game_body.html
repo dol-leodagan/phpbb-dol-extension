@@ -1,5 +1,67 @@
 <!-- INCLUDE overall_header.html -->
 
-<h2>{U_DOL_STATUS} - {L_DOL_STATUS_GAME} - {U_DOL_STATUS_GAME}</h2>
+<h2>{L_DOL_STATUS_GAME_TITLE}</h2>
+
+<div class="panel">
+    <div class="inner game-pending"><span class="corners-top"><span></span></span>
+<!-- IF .Y_Account_Pending -->
+        <h3>{L_DOL_GAME_PENDING}</h3>
+        <p>{L_DOL_GAME_PENDING_DESC}</p>
+        <div class="game-help">{L_DOL_GAME_PENDING_DESC1}</div>
+        <table class="table1 responsive">
+        <thead><tr><th>{L_DOL_GAME_HEADER_ACCOUNTNAME}</th><th>{L_DOL_GAME_HEADER_TOKEN}</th><th>{L_DOL_GAME_HEADER_REALM}</th><th>{L_DOL_GAME_HEADER_CREATED}</th><th>{L_DOL_GAME_HEADER_LASTLOGIN}</th></tr></thead>
+        <tbody>
+        <!-- BEGIN Y_Account_Pending -->
+        <tr><td>{Y_Account_Pending.AccountName}</td><td>{Y_Account_Pending.Token}</td><td>{Y_Account_Pending.Realm}</td><td>{Y_Account_Pending.CreationDate}</td><td>{Y_Account_Pending.LastLogin}</td></tr>
+        <!-- END Y_Account_Pending -->
+        </tbody>
+        </table>
+<!-- ELSE -->
+        <h3>{L_DOL_GAME_HELP}</h3>
+        <div class="game-help">{L_DOL_GAME_HELP_DESC1}</div>
+        <div class="game-help">{L_DOL_GAME_HELP_DESC2}</div>
+        <div class="game-help"><p>{L_DOL_GAME_NOPENDING}</p></div>
+<!-- ENDIF -->
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- IF .Y_Account_Validated -->
+<div class="panel">
+    <div class="inner game-validated"><span class="corners-top"><span></span></span>
+        <h3>{L_DOL_GAME_VALIDATED}</h3>
+        <p>{L_DOL_GAME_VALIDATED_DESC}</p>
+        <table class="table1 responsive">
+        <thead><tr><th>{L_DOL_GAME_HEADER_PLAYERNAME}</th><th>{L_DOL_GAME_HEADER_RACECLASS}</th><th>{L_DOL_GAME_HEADER_GUILD}</th><th>{L_DOL_GAME_HEADER_LEVEL}</th><th>{L_DOL_GAME_HEADER_REALMRANK}</th><th>{L_DOL_GAME_HEADER_MASTERLEVEL}</th><th>{L_DOL_GAME_HEADER_CHAMPIONLEVEL}</th><th>{L_DOL_GAME_HEADER_PLAYED}</th><th>{L_DOL_GAME_HEADER_LASTPLAYED}</th></tr></thead>
+
+        <!-- BEGIN Y_Account_Validated -->
+        <tbody>
+        <tr><td colspan="9"><h4>{Y_Account_Validated.AccountName}</h4>
+        <span>{L_DOL_GAME_HEADER_REALM}:</span>
+        <span>{Y_Account_Validated.Realm}</span>
+        <span>{L_DOL_GAME_HEADER_CREATED}:</span>
+        <span>{Y_Account_Validated.CreationDate}</span>
+        <span>{L_DOL_GAME_HEADER_LASTLOGIN}:</span>
+        <span>{Y_Account_Validated.LastLogin}</span></td></tr>
+        
+        <tr><th>{L_DOL_GAME_HEADER_PLAYERNAME}</th><th>{L_DOL_GAME_HEADER_RACECLASS}</th><th>{L_DOL_GAME_HEADER_GUILD}</th><th>{L_DOL_GAME_HEADER_LEVEL}</th><th>{L_DOL_GAME_HEADER_REALMRANK}</th><th>{L_DOL_GAME_HEADER_MASTERLEVEL}</th><th>{L_DOL_GAME_HEADER_CHAMPIONLEVEL}</th><th>{L_DOL_GAME_HEADER_PLAYED}</th><th>{L_DOL_GAME_HEADER_LASTPLAYED}</th></tr>
+            <!-- BEGIN Y_Account_Validated.Players -->
+            <tr class="ladder-realm-{Y_Account_Validated.Players.Realm}">
+            <td><a href="{Y_Account_Validated.Players.PLAYER_URL}" title="{Y_Account_Validated.Players.Name}">{Y_Account_Validated.Players.Name}<!-- IF Y_Account_Validated.Players.LastName != "" --> {Y_Account_Validated.Players.LastName}<!-- ENDIF --></a></td>
+            <td>{Y_Account_Validated.Players.Race} {Y_Account_Validated.Players.Class}</td>
+            <td><!-- IF Y_Account_Validated.Players.GuildName != "" --><a href="{Y_Account_Validated.Players.GUILD_URL}" title="{Y_Account_Validated.Players.GuildName}">{Y_Account_Validated.Players.GuildName}<!-- ENDIF --></a></td>
+            <td>{Y_Account_Validated.Players.Level}</td>
+            <td>{Y_Account_Validated.Players.RealmRank}</td>
+            <td>{Y_Account_Validated.Players.MasterLevel}</td>
+            <td>{Y_Account_Validated.Players.ChampionLevel}</td>
+            <td>{Y_Account_Validated.Players.PlayedTime}</td>
+            <td>{Y_Account_Validated.Players.LastPlayed}</td>
+            </tr>
+            <!-- END Y_Account_Validated.Players -->
+        </tbody>
+        <!-- END Y_Account_Validated -->
+        </table>
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
 
 <!-- INCLUDE overall_footer.html -->

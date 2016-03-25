@@ -132,25 +132,6 @@ table.herald-ladder.herald-ladder-guilds tr > td:nth-of-type(6) {
     text-align: right !important;
 }
 
-tr.ladder-realm-albion td {
-    background-color: rgba(255, 80, 80, 0.35);
-}
-tr.ladder-realm-albion:hover > td {
-    background-color: rgba(255, 80, 80, 0.20);
-}
-tr.ladder-realm-midgard td {
-    background-color: rgba(100, 180, 255, 0.35);
-}
-tr.ladder-realm-midgard:hover > td {
-    background-color: rgba(100, 180, 255, 0.20);
-}
-tr.ladder-realm-hibernia td {
-    background-color: rgba(80, 255, 80, 0.35);
-}
-tr.ladder-realm-hibernia:hover > td {
-    background-color: rgba(80, 255, 80, 0.20);
-}
-
 table.herald-guild-members tr > td:nth-of-type(4),
 table.herald-guild-members tr > td:nth-of-type(5),
 table.herald-guild-members tr > td:nth-of-type(6) {

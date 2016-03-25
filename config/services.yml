@@ -54,6 +54,8 @@ services:
             - '@cache.driver'
             - '@config'
             - %core.root_path%
+            - '@dbal.conn'
+            - '@auth'
           
     dol.status.listener:
         class: dol\status\event\listener

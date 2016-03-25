@@ -32,6 +32,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
     'DOL_STATUS_HERALD'         => 'Herald',
     'DOL_STATUS_GAME'           => 'Game Account',
+    'DOL_STATUS_GAME_TITLE'     => 'Game Account Center',
     'DOL_STATUS_BOOK'           => 'Grimoire',
     'DOL_STATUS_STATUS'         => 'Server Status',
     'DOL_STATUS_STATUS_TITLE'   => 'Server Status & RvR Feed',
@@ -114,5 +115,30 @@ $lang = array_merge($lang, array(
     'DOL_STATUS_MOBSSPAWNED'    => 'Mobs spawned',
     'DOL_STATUS_RESTARTED'      => 'Server Restarted',
     'DOL_STATUS_TIME'           => 'Server Time',
+
+    'DOL_GAME_HELP'             => 'How to Register',
+    'DOL_GAME_HELP_DESC1'       => '<p>Registering your Game Account on Freyad Portal brings new features for your Shard experience:</p><ul><li>Account summary with characters statistics.</li><li>Self-service password reset.</li><li>Improved support from Staff.</li><li>Account protection when archiving non-returning players.</li></ul>',
+    'DOL_GAME_HELP_DESC2'       => '<p>Log In Game with a non-registered account or a newly created account and follow these simple steps:</p><ul><li>Type in-Game command <i>/register &quot;Website Account Name&quot;</i> and confirm.</li><li>Refresh this page some minutes later, your validation token should appear.</li><li>Complete registration with in-Game command <i>/register "#Token"</i>.</li><li>Refresh this page again some minutes later for your personal summary.</li></ul>',
+    'DOL_GAME_NOPENDING'        => 'You have no account Pending for Validation...',
+    'DOL_GAME_PENDING'          => 'Pending accounts',
+    'DOL_GAME_PENDING_DESC'     => 'Following game accounts are pending for Registration (Token Validation).',
+    'DOL_GAME_PENDING_DESC1'     => 'Complete your registration by using in-game command <i>/register "#Token"</i>, make sure you replace the <i>"#Token"</i> string with the appropriate Game account Token...',
+    'DOL_GAME_VALIDATED'        => 'Registered accounts',
+    'DOL_GAME_VALIDATED_DESC'   => 'Following game accounts are fully registered with your phpBB profile.',
+    'DOL_GAME_HEADER_ACCOUNTNAME'   => 'Account Name',
+    'DOL_GAME_HEADER_TOKEN'         => 'Validation Token',
+    'DOL_GAME_HEADER_REALM'         => 'Realm',
+    'DOL_GAME_HEADER_CREATED'       => 'Created',
+    'DOL_GAME_HEADER_LASTLOGIN'     => 'Last Login',
+    'DOL_GAME_HEADER_PLAYERNAME'    => 'Character',
+    'DOL_GAME_HEADER_RACECLASS'     => 'Race / Class',
+    'DOL_GAME_HEADER_GUILD'         => 'Guild',
+    'DOL_GAME_HEADER_LEVEL'         => 'Level',
+    'DOL_GAME_HEADER_MASTERLEVEL'   => 'Master Level',
+    'DOL_GAME_HEADER_CHAMPIONLEVEL' => 'Champion Level',
+    'DOL_GAME_HEADER_REALMRANK'    => 'Realm Rank',
+    'DOL_GAME_HEADER_LASTPLAYED'    => 'Last Played',
+    'DOL_GAME_HEADER_PLAYED'    => 'Played Time',
+        
 ));
 ?>

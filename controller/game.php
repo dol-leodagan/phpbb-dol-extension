@@ -80,8 +80,59 @@ class game
     /** Game Handler **/
     public function handle()
     {
-        if ($this->user->data['user_id'] == ANONYMOUS)
+        // Make sure account is identified
+        $username = $this->user->data['username'];
+        if ($this->user->data['user_id'] == ANONYMOUS || $username == null || $username == '')
             return $this->helper->message('LOGIN_REQUIRED', array(), 'NO_AUTH_OPERATION', 403);
+        
+        // Switched Permissions
+        if ($this->user->data['user_perm_from'])
+            $username = $this->controller_helper->username_from_perm($this->user);
+        
+        $account_display = $this->controller_helper->backend_yaml_query('getaccount/'.$username, 2 * 60);
+        // Transform Dates
+        if (isset($account_display['Account']))
+        {
+            if (is_array($account_display['Account']['Pending']))
+            {
+                foreach($account_display['Account']['Pending'] as $ind => $pend)
+                {
+                    if (isset($pend['LastLogin']))
+                        $account_display['Account']['Pending'][$ind]['LastLogin'] = date('M j Y', $pend['LastLogin']);
+                    if (isset($pend['CreationDate']))
+                        $account_display['Account']['Pending'][$ind]['CreationDate'] = date('M j Y', $pend['CreationDate']);
+                }
+            }
+            if (is_array($account_display['Account']['Validated']))
+            {
+                foreach($account_display['Account']['Validated'] as $ind => $valid)
+                {
+                    if (isset($valid['LastLogin']))
+                        $account_display['Account']['Validated'][$ind]['LastLogin'] = date('M j Y', $valid['LastLogin']);
+                    if (isset($valid['CreationDate']))
+                        $account_display['Account']['Validated'][$ind]['CreationDate'] = date('M j Y', $valid['CreationDate']);
+                    
+                    if (is_array($valid['Players']))
+                    {
+                        foreach($valid['Players'] as $plid => $player)
+                        {
+                            if (isset($player['LastPlayed']))
+                                $account_display['Account']['Validated'][$ind]['Players'][$plid]['LastPlayed'] = date('M j Y', $player['LastPlayed']);
+                            if (isset($player['PlayedTime']))
+                                $account_display['Account']['Validated'][$ind]['Players'][$plid]['PlayedTime'] = $this->controller_helper->seconds_time($player['PlayedTime']);
+
+                            // Build URL Routes
+                            if (isset($player['Name']))
+                                $account_display['Account']['Validated'][$ind]['Players'][$plid]['PLAYER_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'player', 'params' => $player['Name']));
+                            if (isset($player['GuildName']))
+                                $account_display['Account']['Validated'][$ind]['Players'][$plid]['GUILD_URL'] = $this->helper->route('dol_herald_sheet', array('cmd' => 'guild', 'params' => $player['GuildName']));
+                        }
+                    }
+                }
+            }
+        }
+        $this->controller_helper->assign_yaml_vars($account_display);
+        $this->template->assign_var('U_GAME_ENABLE', true);
         return $this->helper->render('game_body.html');
     }
 }

@@ -13,6 +13,8 @@ use Symfony\Component\Yaml\Parser;
 use phpbb\cache\driver;
 use phpbb\config\config;
 use Symfony\Component\HttpFoundation\Response;
+use phpbb\db\driver\driver_interface;
+use phpbb\auth\auth;
 
 class helper
 {
@@ -32,6 +34,18 @@ class helper
     protected $phpbb_root_path;
     
     /**
+    * phpBB root path
+    * @var \phpbb\db\driver\driver_interface
+    */
+    protected $db;
+    
+    /**
+    * phpBB root path
+    * @var \phpbb\auth\auth
+    */
+    protected $auth;
+    
+    /**
     * Extension root path
     * @var string
     */
@@ -45,15 +59,77 @@ class helper
     *
     * @param template $template
     */
-    public function __construct(template $template, $cache, config $config, $phpbb_root_path)
+    public function __construct(template $template, $cache, config $config, $phpbb_root_path, $db, $auth)
     {
         $this->template = $template;
         $this->cache = $cache;
         $this->config = $config;
         $this->phpbb_root_path = $phpbb_root_path;
         $this->root_path = $phpbb_root_path . 'ext/dol/status/';
+        $this->db = $db;
+        $this->auth = $auth;
         $this->parser = new Parser();
     }
+    
+    /** Region Utils **/
+    public function human_timing($timestamp)
+    {
+        $time = time() - $timestamp; // to get the time since that moment
+
+        $tokens = array (
+            31536000 => 'year',
+            2592000 => 'month',
+            604800 => 'week',
+            86400 => 'day',
+            3600 => 'hour',
+            60 => 'minute',
+            1 => 'second'
+        );
+
+        foreach ($tokens as $unit => $text) {
+            if ($time < $unit) continue;
+            $numberOfUnits = floor($time / $unit);
+            return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+        }
+    }
+    
+    public function seconds_time($timestamp)
+    {
+        $dtF = new \DateTime("@0");
+        $dtT = new \DateTime("@$timestamp");
+        
+        // only seconds
+        if ($timestamp < 60)
+            return $dtF->diff($dtT)->format('%s second'.($timestamp % 60 > 1 ? 's' : ''));
+        // only minutes
+        if ($timestamp < 3600)
+            return $dtF->diff($dtT)->format('%i minute'.(floor($timestamp / 60)  > 1 ? 's' : '').', %s second'.($timestamp % 60 > 1 ? 's' : ''));
+        // only hours
+        if ($timestamp < 86400)
+            return $dtF->diff($dtT)->format('%h hour'.(floor($timestamp / 3600)  > 1 ? 's' : '').', %i minute'.(floor(($timestamp % 3600) / 60)  > 1 ? 's' : ''));
+        // only days
+        if ($timestamp < 31536000)
+            return $dtF->diff($dtT)->format('%a day'.(floor($timestamp / 86400)  > 1 ? 's' : '').', %h hour'.(floor(($timestamp % 86400) / 3600)  > 1 ? 's' : ''));
+            
+        return $dtF->diff($dtT)->format('%y year'.(floor($timestamp / 31536000)  > 1 ? 's' : '').', %a day'.(floor(($timestamp % 31536000) / 86400)  > 1 ? 's' : ''));
+    }
+    
+    public function username_from_perm($user)
+    {
+        if ($user->data['user_perm_from'] && $this->auth->acl_get('a_switchperm'))
+        {
+			$sql = 'SELECT username FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user->data['user_perm_from'];
+			$result = $this->db->sql_query($sql);
+			$user_row = $this->db->sql_fetchrow($result);
+			$this->db->sql_freeresult($result);
+            
+            if ($user_row)
+                return $user_row['username'];
+        }
+        
+        return $user->data['username'];
+    }
+    /** EndRegion Utils **/
     
     /** Region BackendQuery **/
     public function backend_yaml_query($service, $cachettl)
