@@ -12,7 +12,7 @@ use phpbb\config\config;
 use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\user;
-use \phpbb\request\request;
+use phpbb\request\request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -240,11 +240,21 @@ class main
         $warmap = $this->controller_helper->backend_yaml_query('warmap', 5 * 60);
         
         if (isset($warmap['Structures']))
+        {
             foreach($warmap['Structures'] as $realm => $structures)
+            {
                 if (is_array($structures))
+                {
                     foreach($structures as $num => $structure)
+                    {
                         if (isset($structure['Claimed']) && $structure['Claimed'] === true)
                             $warmap['Structures'][$realm][$num]['IMGURL'] = $this->helper->route('dol_herald_images', array('cmd' => 'banner', 'params' => $structure['ClaimedBy']));
+
+                        $warmap['Structures'][$realm][$num]['Since'] = $this->controller_helper->human_timing($structure['Since']).' '.$this->user->lang['DOL_STATUS_AGO'];
+                    }
+                }
+            }
+        }
                         
         
         $this->controller_helper->assign_yaml_vars($warmap);

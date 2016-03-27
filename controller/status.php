@@ -97,6 +97,11 @@ class status
     public function handle_rvrmini()
     {
         $status_rvrmini = $this->controller_helper->backend_yaml_query('serverrvrstatus', 45);
+        if (isset($status_rvrmini['CaptureLog']) && is_array($status_rvrmini['CaptureLog']))
+            foreach($status_rvrmini['CaptureLog'] as $key => $log)
+                if (isset($log['CaptureTime']))
+                    $status_rvrmini['CaptureLog'][$key]['CaptureTime'] = $this->controller_helper->human_timing($log['CaptureTime']);
+        
         $this->controller_helper->assign_yaml_vars($status_rvrmini);
         return $this->helper->render('statusrvrmini_body.html');
     }

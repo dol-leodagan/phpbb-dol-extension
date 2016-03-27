@@ -35,46 +35,53 @@
     border-top: none;
 }
 
-.game-pending tr > td {
+.game-pending table.table1 tbody > tr > td {
     text-align: center;
 }
-.game-pending tr > td:first-child {
+.game-pending table.table1 tbody > tr > td:first-child {
     text-align: left;
 }
-.game-pending tr > td:nth-child(3) {
+.game-pending table.table1 tbody > tr > td:last-child {
+    text-align: right;
+}
+.game-pending table.table1 tbody > tr > td:last-child  form{
+    display: inline-block;
+}
+.game-pending table.table1 tbody > tr > td:nth-child(3) {
     text-transform: capitalize;
 }
 
-.game-validated tr > td:nth-child(2),
-.game-validated tr > td:nth-child(3),
-.game-validated tr > td:nth-child(8) {
+.game-validated table.table1 tbody > tr > td:nth-child(2),
+.game-validated table.table1 tbody > tr > td:nth-child(3),
+.game-validated table.table1 tbody > tr > td:nth-child(8) {
     text-align: center;
 }
-.game-validated tr > td:nth-child(4),
-.game-validated tr > td:nth-child(5),
-.game-validated tr > td:nth-child(6),
-.game-validated tr > td:nth-child(7),
-.game-validated tr > td:nth-child(9) {
+.game-validated table.table1 tbody > tr > td:nth-child(4),
+.game-validated table.table1 tbody > tr > td:nth-child(5),
+.game-validated table.table1 tbody > tr > td:nth-child(6),
+.game-validated table.table1 tbody > tr > td:nth-child(7),
+.game-validated table.table1 tbody > tr > td:nth-child(9),
+.game-validated table.table1 tbody > tr > td:nth-child(10) {
     text-align: right;
 }
 
-.game-validated tr > td > h4 {
+.game-validated table.table1 tbody > tr:first-child > td > h4 {
     font-size: large;
     margin-top: 10px;
 }
 
-.game-validated tr > td > span {
+.game-validated table.table1 tbody > tr:first-child > td > span {
     display: inline-block;
     margin: 0 5px;
 }
-.game-validated tr > td > span:nth-of-type(2n):after {
+.game-validated table.table1 tbody > tr:first-child > td > span:nth-of-type(2n):after {
     content: '-';
     margin-left: 10px; 
 }
-.game-validated tr > td > span:last-of-type:after {
+.game-validated table.table1 tbody > tr:first-child > td > span:last-of-type:after {
     content: '';
 }
-.game-validated tr > td > span:nth-of-type(2) {
+.game-validated table.table1 tbody > tr:first-child > td > span:nth-of-type(2) {
     text-transform: capitalize;
 }
 
@@ -84,4 +91,42 @@
 
 .game-pending div.game-help ul {
     margin-left: 25px;
+}
+
+.game-validated table.table1 tbody > tr:first-child > td > form {
+    float:right;
+}
+
+.game-create form dl > dd, .game-create form dl > dt {
+    display: inline-block;
+    margin: 0px;
+    width: unset;
+    float: unset;
+    vertical-align: middle;
+}
+
+.game-create form dl > dt:after {
+    content: ':';
+    margin-right: 5px;
+}
+.game-create form dl > dt:last-of-type:after {
+    content: '';
+    margin-right: 20px;
+}
+
+.game-create form dl > dd input[type="text"] {
+    width: 152px;
+}
+.game-create form dl > dd select {
+    width: 90px;
+}
+
+@media (max-width: 700px) {
+    .game-create form {
+       margin-left: 10px;
+    }
+
+    .game-create form dl > dd {
+       display: block;
+    }
 }

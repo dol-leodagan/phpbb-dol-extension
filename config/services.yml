@@ -56,6 +56,7 @@ services:
             - %core.root_path%
             - '@dbal.conn'
             - '@auth'
+            - '@user'
           
     dol.status.listener:
         class: dol\status\event\listener

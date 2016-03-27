@@ -129,7 +129,7 @@ class listener implements EventSubscriberInterface
         
         
         
-        if (strpos($this->controller_helper->get_current_url(), '/game') === false)
+        if (strpos($this->controller_helper->get_current_url(), '/account') === false)
             $game_link = $this->controller_helper->route('dol_status_game');
         else
             $game_link = $this->path_helper->remove_web_root_path($this->controller_helper->route('dol_status_game'));
@@ -147,6 +147,7 @@ class listener implements EventSubscriberInterface
         $this->template->assign_vars(array(
             'U_DOL_STATUS'   => true,
             'U_DOL_STATUS_HERALD'   => $herald_link,
+            'U_DOL_STATUS_HERALD_SELECT'   => 'app/herald, herald',
             'U_HERALD_WARMAP'   => $herald_link,
             'U_HERALD_ALBION'   => $herald_link_albion,
             'U_HERALD_MIDGARD'   => $herald_link_midgard,
@@ -159,8 +160,11 @@ class listener implements EventSubscriberInterface
             'U_HERALD_ACTIVE'   => $herald_link_active,
             'U_HERALD_SEARCH'   => $herald_link_search,
             'U_DOL_STATUS_GAME'   => $game_link,
+            'U_DOL_STATUS_GAME_SELECT'   => 'app/account, account',
             'U_DOL_STATUS_BOOK'   => $book_link,
+            'U_DOL_STATUS_BOOK_SELECT'   => 'app/grimoire, grimoire, app/book, book',
             'U_DOL_STATUS_STATUS'   => $status_link,
+            'U_DOL_STATUS_STATUS_SELECT'   => 'app/status, status',
         ));
     }
 

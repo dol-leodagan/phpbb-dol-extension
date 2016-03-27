@@ -1,7 +1,6 @@
 <!-- INCLUDE overall_header.html -->
 
 <h2>{L_DOL_STATUS_GAME_TITLE}</h2>
-
 <div class="panel">
     <div class="inner game-pending"><span class="corners-top"><span></span></span>
 <!-- IF .Y_Account_Pending -->
@@ -9,10 +8,18 @@
         <p>{L_DOL_GAME_PENDING_DESC}</p>
         <div class="game-help">{L_DOL_GAME_PENDING_DESC1}</div>
         <table class="table1 responsive">
-        <thead><tr><th>{L_DOL_GAME_HEADER_ACCOUNTNAME}</th><th>{L_DOL_GAME_HEADER_TOKEN}</th><th>{L_DOL_GAME_HEADER_REALM}</th><th>{L_DOL_GAME_HEADER_CREATED}</th><th>{L_DOL_GAME_HEADER_LASTLOGIN}</th></tr></thead>
+        <thead><tr><th>{L_DOL_GAME_HEADER_ACCOUNTNAME}</th><th>{L_DOL_GAME_HEADER_TOKEN}</th><th>{L_DOL_GAME_HEADER_REALM}</th><th>{L_DOL_GAME_HEADER_CREATED}</th><th>{L_DOL_GAME_HEADER_LASTLOGIN}</th><th>{L_DOL_GAME_HEADER_ACTIONS}</th></tr></thead>
         <tbody>
         <!-- BEGIN Y_Account_Pending -->
-        <tr><td>{Y_Account_Pending.AccountName}</td><td>{Y_Account_Pending.Token}</td><td>{Y_Account_Pending.Realm}</td><td>{Y_Account_Pending.CreationDate}</td><td>{Y_Account_Pending.LastLogin}</td></tr>
+        <tr>
+        <td>{Y_Account_Pending.AccountName}</td><td>{Y_Account_Pending.Token}</td><td>{Y_Account_Pending.Realm}</td><td>{Y_Account_Pending.CreationDate}</td><td>{Y_Account_Pending.LastLogin}</td>
+        <td>
+        <form method="post" class="status-form-confirm">{S_FORM_TOKEN}
+        <input class="button2" data-confirm-text="{L_DOL_GAME_ACTION_PASSWD_CONFIRM}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-refreshbutton="{L_DOL_GAME_ACTION_REFRESH}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" data-confirm-input="password" type="submit" name="confirmpasswd[{Y_Account_Pending.AccountName}]" data-confirm-refresh="" value="{L_DOL_GAME_ACTION_PASSWD}" />
+        <input class="button1" data-confirm-text="{L_DOL_GAME_ACTION_NOTME_CONFIRM}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-refreshbutton="{L_DOL_GAME_ACTION_REFRESH}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" type="submit" name="thatnotme[{Y_Account_Pending.AccountName}]" data-confirm-refresh="" value="{L_DOL_GAME_ACTION_NOTME}" />
+        </form>
+        </td>
+        </tr>
         <!-- END Y_Account_Pending -->
         </tbody>
         </table>
@@ -24,6 +31,26 @@
 <!-- ENDIF -->
     <span class="corners-bottom"><span></span></span></div>
 </div>
+
+<div class="panel">
+    <div class="inner game-create"><span class="corners-top"><span></span></span>
+    <h3>{L_DOL_GAME_CREATEACC}</h3>
+    <p>{L_DOL_GAME_CREATEACC_DESC}</p>
+    <form method="post" class="status-form-confirm">{S_FORM_TOKEN}
+    <fieldset><dl>
+    <dt><label for="cacc_name">{L_DOL_GAME_CREATEACC_NAME}</label></dt><dd><input required pattern="[A-Za-z][A-Za-z0-9]{2,}" maxlength=”20” class="inputbox" type="text" name="createacc_name" id="cacc_name" placeholder="{L_DOL_GAME_CREATEACC_NAMEPH}" /></dd>
+    <dt><label for="cacc_passwd">{L_DOL_GAME_CREATEACC_PASSWD}</label></dt><dd><input required pattern=".{6,}" maxlength=”20” class="inputbox" type="text" name="createacc_passwd" id="cacc_passwd" placeholder="{L_DOL_GAME_CREATEACC_PASSWDPH}" oninput="form.createacc_confirm.pattern = this.value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, &quot;\\$&&quot;);"/></dd>
+    <dt><label for="cacc_confirm">{L_DOL_GAME_CREATEACC_CONFIRM}</label></dt><dd><input required pattern=".{6,}" maxlength=”20” class="inputbox" type="text" name="createacc_confirm" id="cacc_confirm" placeholder="{L_DOL_GAME_CREATEACC_CONFIRMPH}" /></dd>
+    <dt><label for="cacc_default">{L_DOL_GAME_CREATEACC_DEFAULT}</label></dt><dd><select name="createacc_default" id="cacc_default">
+        <option value="albion">{L_DOL_STATUS_ALBION}</option>
+        <option value="midgard">{L_DOL_STATUS_MIDGARD}</option>
+        <option value="hibernia">{L_DOL_STATUS_HIBERNIA}</option></select></dd>
+    <dt></dt><dd><input class="button1" type="submit" name="createacc_submit" data-confirm-text="{L_DOL_GAME_CREATEACC_ALERT}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-refreshbutton="{L_DOL_GAME_ACTION_REFRESH}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" data-confirm-refresh="" value="{L_DOL_GAME_CREATEACC_SUBMIT}"></dd>
+    </dl></fieldset>
+    </form>
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+
 
 <!-- IF .Y_Account_Validated -->
 <div class="panel">
@@ -41,7 +68,13 @@
         <span>{L_DOL_GAME_HEADER_CREATED}:</span>
         <span>{Y_Account_Validated.CreationDate}</span>
         <span>{L_DOL_GAME_HEADER_LASTLOGIN}:</span>
-        <span>{Y_Account_Validated.LastLogin}</span></td></tr>
+        <span>{Y_Account_Validated.LastLogin}</span>
+        <form method="post" class="status-form-confirm">{S_FORM_TOKEN}
+        <input class="button2" data-confirm-text="{L_DOL_GAME_ACTION_RESET_CONFIRM}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" type="submit" name="reset[{Y_Account_Validated.AccountName}]" value="{L_DOL_GAME_ACTION_RESET}" />
+        <input class="button1" data-confirm-text="{L_DOL_GAME_ACTION_KICK_CONFIRM}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" type="submit" name="kick[{Y_Account_Validated.AccountName}]" value="{L_DOL_GAME_ACTION_KICK}" />
+        </form>
+        <div class="clear"></div>
+        </td></tr>
         
         <tr><th>{L_DOL_GAME_HEADER_PLAYERNAME}</th><th>{L_DOL_GAME_HEADER_RACECLASS}</th><th>{L_DOL_GAME_HEADER_GUILD}</th><th>{L_DOL_GAME_HEADER_LEVEL}</th><th>{L_DOL_GAME_HEADER_REALMRANK}</th><th>{L_DOL_GAME_HEADER_MASTERLEVEL}</th><th>{L_DOL_GAME_HEADER_CHAMPIONLEVEL}</th><th>{L_DOL_GAME_HEADER_PLAYED}</th><th>{L_DOL_GAME_HEADER_LASTPLAYED}</th></tr>
             <!-- BEGIN Y_Account_Validated.Players -->

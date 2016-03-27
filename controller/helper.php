@@ -10,11 +10,13 @@ namespace dol\status\controller;
 
 use phpbb\template\template;
 use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Dumper;
 use phpbb\cache\driver;
 use phpbb\config\config;
 use Symfony\Component\HttpFoundation\Response;
 use phpbb\db\driver\driver_interface;
 use phpbb\auth\auth;
+use phpbb\user;
 
 class helper
 {
@@ -34,17 +36,23 @@ class helper
     protected $phpbb_root_path;
     
     /**
-    * phpBB root path
+    * phpBB db connector
     * @var \phpbb\db\driver\driver_interface
     */
     protected $db;
     
     /**
-    * phpBB root path
+    * phpBB auth
     * @var \phpbb\auth\auth
     */
     protected $auth;
     
+    /**
+    * phpBB user
+    * @var \phpbb\user
+    */
+    protected $user;
+
     /**
     * Extension root path
     * @var string
@@ -54,12 +62,15 @@ class helper
     /** @var Symfony\Component\Yaml\Parser */
     protected $parser;
     
+    /** @var Symfony\Component\Yaml\Dumper */
+    protected $dumper;
+    
     /**
     * Constructor
     *
     * @param template $template
     */
-    public function __construct(template $template, $cache, config $config, $phpbb_root_path, $db, $auth)
+    public function __construct(template $template, $cache, config $config, $phpbb_root_path, $db, $auth, $user)
     {
         $this->template = $template;
         $this->cache = $cache;
@@ -68,7 +79,9 @@ class helper
         $this->root_path = $phpbb_root_path . 'ext/dol/status/';
         $this->db = $db;
         $this->auth = $auth;
+        $this->user = $user;
         $this->parser = new Parser();
+        $this->dumper = new Dumper();
     }
     
     /** Region Utils **/
@@ -77,19 +90,19 @@ class helper
         $time = time() - $timestamp; // to get the time since that moment
 
         $tokens = array (
-            31536000 => 'year',
-            2592000 => 'month',
-            604800 => 'week',
-            86400 => 'day',
-            3600 => 'hour',
-            60 => 'minute',
-            1 => 'second'
+            31536000 => 'DOL_STATUS_YEAR',
+            2592000 => 'DOL_STATUS_MONTH',
+            604800 => 'DOL_STATUS_WEEK',
+            86400 => 'DOL_STATUS_DAY',
+            3600 => 'DOL_STATUS_HOUR',
+            60 => 'DOL_STATUS_MINUTE',
+            1 => 'DOL_STATUS_SECOND'
         );
 
         foreach ($tokens as $unit => $text) {
             if ($time < $unit) continue;
             $numberOfUnits = floor($time / $unit);
-            return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+            return $numberOfUnits.' '.($this->user->lang[($text.( ( $numberOfUnits > 1 ) ? 'S' : '' ))]);
         }
     }
     
@@ -100,25 +113,25 @@ class helper
         
         // only seconds
         if ($timestamp < 60)
-            return $dtF->diff($dtT)->format('%s second'.($timestamp % 60 > 1 ? 's' : ''));
+            return $dtF->diff($dtT)->format('%s '.($timestamp % 60 > 1 ? $this->user->lang['DOL_STATUS_SECONDS'] : $this->user->lang['DOL_STATUS_SECOND']));
         // only minutes
         if ($timestamp < 3600)
-            return $dtF->diff($dtT)->format('%i minute'.(floor($timestamp / 60)  > 1 ? 's' : '').', %s second'.($timestamp % 60 > 1 ? 's' : ''));
+            return $dtF->diff($dtT)->format('%i '.(floor($timestamp / 60)  > 1 ? $this->user->lang['DOL_STATUS_MINUTES'] : $this->user->lang['DOL_STATUS_MINUTE']).', %s '.($timestamp % 60 > 1 ? $this->user->lang['DOL_STATUS_SECONDS'] : $this->user->lang['DOL_STATUS_SECOND']));
         // only hours
         if ($timestamp < 86400)
-            return $dtF->diff($dtT)->format('%h hour'.(floor($timestamp / 3600)  > 1 ? 's' : '').', %i minute'.(floor(($timestamp % 3600) / 60)  > 1 ? 's' : ''));
+            return $dtF->diff($dtT)->format('%h '.(floor($timestamp / 3600)  > 1 ? $this->user->lang['DOL_STATUS_HOURS'] : $this->user->lang['DOL_STATUS_HOUR']).', %i '.(floor(($timestamp % 3600) / 60)  > 1 ? $this->user->lang['DOL_STATUS_MINUTES'] : $this->user->lang['DOL_STATUS_MINUTE']));
         // only days
         if ($timestamp < 31536000)
-            return $dtF->diff($dtT)->format('%a day'.(floor($timestamp / 86400)  > 1 ? 's' : '').', %h hour'.(floor(($timestamp % 86400) / 3600)  > 1 ? 's' : ''));
+            return $dtF->diff($dtT)->format('%a '.(floor($timestamp / 86400)  > 1 ? $this->user->lang['DOL_STATUS_DAYS'] : $this->user->lang['DOL_STATUS_DAY']).', %h '.(floor(($timestamp % 86400) / 3600)  > 1 ? $this->user->lang['DOL_STATUS_HOURS'] : $this->user->lang['DOL_STATUS_HOUR']));
             
-        return $dtF->diff($dtT)->format('%y year'.(floor($timestamp / 31536000)  > 1 ? 's' : '').', %a day'.(floor(($timestamp % 31536000) / 86400)  > 1 ? 's' : ''));
+        return $dtF->diff($dtT)->format('%y '.(floor($timestamp / 31536000)  > 1 ? $this->user->lang['DOL_STATUS_YEARS'] : $this->user->lang['DOL_STATUS_YEAR']).', %a '.(floor(($timestamp % 31536000) / 86400)  > 1 ? $this->user->lang['DOL_STATUS_DAYS'] : $this->user->lang['DOL_STATUS_DAY']));
     }
     
-    public function username_from_perm($user)
+    public function username_from_perm()
     {
-        if ($user->data['user_perm_from'] && $this->auth->acl_get('a_switchperm'))
+        if ($this->user->data['user_perm_from'] && $this->auth->acl_get('a_switchperm'))
         {
-			$sql = 'SELECT username FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user->data['user_perm_from'];
+			$sql = 'SELECT username FROM ' . USERS_TABLE . ' WHERE user_id = ' . $this->user->data['user_perm_from'];
 			$result = $this->db->sql_query($sql);
 			$user_row = $this->db->sql_fetchrow($result);
 			$this->db->sql_freeresult($result);
@@ -127,10 +140,52 @@ class helper
                 return $user_row['username'];
         }
         
-        return $user->data['username'];
+        return $this->user->data['username'];
     }
     /** EndRegion Utils **/
     
+    /** Region BackendPost **/
+    public function backend_yaml_post($service, $data, $cachettl, $count, $action = "default")
+    {
+        $cache_get = $this->cache->get('_YMLBACKENDPOST_'.$action);
+        
+        if ($cache_get === FALSE || $cache_get < $count)
+        {
+            $content = $this->backend_raw_post($service, $this->dumper->dump($data));
+            try
+            {
+                $value = $this->parser->parse($content);
+                $this->cache->put('_YMLBACKENDPOST_'.$action, $cache_get !== FALSE ? $cache_get + 1 : 1 , $cachettl);
+                return $value;
+            }
+            catch (ParseException $e)
+            {
+                return array('Yaml_Exception' => $e->getMessage());
+            }
+        }
+        
+        return false;
+    }
+    
+    protected function backend_raw_post($service, $data)
+    {
+        $backend_url = 'https://karadok.freyad.net/';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $backend_url.$service);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // The --cacert option
+        curl_setopt($ch, CURLOPT_CAINFO, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/server.cert');
+        // The --cert option
+        curl_setopt($ch, CURLOPT_SSLCERT, '/var/lib/openshift/56c899540c1e66e27c000049/app-root/data/ssl/client.pem');
+        $raw_get = curl_exec($ch);
+        curl_close($ch);
+        return $raw_get;
+    }
+
     /** Region BackendQuery **/
     public function backend_yaml_query($service, $cachettl)
     {
@@ -138,7 +193,7 @@ class helper
         
         if ($cache_get === FALSE)
         {
-            $content = $this->backend_raw_query($service, $cachettl);
+            $content = $this->backend_raw_query($service);
             try
             {
                 $value = $this->parser->parse($content);
@@ -154,7 +209,7 @@ class helper
         return $cache_get;
     }
     
-    protected function backend_raw_query($service, $cachettl)
+    protected function backend_raw_query($service)
     {
         $backend_url = 'https://karadok.freyad.net/';
         $ch = curl_init();

@@ -85,3 +85,68 @@ tr.ladder-realm-hibernia td {
 tr.ladder-realm-hibernia:hover > td {
     background-color: rgba(80, 255, 80, 0.20);
 }
+
+/** Script Styling **/
+form.status-form-getconfirm {
+    position: relative;
+}
+
+form.status-form-getconfirm > div.status-form-confirmtext {
+    width: 250px;
+    padding: 5px;
+    border: 1px solid rgb(255, 120, 0);
+    border-radius: 5px;
+    position: absolute;
+    margin-top: 10px;
+    background-color: rgba(255, 165, 0, 0.85);
+    right: 0px;
+    text-align: center;
+}
+
+form.status-form-getconfirm > div.status-form-confirmtext.status-form-status-ok {
+    background-color: rgba(56, 149, 56, 0.85);
+    border: 1px solid rgb(13, 80, 13);
+}
+
+form.status-form-getconfirm > div.status-form-confirmtext.status-form-status-noauth {
+    background-color: rgba(181, 108, 195, 0.85);
+    border: 1px solid rgb(88, 22, 105);
+}
+
+form.status-form-getconfirm > div.status-form-confirmtext.status-form-status-warn {
+    background-color: rgba(252, 229, 60, 0.85);
+    border: 1px solid rgb(155, 105, 4);
+}
+
+form.status-form-getconfirm > div.status-form-confirmtext.status-form-status-err {
+    background-color: rgba(251, 113, 113, 0.85);
+    border: 1px solid rgb(155, 7, 7);
+}
+
+form.status-form-getconfirm > div.status-form-confirmtext > span {
+    display: block;
+    text-align: justify;
+    font-size: smaller;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form.status-form-getconfirm  input.status-cancel-button {
+    background-color: rgb(255, 206, 206);
+}
+
+form.status-form-getconfirm input.status-form-extrainput {
+    display: block;
+    margin: 5px auto;
+    width: 70%;
+}
+
+@media (max-width: 700px) {
+    form.status-form-getconfirm {
+        position: unset;
+    }
+    form.status-form-getconfirm > div.status-form-confirmtext {
+        width: calc(100% - 12px);
+    }
+        
+}
