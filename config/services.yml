@@ -57,6 +57,7 @@ services:
             - '@dbal.conn'
             - '@auth'
             - '@user'
+            - '@request'
           
     dol.status.listener:
         class: dol\status\event\listener

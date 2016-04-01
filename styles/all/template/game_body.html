@@ -1,6 +1,19 @@
 <!-- INCLUDE overall_header.html -->
 
 <h2>{L_DOL_STATUS_GAME_TITLE}</h2>
+
+<!-- IF WARN_MESSAGE -->
+
+<div class="panel game-warning">
+    <div class="inner"><span class="corners-top"><span></span></span>
+    <!-- IF WARN_TITLE --><h2 class="message-title">{WARN_TITLE}</h2><!-- ENDIF -->
+    <p>{WARN_MESSAGE}</p>
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- ENDIF -->
+
+
 <div class="panel">
     <div class="inner game-pending"><span class="corners-top"><span></span></span>
 <!-- IF .Y_Account_Pending -->
@@ -15,6 +28,7 @@
         <td>{Y_Account_Pending.AccountName}</td><td>{Y_Account_Pending.Token}</td><td>{Y_Account_Pending.Realm}</td><td>{Y_Account_Pending.CreationDate}</td><td>{Y_Account_Pending.LastLogin}</td>
         <td>
         <form method="post" class="status-form-confirm">{S_FORM_TOKEN}
+        <input type="hidden" name="test[1][2][3]" value="truc" />
         <input class="button2" data-confirm-text="{L_DOL_GAME_ACTION_PASSWD_CONFIRM}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-refreshbutton="{L_DOL_GAME_ACTION_REFRESH}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" data-confirm-input="password" type="submit" name="confirmpasswd[{Y_Account_Pending.AccountName}]" data-confirm-refresh="" value="{L_DOL_GAME_ACTION_PASSWD}" />
         <input class="button1" data-confirm-text="{L_DOL_GAME_ACTION_NOTME_CONFIRM}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-refreshbutton="{L_DOL_GAME_ACTION_REFRESH}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" type="submit" name="thatnotme[{Y_Account_Pending.AccountName}]" data-confirm-refresh="" value="{L_DOL_GAME_ACTION_NOTME}" />
         </form>
@@ -38,9 +52,9 @@
     <p>{L_DOL_GAME_CREATEACC_DESC}</p>
     <form method="post" class="status-form-confirm">{S_FORM_TOKEN}
     <fieldset><dl>
-    <dt><label for="cacc_name">{L_DOL_GAME_CREATEACC_NAME}</label></dt><dd><input required pattern="[A-Za-z][A-Za-z0-9]{2,}" maxlength=”20” class="inputbox" type="text" name="createacc_name" id="cacc_name" placeholder="{L_DOL_GAME_CREATEACC_NAMEPH}" /></dd>
-    <dt><label for="cacc_passwd">{L_DOL_GAME_CREATEACC_PASSWD}</label></dt><dd><input required pattern=".{6,}" maxlength=”20” class="inputbox" type="text" name="createacc_passwd" id="cacc_passwd" placeholder="{L_DOL_GAME_CREATEACC_PASSWDPH}" oninput="form.createacc_confirm.pattern = this.value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, &quot;\\$&&quot;);"/></dd>
-    <dt><label for="cacc_confirm">{L_DOL_GAME_CREATEACC_CONFIRM}</label></dt><dd><input required pattern=".{6,}" maxlength=”20” class="inputbox" type="text" name="createacc_confirm" id="cacc_confirm" placeholder="{L_DOL_GAME_CREATEACC_CONFIRMPH}" /></dd>
+    <dt><label for="cacc_name">{L_DOL_GAME_CREATEACC_NAME}</label></dt><dd><input required pattern="[A-Za-z][A-Za-z0-9]{2,19}" maxlength=”20” class="inputbox" type="text" name="createacc_name" id="cacc_name" placeholder="{L_DOL_GAME_CREATEACC_NAMEPH}" /></dd>
+    <dt><label for="cacc_passwd">{L_DOL_GAME_CREATEACC_PASSWD}</label></dt><dd><input required pattern=".{6,20}" maxlength=”20” class="inputbox" type="text" name="createacc_passwd" id="cacc_passwd" placeholder="{L_DOL_GAME_CREATEACC_PASSWDPH}" oninput="form.createacc_confirm.pattern = this.value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, &quot;\\$&&quot;);" autocomplete="off" /></dd>
+    <dt><label for="cacc_confirm">{L_DOL_GAME_CREATEACC_CONFIRM}</label></dt><dd><input required pattern=".{6,20}" maxlength=”20” class="inputbox" type="text" name="createacc_confirm" id="cacc_confirm" placeholder="{L_DOL_GAME_CREATEACC_CONFIRMPH}" autocomplete="off" /></dd>
     <dt><label for="cacc_default">{L_DOL_GAME_CREATEACC_DEFAULT}</label></dt><dd><select name="createacc_default" id="cacc_default">
         <option value="albion">{L_DOL_STATUS_ALBION}</option>
         <option value="midgard">{L_DOL_STATUS_MIDGARD}</option>
@@ -58,11 +72,11 @@
         <h3>{L_DOL_GAME_VALIDATED}</h3>
         <p>{L_DOL_GAME_VALIDATED_DESC}</p>
         <table class="table1 responsive">
-        <thead><tr><th>{L_DOL_GAME_HEADER_PLAYERNAME}</th><th>{L_DOL_GAME_HEADER_RACECLASS}</th><th>{L_DOL_GAME_HEADER_GUILD}</th><th>{L_DOL_GAME_HEADER_LEVEL}</th><th>{L_DOL_GAME_HEADER_REALMRANK}</th><th>{L_DOL_GAME_HEADER_MASTERLEVEL}</th><th>{L_DOL_GAME_HEADER_CHAMPIONLEVEL}</th><th>{L_DOL_GAME_HEADER_PLAYED}</th><th>{L_DOL_GAME_HEADER_LASTPLAYED}</th></tr></thead>
+        <thead><tr><th>{L_DOL_GAME_HEADER_PLAYERNAME}</th><th>{L_DOL_GAME_HEADER_RACECLASS}</th><th>{L_DOL_GAME_HEADER_GUILD}</th><th>{L_DOL_GAME_HEADER_LEVEL}</th><th>{L_DOL_GAME_HEADER_REALMRANK}</th><th>{L_DOL_GAME_HEADER_MASTERLEVEL}</th><th>{L_DOL_GAME_HEADER_CHAMPIONLEVEL}</th><th>{L_DOL_GAME_HEADER_PLAYED}</th><th>{L_DOL_GAME_HEADER_LASTPLAYED}</th><th>{L_DOL_GAME_HEADER_ACTIONS}</th></tr></thead>
 
         <!-- BEGIN Y_Account_Validated -->
         <tbody>
-        <tr><td colspan="9"><h4>{Y_Account_Validated.AccountName}</h4>
+        <tr><td colspan="10"><h4>{Y_Account_Validated.AccountName}</h4>
         <span>{L_DOL_GAME_HEADER_REALM}:</span>
         <span>{Y_Account_Validated.Realm}</span>
         <span>{L_DOL_GAME_HEADER_CREATED}:</span>
@@ -76,7 +90,7 @@
         <div class="clear"></div>
         </td></tr>
         
-        <tr><th>{L_DOL_GAME_HEADER_PLAYERNAME}</th><th>{L_DOL_GAME_HEADER_RACECLASS}</th><th>{L_DOL_GAME_HEADER_GUILD}</th><th>{L_DOL_GAME_HEADER_LEVEL}</th><th>{L_DOL_GAME_HEADER_REALMRANK}</th><th>{L_DOL_GAME_HEADER_MASTERLEVEL}</th><th>{L_DOL_GAME_HEADER_CHAMPIONLEVEL}</th><th>{L_DOL_GAME_HEADER_PLAYED}</th><th>{L_DOL_GAME_HEADER_LASTPLAYED}</th></tr>
+        <tr><th>{L_DOL_GAME_HEADER_PLAYERNAME}</th><th>{L_DOL_GAME_HEADER_RACECLASS}</th><th>{L_DOL_GAME_HEADER_GUILD}</th><th>{L_DOL_GAME_HEADER_LEVEL}</th><th>{L_DOL_GAME_HEADER_REALMRANK}</th><th>{L_DOL_GAME_HEADER_MASTERLEVEL}</th><th>{L_DOL_GAME_HEADER_CHAMPIONLEVEL}</th><th>{L_DOL_GAME_HEADER_PLAYED}</th><th>{L_DOL_GAME_HEADER_LASTPLAYED}</th><th>{L_DOL_GAME_HEADER_ACTIONS}</th></tr>
             <!-- BEGIN Y_Account_Validated.Players -->
             <tr class="ladder-realm-{Y_Account_Validated.Players.Realm}">
             <td><a href="{Y_Account_Validated.Players.PLAYER_URL}" title="{Y_Account_Validated.Players.Name}">{Y_Account_Validated.Players.Name}<!-- IF Y_Account_Validated.Players.LastName != "" --> {Y_Account_Validated.Players.LastName}<!-- ENDIF --></a></td>
@@ -88,6 +102,9 @@
             <td>{Y_Account_Validated.Players.ChampionLevel}</td>
             <td>{Y_Account_Validated.Players.PlayedTime}</td>
             <td>{Y_Account_Validated.Players.LastPlayed}</td>
+            <td><form method="post" class="status-form-confirm">{S_FORM_TOKEN}
+            <input class="button2" data-confirm-text="{L_DOL_GAME_ACTION_BIND_CONFIRM}" data-confirm-button="{L_DOL_GAME_ACTION_CONFIRM}" data-confirm-close="{L_DOL_GAME_ACTION_CLOSE}" data-confirm-cancel="{L_DOL_GAME_ACTION_CANCEL}" type="submit" name="movetobind[{Y_Account_Validated.AccountName}][{Y_Account_Validated.Players.Name}]" value="{L_DOL_GAME_ACTION_BIND}" />
+            </form></td>
             </tr>
             <!-- END Y_Account_Validated.Players -->
         </tbody>

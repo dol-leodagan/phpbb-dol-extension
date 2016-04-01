@@ -65,6 +65,10 @@
     text-align: right;
 }
 
+.game-validated table.table1 tbody > tr > td form {
+    display: inline-block;
+}
+
 .game-validated table.table1 tbody > tr:first-child > td > h4 {
     font-size: large;
     margin-top: 10px;
@@ -119,6 +123,33 @@
 }
 .game-create form dl > dd select {
     width: 90px;
+}
+
+.game-confirm form {
+    text-align: center;
+}
+
+.game-confirm form input {
+    display: block;
+    width: unset;
+    margin: 3px auto;
+}
+
+.game-confirm form input[type='submit'] {
+    display: unset;
+}
+
+.game-confirm form a.button1,
+.game-confirm form a.button2 {
+    vertical-align: middle;
+}
+
+div.game-warning {
+    background-color: rgba(255, 195, 118, 0.85);
+}
+
+div.game-warning p {
+    font-size: larger;
 }
 
 @media (max-width: 700px) {

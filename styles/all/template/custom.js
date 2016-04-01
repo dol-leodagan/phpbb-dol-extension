@@ -30,7 +30,7 @@ $( document ).ready(function() {
         {
             if ($extrainputattr == 'password')
                 $extrainputattr = 'text';
-            $extrainput = $( "<input type=\"" + $extrainputattr + "\" class=\"inputbox status-form-extrainput\" />" );
+            $extrainput = $( "<input type=\"" + $extrainputattr + "\" class=\"inputbox status-form-extrainput\" autocomplete=\"off\" />" );
             if ($extrainput[0].willValidate)
                 $extrainput.prop("required", true);;
             $newdiv1.append($extrainput);

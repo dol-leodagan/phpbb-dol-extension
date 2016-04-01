@@ -150,3 +150,7 @@ form.status-form-getconfirm input.status-form-extrainput {
     }
         
 }
+
+.status-center {
+    text-align: center;
+}

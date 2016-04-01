@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use phpbb\db\driver\driver_interface;
 use phpbb\auth\auth;
 use phpbb\user;
+use phpbb\request\request;
 
 class helper
 {
@@ -54,6 +55,12 @@ class helper
     protected $user;
 
     /**
+    * phpBB request
+    * @var \phpbb\request\request
+    */
+    protected $request;
+
+    /**
     * Extension root path
     * @var string
     */
@@ -70,7 +77,7 @@ class helper
     *
     * @param template $template
     */
-    public function __construct(template $template, $cache, config $config, $phpbb_root_path, $db, $auth, $user)
+    public function __construct(template $template, $cache, config $config, $phpbb_root_path, $db, $auth, $user, $request)
     {
         $this->template = $template;
         $this->cache = $cache;
@@ -80,6 +87,7 @@ class helper
         $this->db = $db;
         $this->auth = $auth;
         $this->user = $user;
+        $this->request = $request;
         $this->parser = new Parser();
         $this->dumper = new Dumper();
     }
@@ -147,15 +155,23 @@ class helper
     /** Region BackendPost **/
     public function backend_yaml_post($service, $data, $cachettl, $count, $action = "default")
     {
-        $cache_get = $this->cache->get('_YMLBACKENDPOST_'.$action);
+        $username = 'GUEST';
+        if ($this->user->data['user_id'] !== ANONYMOUS && $this->user->data['username'] != null && $this->user->data['username'] != '')
+            $username = $this->user->data['username'];
         
-        if ($cache_get === FALSE || $cache_get < $count)
+        $cache_string = '_YMLBACKENDPOST_'.$username.'_'.$action;
+        $cache_get = $this->cache->get($cache_string);
+        
+        if ($cache_get === FALSE || $cache_get['Yaml_Throttling']['Queries'] < $count)
         {
+            $queries = $cache_get === FALSE ? 1 : $cache_get['Yaml_Throttling']['Queries'] + 1;
+            $cache_new = array('Yaml_Throttling' => array('Queries' => $queries, 'Time' => time(), 'TTL' => $cachettl));
+
             $content = $this->backend_raw_post($service, $this->dumper->dump($data));
             try
             {
                 $value = $this->parser->parse($content);
-                $this->cache->put('_YMLBACKENDPOST_'.$action, $cache_get !== FALSE ? $cache_get + 1 : 1 , $cachettl);
+                $this->cache->put($cache_string, $cache_new, $cachettl);
                 return $value;
             }
             catch (ParseException $e)
@@ -164,7 +180,7 @@ class helper
             }
         }
         
-        return false;
+        return $cache_get;
     }
     
     protected function backend_raw_post($service, $data)
@@ -224,6 +240,11 @@ class helper
         $raw_get = curl_exec($ch);
         curl_close($ch);
         return $raw_get;
+    }
+    
+    public function backeng_yaml_query_purge($service)
+    {
+        $this->cache->destroy('_YMLBACKEND_'.$service);
     }
     /** EndRegion BackendQuery **/
 
@@ -315,4 +336,44 @@ class helper
         return array_values($array)!==$array;
     }
     /** EndRegion - YAML to Template Parser **/
+    
+    /** Region Form Handler **/
+    public function create_hidden_input($filter = false)
+    {
+        $result = $this->walk_form_array(array($filter, 'creation_time', 'form_token'));
+        return $result;
+    }
+    
+    protected function walk_form_array($filter = array())
+    {
+        $values = $this->request->variable_names();
+        $globals = $this->request->get_super_global();
+        foreach ($values as $name)
+        {
+            $result .= $this->build_form_array($globals[$name], $name, $filter);
+        }
+        
+        return $result;
+    }
+    
+    protected function build_form_array($input, $name, $filter)
+    {
+        if (in_array($name, $filter))
+            return '';
+
+        if (is_array($input))
+        {
+            $result = '';
+            foreach($input as $key => $val)
+            {
+                $result .= $this->build_form_array($val, $name.'['.$key.']', $filter);
+            }
+            return $result;
+        }
+        else
+        {
+            return '<input type="hidden" name="'.htmlentities($name).'" value="'.htmlentities($input).'" />';
+        }
+        return $result;
+    }
 }
