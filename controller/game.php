@@ -328,11 +328,27 @@ class game
         if ($checkconfirm = $this->form_not_confirmed('DOL_GAME_ACTION_RESET_CONFIRM'))
             return $checkconfirm;
         
-        $response = $this->controller_helper->backend_yaml_post('postaccount', array('ResetAccountPassword' => (array('Profile' => $alternate_user, 'Account' => $confirm_account))), 5 * 60, 3, 'reset');
+        // Generate Password
+        $password = gen_rand_string_friendly(10);
+        
+        $response = $this->controller_helper->backend_yaml_post('postaccount', array('ResetAccountPassword' => (array('Profile' => $alternate_user, 'Account' => $confirm_account, 'Password' => $password))), 5 * 60, 1, 'reset');
         
         if (($check = $this->check_backend_post_reply($response)) !== true)
             return $check;
+        
+        // Generate Mail
+        include_once($this->phpbb_root_path . 'includes/functions_messenger' . $this->php_ext);
+        $messenger = new \messenger(false);
+        $messenger->template('@dol_status/email_reset_template', $lang);
+        $messenger->to($this->user->data['user_email'], $this->user->data['username']);
 
+        $messenger->assign_vars(array(
+                'ACC_PASSWORD'    => $password,
+                'ACC_USERNAME'    => $confirm_account,
+            ));
+        
+        $messenger->send();
+        
         return $this->handle_post_response(array('Status' => 'OK', 'Message' => $this->user->lang['DOL_GAME_ACTION_RESET_SUCCESS'], 'Title' => $this->user->lang['DOL_STATUS_SUCCESS']), 200);
     }
     

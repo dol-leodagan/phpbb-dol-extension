@@ -152,6 +152,11 @@ div.game-warning p {
     font-size: larger;
 }
 
+/** Margin bottom for readable pop-up, only on game page **/
+#page-body > div:last-of-type {
+    margin-bottom: 70px;
+}
+
 @media (max-width: 700px) {
     .game-create form {
        margin-left: 10px;

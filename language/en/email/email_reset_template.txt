@@ -1,0 +1,16 @@
+Subject: Update for your "{SITENAME}" game account.
+
+Your Game Account Password has been reset from Web Console.
+
+Please keep track of these new credentials or change them as soon as possible using /password in-game command.
+
+Your Game Account password has been securely stored in our database and cannot be retrieved. In the event that it is forgotten, you will be able to reset it using the email address associated with your account.
+
+Log in game using the following credentials:
+
+Account Username: {ACC_USERNAME}
+Account Password: {ACC_PASSWORD}
+
+Thank you for using Game Account Web Console.
+
+{EMAIL_SIG}
