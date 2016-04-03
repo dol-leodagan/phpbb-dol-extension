@@ -1,6 +1,7 @@
 <div class="panel herald-warmap">
     <div class="inner"><span class="corners-top"><span></span></span>
         <div id="warmap-content">
+            <p class="warmap-content-responsive">{L_DOL_STATUS_ALBION}</p>
             <div class="warmap-content-realm" id="warmap-content-albion">
                 <div id="warmap-content-hadrian">
                 </div>
@@ -13,19 +14,22 @@
             <!-- BEGIN Y_Structures_Albion -->
                 <div style="top: {Y_Structures_Albion.Top}px; left: {Y_Structures_Albion.Left}px;" class="warmap-owned-{Y_Structures_Albion.Owner} warmap-content-element warmap-content-{Y_Structures_Albion.Type} <!-- IF Y_Structures_Albion.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Albion.Supplied -->warmap-content-glow<!-- ENDIF -->">
                     <div class="warmap-content-tooltip">
-                        <strong>{Y_Structures_Albion.Name}</strong>
                         <!-- IF Y_Structures_Albion.Claimed -->
                         <img src="{Y_Structures_Albion.IMGURL}" alt="{Y_Structures_Albion.ClaimedBy}" title="{Y_Structures_Albion.ClaimedBy}"/>
                         <!-- ENDIF -->
-                        <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Albion.Level}</strong><br />
-                        {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Albion.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Albion.Since}</span>
-                        <!-- IF Y_Structures_Albion.Claimed -->
-                        <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Albion.ClaimedBy}</strong>
-                        <!-- ENDIF -->
+                        <div>
+                            <strong>{Y_Structures_Albion.Name}</strong>
+                            <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Albion.Level}</strong><br />
+                            {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Albion.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Albion.Since}</span>
+                            <!-- IF Y_Structures_Albion.Claimed -->
+                            <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Albion.ClaimedBy}</strong>
+                            <!-- ENDIF -->
+                        </div>
                     </div>
                 </div>
             <!-- END Y_Structures_Albion -->
             </div>
+            <p class="warmap-content-responsive">{L_DOL_STATUS_MIDGARD}</p>
             <div class="warmap-content-realm" id="warmap-content-midgard">
                 <div id="warmap-content-uppland">
                 </div>
@@ -38,19 +42,22 @@
             <!-- BEGIN Y_Structures_Midgard -->
                 <div style="top: {Y_Structures_Midgard.Top}px; left: {Y_Structures_Midgard.Left}px;" class="warmap-owned-{Y_Structures_Midgard.Owner} warmap-content-element warmap-content-{Y_Structures_Midgard.Type} <!-- IF Y_Structures_Midgard.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Midgard.Supplied -->warmap-content-glow<!-- ENDIF -->">
                     <div class="warmap-content-tooltip">
-                        <strong>{Y_Structures_Midgard.Name}</strong>
                         <!-- IF Y_Structures_Midgard.Claimed -->
                         <img src="{Y_Structures_Midgard.IMGURL}" alt="{Y_Structures_Midgard.ClaimedBy}" title="{Y_Structures_Midgard.ClaimedBy}"/>
                         <!-- ENDIF -->
-                        <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Midgard.Level}</strong><br />
-                        {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Midgard.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Midgard.Since}</span>
-                        <!-- IF Y_Structures_Midgard.Claimed -->
-                        <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Midgard.ClaimedBy}</strong>
-                        <!-- ENDIF -->
+                        <div>
+                            <strong>{Y_Structures_Midgard.Name}</strong>
+                            <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Midgard.Level}</strong><br />
+                            {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Midgard.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Midgard.Since}</span>
+                            <!-- IF Y_Structures_Midgard.Claimed -->
+                            <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Midgard.ClaimedBy}</strong>
+                            <!-- ENDIF -->
+                        </div>
                     </div>
                 </div>
             <!-- END Y_Structures_Midgard -->
             </div>
+            <p class="warmap-content-responsive">{L_DOL_STATUS_HIBERNIA}</p>
             <div class="warmap-content-realm" id="warmap-content-hibernia">
                 <div id="warmap-content-emain">
                 </div>
@@ -63,20 +70,23 @@
             <!-- BEGIN Y_Structures_Hibernia -->
                 <div style="top: {Y_Structures_Hibernia.Top}px; left: {Y_Structures_Hibernia.Left}px;" class="warmap-owned-{Y_Structures_Hibernia.Owner} warmap-content-element warmap-content-{Y_Structures_Hibernia.Type} <!-- IF Y_Structures_Hibernia.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Hibernia.Supplied -->warmap-content-glow<!-- ENDIF -->">
                     <div class="warmap-content-tooltip">
-                        <strong>{Y_Structures_Hibernia.Name}</strong>
                         <!-- IF Y_Structures_Hibernia.Claimed -->
                         <img src="{Y_Structures_Hibernia.IMGURL}" alt="{Y_Structures_Hibernia.ClaimedBy}" title="{Y_Structures_Hibernia.ClaimedBy}"/>
                         <!-- ENDIF -->
-                        <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Hibernia.Level}</strong><br />
-                        {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Hibernia.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Hibernia.Since}</span>
-                        <!-- IF Y_Structures_Hibernia.Claimed -->
-                        <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Hibernia.ClaimedBy}</strong>
-                        <!-- ENDIF -->
+                        <div>
+                            <strong>{Y_Structures_Hibernia.Name}</strong>
+                            <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Hibernia.Level}</strong><br />
+                            {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Hibernia.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Hibernia.Since}</span>
+                            <!-- IF Y_Structures_Hibernia.Claimed -->
+                            <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Hibernia.ClaimedBy}</strong>
+                            <!-- ENDIF -->
+                        </div>
                     </div>
                 </div>
             <!-- END Y_Structures_Hibernia -->
             </div>
 
+            <p class="warmap-content-responsive">Central</p>
             <div class="warmap-content-realm" id="warmap-content-neutral">
                 <div id="warmap-content-agramon">
                 </div>
@@ -85,15 +95,17 @@
             <!-- BEGIN Y_Structures_Central -->
                 <div style="top: {Y_Structures_Central.Top}px; left: {Y_Structures_Central.Left}px;" class="warmap-owned-{Y_Structures_Central.Owner} warmap-content-element warmap-content-{Y_Structures_Central.Type} <!-- IF Y_Structures_Central.Attacked -->warmap-content-attack<!-- ENDIF --> <!-- IF Y_Structures_Central.Supplied -->warmap-content-glow<!-- ENDIF -->">
                     <div class="warmap-content-tooltip">
-                        <strong>{Y_Structures_Central.Name}</strong>
                         <!-- IF Y_Structures_Central.Claimed -->
                         <img src="{Y_Structures_Central.IMGURL}" alt="{Y_Structures_Central.ClaimedBy}" title="{Y_Structures_Central.ClaimedBy}"/>
                         <!-- ENDIF -->
-                        <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Central.Level}</strong><br />
-                        {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Central.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Central.Since}</span>
-                        <!-- IF Y_Structures_Central.Claimed -->
-                        <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Central.ClaimedBy}</strong>
-                        <!-- ENDIF -->
+                        <div>
+                            <strong>{Y_Structures_Central.Name}</strong>
+                            <br />{L_DOL_HERALD_KEEPLEVEL} : <strong>{Y_Structures_Central.Level}</strong><br />
+                            {L_DOL_HERALD_CAPTUREDBY} <strong class="warmap-content-tooltip-realm">{Y_Structures_Central.Owner}</strong><br /><span class="warmap-content-tooltip-time">{Y_Structures_Central.Since}</span>
+                            <!-- IF Y_Structures_Central.Claimed -->
+                            <br />{L_DOL_HERALD_CLAIMEDBY} <strong>{Y_Structures_Central.ClaimedBy}</strong>
+                            <!-- ENDIF -->
+                        </div>
                     </div>
                 </div>
             <!-- END Y_Structures_Central -->

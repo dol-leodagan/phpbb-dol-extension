@@ -16,33 +16,21 @@ div.warmap-rendertime {
         position: relative !important;
         top: auto !important;
         left: auto !important;
-        margin: 3em auto 0px auto;
+        margin: 0px auto;
+        max-width: 100% !important;
+        overflow: auto;
     }
-    
-    div#warmap-content-midgard::before {
-        content: 'Midgard';
-        width: 384px;
-    }
-    div#warmap-content-albion::before {
-        content: 'Albion';
-        width: 256px;
-    }
-    div#warmap-content-hibernia::before {
-        content: 'Hibernia';
-        width: 256px;
-    }
-    div#warmap-content-neutral::before {
-        content: 'Central';
-        width: 128px;
-    }
-    div.warmap-content-realm::before {
-        display: inline-block;
-        position: absolute;
-        margin-top: -1.5em;
-        text-align: center;
-        font-weight: bold;
+    p.warmap-content-responsive {
+        display: block !important;
+        margin: 0.5em auto;
         font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
     }
+}
+
+p.warmap-content-responsive {
+    display: none;
 }
 
 div#warmap-content {
@@ -197,10 +185,11 @@ div.warmap-content-keep {
         -moz-border-radius: unset !important;
         -webkit-border-radius: unset !important;
         margin: 0px !important;
-        width: calc(100% - 40px) !important;
+        width: 100% !important;
         border-top: unset !important;
         border-left: unset !important;
         border-right: unset !important;
+        -webkit-backface-visibility: hidden !important; /*Most Important*/
     }
     div.warmap-content-tooltip:hover {
         display: none !important;
@@ -217,9 +206,8 @@ div.warmap-content-keep {
 }
 
 div.warmap-content-tooltip {
-    width: 240px;
+    width: 280px;
     height: auto !important;
-    padding: 14px 20px;
     line-height: 20px;
 
     color: #f6f6f6;
@@ -238,6 +226,10 @@ div.warmap-content-tooltip {
     display: none;
 }
 
+div.warmap-content-tooltip > div {
+    margin: 14px 20px;
+}
+
 div.warmap-content-element {
     background-size: contain !important;
 }
@@ -251,9 +243,9 @@ div.warmap-content-element:hover > div.warmap-content-tooltip {
 }
 
 div.warmap-content-tooltip > img {
-    float: right;
-    margin-right: -12px;
-    margin-top: 6px;
+    position: absolute;
+    right: 12px;
+    top: 6px;
 }
 
 div.warmap-content-tooltip::after {
