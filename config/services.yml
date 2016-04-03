@@ -48,7 +48,7 @@ services:
             - '@dol.status.controller_helper'
 
     dol.status.controller_helper:
-        class: dol\status\controller\helper
+        class: dol\status\controller\dolhelper
         arguments:
             - '@template'
             - '@cache.driver'

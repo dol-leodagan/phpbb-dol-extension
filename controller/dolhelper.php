@@ -19,7 +19,7 @@ use phpbb\auth\auth;
 use phpbb\user;
 use phpbb\request\request;
 
-class helper
+class dolhelper
 {
     /* @var template */
     protected $template;
