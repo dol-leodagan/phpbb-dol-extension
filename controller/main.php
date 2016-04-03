@@ -329,12 +329,6 @@ class main
         return $this->handle('badsearch', $params);
     }
     
-    /** Game Account Handler **/
-    public function handle_game()
-    {
-        return $this->helper->render('game_body.html');
-    }
-    
     /** Book Handler **/
     public function handle_book()
     {
